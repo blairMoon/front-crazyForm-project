@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EditMember from './EditMember/EditMember';
 
 import Home from './Home/Home';
 import Login from './Login/Login';
@@ -12,6 +13,7 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/editingPage" element={<EditMember />} />
       </Routes>
     </BrowserRouter>
   );
