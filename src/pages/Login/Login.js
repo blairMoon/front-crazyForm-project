@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './Login.module.scss';
+import { Link } from 'react-router-dom';
 
-const LoginPage = ({ handleLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+import { isLoggedInVar } from '../../apollo';
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    handleLogin(username, password);
-  };
+const handleSubmit = event => {
+  event.preventDefault();
+  console.log('login click');
+  isLoggedInVar(true);
+};
 
+const LoginPage = () => {
   return (
     <div className={css.Container}>
       <div className={css.Wrapper}>
@@ -18,24 +19,18 @@ const LoginPage = ({ handleLogin }) => {
           <h1>tripleS</h1>
           <form onSubmit={handleSubmit}>
             <div className={css.IdBox}>
-              <input
-                placeholder="아이디"
-                type="text"
-                id="username-input"
-                value={username}
-                onChange={event => setUsername(event.target.value)}
-              />
+              <input placeholder="아이디" type="text" id="username-input" />
             </div>
             <div className={css.PasswordBox}>
               <input
                 placeholder="비밀번호"
                 type="password"
                 id="password-input"
-                value={password}
-                onChange={event => setPassword(event.target.value)}
               />
             </div>
-            <button type="submit">로그인</button>
+            <button type="submit" value="로그인">
+              로그인
+            </button>
           </form>
           <div className={css.Seperater}>
             <div></div>

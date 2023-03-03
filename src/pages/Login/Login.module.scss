@@ -5,29 +5,28 @@
   align-items: center;
   height: 100vh;
 }
-.Wrapper{
+.Wrapper {
   max-width: 350px;
   width: 100%;
 
-.TopBox{
+  .TopBox {
     display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 35px 40px 25px 40px;
-  margin-bottom: 10px;
-}
-
-}
-form{
-     display: flex;
     flex-direction: column;
-    margin-top: 10px;
-    width: 100%;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
+    padding: 35px 40px 25px 40px;
+    margin-bottom: 10px;
+  }
 }
-input{
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+input {
   width: 100%;
   border-radius: 3px;
   padding: 13px;
@@ -36,12 +35,11 @@ input{
   margin-top: 5px;
   box-sizing: border-box;
   min-width: 270px;
-
 }
-input:focus{
-    outline-color: #00C471;
+input:focus {
+  outline-color: #00c471;
 }
-.Seperater{
+.Seperater {
   width: 100%;
   margin: 20px 0px 30px 0px;
   text-transform: uppercase;
@@ -49,17 +47,15 @@ input:focus{
   justify-content: center;
   align-items: center;
 }
-button{
-    width: 100%;
+button {
+  width: 100%;
   border: none;
   border-radius: 3px;
   margin-top: 12px;
-  background-color: #00C471;
+  background-color: #00c471;
   color: white;
   text-align: center;
   padding: 8px 0px;
   font-weight: bold;
   max-width: 350px;
-
 }
-
