@@ -17,18 +17,24 @@ const LoginPage = () => {
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
           <h1>tripleS</h1>
-          <form onSubmit={handleSubmit}>
-            <div className={css.IdBox}>
-              <input placeholder="아이디" type="text" id="username-input" />
-            </div>
-            <div className={css.PasswordBox}>
+          <form onSubmit={handleSubmit} class={css.Form}>
+            <div>
               <input
+                placeholder="아이디"
+                type="text"
+                id="username-input"
+                class={css.IdPassword}
+              />
+            </div>
+            <div>
+              <input
+                class={css.IdPassword}
                 placeholder="비밀번호"
                 type="password"
                 id="password-input"
               />
             </div>
-            <button type="submit" value="로그인">
+            <button type="submit" value="로그인" class={css.Button}>
               로그인
             </button>
           </form>
