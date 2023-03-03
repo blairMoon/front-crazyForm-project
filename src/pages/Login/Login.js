@@ -27,6 +27,7 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit(onSubmit)} class={css.Form}>
             <div>
               <input
+                class={css.IdPassword}
                 placeholder="아이디"
                 type="text"
                 id="username-input"
