@@ -28,13 +28,13 @@ function Signup() {
             <div className={css.genderContainer}>
               <SignupForm
                 className={css.man}
-                labelName={'남'}
+                labelName={'남자'}
                 typeName={'radio'}
                 gender={'gender'}
               />
               <SignupForm
                 className={css.man}
-                labelName={'여'}
+                labelName={'여자'}
                 typeName={'radio'}
                 gender={'gender'}
               />

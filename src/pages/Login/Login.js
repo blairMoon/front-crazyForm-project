@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './Login.module.scss';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
-const LoginPage = ({ handleLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+import { isLoggedInVar } from '../../apollo';
 
-  const handleSubmit = event => {
+const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = event => {
     event.preventDefault();
-    handleLogin(username, password);
+    console.log('login click');
+    isLoggedInVar(true);
   };
 
   return (
@@ -16,26 +24,30 @@ const LoginPage = ({ handleLogin }) => {
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
           <h1>tripleS</h1>
-          <form onSubmit={handleSubmit}>
-            <div className={css.IdBox}>
+          <form onSubmit={handleSubmit(onSubmit)} class={css.Form}>
+            <div>
               <input
+                class={css.IdPassword}
                 placeholder="아이디"
                 type="text"
                 id="username-input"
-                value={username}
-                onChange={event => setUsername(event.target.value)}
+                {...register('username', { required: true })}
               />
+              {errors.username && <div>Username is required</div>}
             </div>
-            <div className={css.PasswordBox}>
+            <div>
               <input
+                class={css.IdPassword}
                 placeholder="비밀번호"
                 type="password"
                 id="password-input"
-                value={password}
-                onChange={event => setPassword(event.target.value)}
+                {...register('password', { required: true })}
               />
+              {errors.password && <div>Password is required</div>}
             </div>
-            <button type="submit">로그인</button>
+            <button type="submit" value="로그인" class={css.Button}>
+              로그인
+            </button>
           </form>
           <div className={css.Seperater}>
             <div></div>
@@ -46,10 +58,6 @@ const LoginPage = ({ handleLogin }) => {
       </div>
     </div>
   );
-};
-
-LoginPage.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
 };
 
 export default LoginPage;
