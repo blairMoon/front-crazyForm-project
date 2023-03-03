@@ -1,2 +1,32 @@
 .container {
+  width: 600px;
+  margin: 0 auto;
+  .formDiv {
+    .idContainer {
+      .label {
+        display: block;
+      }
+      display: flex;
+      justify-content: space-between;
+    }
+    .dividcontainer {
+      width: 71.5%;
+      .duplicationId {
+        width: 28%;
+      }
+    }
+    .signFormTag {
+      display: flex;
+      flex-direction: column;
+    }
+    .genderWholeContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .genderContainer {
+        display: flex;
+        width: 70%;
+      }
+    }
+  }
 }

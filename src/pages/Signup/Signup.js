@@ -1,4 +1,5 @@
 import React from 'react';
+import SignupForm from '../../components/Signup/SignupForm';
 
 import css from './Signup.module.scss';
 
@@ -10,16 +11,37 @@ function Signup() {
       </div>
       <div className={css.formDiv}>
         <form className={css.signFormTag}>
-          <label> 아이디</label>
-          <input className={css.useId} type="text" />
-          <label> 비밀번호</label>
-          <input type="password" />
-          <label> 이름</label>
-          <input className={css.name} type="text" />
-          <label> 이메일</label>
-          <input type="text" />
-          <label> 생년월일</label>
-          <input type="text" />
+          <div className={css.idContainer}>
+            <label className={css.label}>아이디</label>
+            <div className={css.dividcontainer}>
+              <input className={css.useId} type="text" />
+              <button className={css.duplicationId}>아이디중복체크</button>
+            </div>
+          </div>
+          <SignupForm labelName={'비밀번호'} typeName={'password'} />
+          <SignupForm labelName={'이름'} typeName={'text'} />
+          <SignupForm labelName={'닉네임'} typeName={'text'} />
+          <SignupForm labelName={'이메일'} typeName={'text'} />
+          <SignupForm labelName={'생년월일'} typeName={'date'} />
+          <div className={css.genderWholeContainer}>
+            <label>성별</label>
+            <div className={css.genderContainer}>
+              <SignupForm
+                className={css.man}
+                labelName={'남'}
+                typeName={'radio'}
+                gender={'gender'}
+              />
+              <SignupForm
+                className={css.man}
+                labelName={'여'}
+                typeName={'radio'}
+                gender={'gender'}
+              />
+            </div>
+          </div>
+          <SignupForm labelName={'전화번호'} typeName={'tel'} />
+          <button>가입하기</button>
         </form>
       </div>
     </div>
