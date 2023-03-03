@@ -22,10 +22,12 @@
     .genderWholeContainer {
       display: flex;
       justify-content: space-between;
+      
 
       .genderContainer {
         display: flex;
         width: 70%;
+        white-space:nowrap
       }
     }
   }
