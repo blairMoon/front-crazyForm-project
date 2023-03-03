@@ -10,3 +10,5 @@
 
 npm i -g apollo
 npm i @apollo/client
+
+npm i react-hook-form
