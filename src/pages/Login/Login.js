@@ -24,8 +24,8 @@ const LoginPage = () => {
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
           <h1>tripleS</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={css.IdBox}>
+          <form onSubmit={handleSubmit(onSubmit)} class={css.Form}>
+            <div>
               <input
                 placeholder="아이디"
                 type="text"
@@ -34,8 +34,9 @@ const LoginPage = () => {
               />
               {errors.username && <div>Username is required</div>}
             </div>
-            <div className={css.PasswordBox}>
+            <div>
               <input
+                class={css.IdPassword}
                 placeholder="비밀번호"
                 type="password"
                 id="password-input"
@@ -43,7 +44,7 @@ const LoginPage = () => {
               />
               {errors.password && <div>Password is required</div>}
             </div>
-            <button type="submit" value="로그인">
+            <button type="submit" value="로그인" class={css.Button}>
               로그인
             </button>
           </form>
@@ -56,10 +57,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};
-
-LoginPage.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
 };
 
 export default LoginPage;
