@@ -24,10 +24,10 @@ const LoginPage = () => {
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
           <h1>tripleS</h1>
-          <form onSubmit={handleSubmit(onSubmit)} class={css.Form}>
+          <form onSubmit={handleSubmit(onSubmit)} className={css.Form}>
             <div>
               <input
-                class={css.IdPassword}
+                className={css.IdPassword}
                 placeholder="아이디"
                 type="text"
                 id="username-input"
@@ -37,7 +37,7 @@ const LoginPage = () => {
             </div>
             <div>
               <input
-                class={css.IdPassword}
+                className={css.IdPassword}
                 placeholder="비밀번호"
                 type="password"
                 id="password-input"
@@ -45,7 +45,7 @@ const LoginPage = () => {
               />
               {errors.password && <div>Password is required</div>}
             </div>
-            <button type="submit" value="로그인" class={css.Button}>
+            <button type="submit" value="로그인" className={css.Button}>
               로그인
             </button>
           </form>
