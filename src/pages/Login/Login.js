@@ -13,9 +13,8 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = event => {
-    event.preventDefault();
-    console.log('login click');
+  const onSubmit = data => {
+    console.log('data', data);
     isLoggedInVar(true);
   };
 
@@ -23,29 +22,49 @@ const LoginPage = () => {
     <div className={css.Container}>
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
-          <h1>tripleS</h1>
-          <form onSubmit={handleSubmit(onSubmit)} class={css.Form}>
+          <h1>Login</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className={css.Form}>
             <div>
               <input
-                class={css.IdPassword}
+                className={css.IdPassword}
                 placeholder="아이디"
+                name="username"
                 type="text"
-                id="username-input"
-                {...register('username', { required: true })}
+                {...register('username', {
+                  required: true,
+                  maxLength: 20,
+                })}
               />
-              {errors.username && <div>Username is required</div>}
+              {errors.username && errors.username.type === 'required' && (
+                <p>아이디를 입력하세요!</p>
+              )}
+              {errors.username && errors.username.type === 'maxLength' && (
+                <p>20자 이하로 입력하세요.</p>
+              )}
             </div>
             <div>
               <input
-                class={css.IdPassword}
+                className={css.IdPassword}
                 placeholder="비밀번호"
+                name="password"
                 type="password"
-                id="password-input"
-                {...register('password', { required: true })}
+                {...register('password', {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                })}
               />
-              {errors.password && <div>Password is required</div>}
+              {errors.password && errors.password.type === 'required' && (
+                <p>비밀번호를 입력하세요!</p>
+              )}
+              {errors.password && errors.password.type === 'minLength' && (
+                <p>6자 이상 20자 이하로 입력하세요.</p>
+              )}
+              {errors.password && errors.password.type === 'maxLength' && (
+                <p>6자 이상 20자 이하로 입력하세요.</p>
+              )}
             </div>
-            <button type="submit" value="로그인" class={css.Button}>
+            <button type="submit" value="로그인" className={css.Button}>
               로그인
             </button>
           </form>
