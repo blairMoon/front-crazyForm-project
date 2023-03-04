@@ -64,13 +64,19 @@ function Signup1() {
                 />
               </div>
               <div>
-                <label>이메일</label>
+                <div>이메일</div>
                 <input
-                  className={css.IdPassword}
+                  className={css.Email}
                   placeholder="이메일"
                   name="email"
                   type="text"
                 />
+                @
+                <select name="email_select" className={css.Email2}>
+                  <option value="gmail.com"> gmail.com </option>
+                  <option value="naver.com"> naver.com </option>
+                  <option value="write"> 직접 입력 </option>
+                </select>
               </div>
               <div>
                 <label>생년월일</label>
