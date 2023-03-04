@@ -87,7 +87,7 @@ function Signup1() {
             </form>
             <div className={css.Seperater}>
               <div></div>
-              <Link to="/login">로그인</Link>
+              <Link to="/login">로그인임</Link>
               <div></div>
             </div>
           </div>
