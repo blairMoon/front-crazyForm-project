@@ -24,7 +24,7 @@
   margin-top: 10px;
   width: 100%;
   justify-items: center;
-  align-items: center;
+ 
 }
 .IdPassword {
   width: 100%;
@@ -58,4 +58,17 @@
   padding: 8px 0px;
   font-weight: bold;
   max-width: 350px;
+}
+.GenderContainer{
+ 
+  text-align: left;
+ justify-content: left;
+   margin-right: 10px;
+}
+.Man{
+  margin-right: 10px;
+  text-align: left;
+  white-space: nowrap;
+  justify-content: left;
+ 
 }
