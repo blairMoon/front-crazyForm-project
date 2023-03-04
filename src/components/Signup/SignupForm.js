@@ -1,12 +1,14 @@
 import React from 'react';
 import css from './SignupForm.module.scss';
-const SignupForm = ({ labelName, typeName, gender, width }) => {
+import { useForm } from 'react-hook-form';
+const SignupForm = ({ labelName, typeName, name }) => {
+  const { register, watch } = useForm();
   return (
     <div className={css.container}>
-      <label className={css.label} for={gender}>
+      <label className={css.label} for={name}>
         {labelName}
       </label>
-      <input className={css.useId} type={typeName} name={gender} />
+      <input className={css.useId} type={typeName} name={name} />
     </div>
   );
 };
