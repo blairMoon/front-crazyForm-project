@@ -15,7 +15,7 @@ function Signup() {
     console.log(data);
   }; // your form submit function which will invoke after successful validation
 
-  console.log(watch('example')); // you can watch individual input by pass the name of the input
+  console.log(watch('id')); // you can watch individual input by pass the name of the input
 
   return (
     <div className={css.body}>
@@ -24,25 +24,23 @@ function Signup() {
         {/* register your input into the hook by invoking the "register" function */}
         <label>아이디</label>
         <div className={css.idContainer}>
-          <input
-            className={css.input}
-            defaultValue="test"
-            {...register('example')}
-          />
+          <input name="id" className={css.input} {...register('id')} />
 
           {/* include validation with required or other standard HTML validation rules */}
           <button className={css.button}>아이디 중복확인</button>
         </div>
         <label>비밀번호</label>
         <input
+          name="password"
           type="password"
           className={css.input}
-          {...register('exampleRequired', { required: true })}
+          {...register('password', { required: true })}
         />
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <p>This field is required</p>}
         <label>비밀번호 확인</label>
         <input
+          name="passwordCheck"
           type="password"
           className={css.input}
           {...register('exampleRequired', { required: true })}
@@ -51,6 +49,7 @@ function Signup() {
         {errors.exampleRequired && <p>This field is required</p>}
         <label>이름</label>
         <input
+          name="name"
           className={css.input}
           {...register('exampleRequired', { required: true })}
         />
@@ -58,6 +57,7 @@ function Signup() {
         {errors.exampleRequired && <p>This field is required</p>}
         <label>닉네임</label>
         <input
+          name="nickname"
           className={css.input}
           {...register('exampleRequired', { required: true })}
         />
@@ -65,6 +65,7 @@ function Signup() {
         {errors.exampleRequired && <p>This field is required</p>}
         <label>생년월일</label>
         <input
+          name="birth"
           type="date"
           className={css.input}
           {...register('exampleRequired', { required: true })}
@@ -78,6 +79,7 @@ function Signup() {
               남자
             </label>
             <input
+              name="male"
               id="male"
               type="radio"
               className={`${css.input} ${css.radioMargin}`}
@@ -89,6 +91,7 @@ function Signup() {
               여자
             </label>
             <input
+              name="female"
               id="famale"
               type="radio"
               className={`${css.input} ${css.radioMargin}`}
@@ -100,6 +103,7 @@ function Signup() {
         </div>
         <label for="famale">전화번호</label>
         <input
+          name="phoneNumber"
           type="tel"
           className={css.input}
           {...register('exampleRequired', { required: true })}
@@ -108,11 +112,12 @@ function Signup() {
         {errors.exampleRequired && <p>This field is required</p>}
         <label>이용약관 문의</label>
         <div className={css.flex}>
-          <label className={css.genderlabel} for="TermsOfUse">
+          <label className={css.genderlabel} for="termsOfUse">
             이용약관에 동의하십니까???
           </label>
           <input
-            id="TermsOfUse"
+            name="termsOfUse"
+            id="termsOfUse"
             type="checkbox"
             className={`${css.checkbox} ${css.radioMargin}`}
             {...register('exampleRequired', { required: true })}
@@ -120,7 +125,7 @@ function Signup() {
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <p>This field is required</p>}
         </div>
-        <input className={css.input} type="submit" />
+        <input className={css.input} type="submit" onSubmit={onsubmit} />
       </form>
     </div>
   );
