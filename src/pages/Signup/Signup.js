@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import SignupForm from '../../components/Signup/SignupForm';
 import Header from '../../components/Header/Header';
 import css from './Signup.module.scss';
+import { valueToObjectRepresentation } from '@apollo/client/utilities';
 //`${css.movieName} ${css.show1}`
 function Signup() {
   const {
@@ -12,66 +13,101 @@ function Signup() {
     formState: { errors },
   } = useForm();
   const onSubmit = data => {
-    console.log(data);
-  }; // your form submit function which will invoke after successful validation
-
-  console.log(watch('id')); // you can watch individual input by pass the name of the input
+    console.log('data', data);
+  };
+  const password = useRef();
+  password.current = watch('password');
 
   return (
     <div className={css.body}>
       <h1>회원가입</h1>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
         <label>아이디</label>
         <div className={css.idContainer}>
-          <input name="id" className={css.input} {...register('id')} />
+          <input
+            name="id"
+            className={css.input}
+            {...register('id', {
+              required: true,
+              pattern: /^[a-z0-9]{10,20}$/,
+            })}
+          />
 
-          {/* include validation with required or other standard HTML validation rules */}
           <button className={css.button}>아이디 중복확인</button>
         </div>
+        {errors.id && errors.id.type === 'required' && (
+          <p>아이디는 필수 입력값입니다.</p>
+        )}
+        {errors.id && errors.id.type === 'pattern' && (
+          <p>아이디는 소문자와 숫자로만 이루어져야 합니다.</p>
+        )}
         <label>비밀번호</label>
         <input
           name="password"
           type="password"
           className={css.input}
-          {...register('password', { required: true })}
+          {...register('password', {
+            required: true,
+            pattern:
+              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
+          })}
         />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <p>This field is required</p>}
+        {errors.password && errors.password.type === 'required' && (
+          <p>비밀번호는 필수 입력값입니다.</p>
+        )}
+        {errors.password && errors.password.type === 'pattern' && (
+          <p>
+            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
+          </p>
+        )}
         <label>비밀번호 확인</label>
         <input
           name="passwordCheck"
           type="password"
           className={css.input}
-          {...register('exampleRequired', { required: true })}
+          {...register('passwordCheck ', {
+            required: true,
+            pattern:
+              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
+            validate: value => value === password.current,
+          })}
         />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <p>This field is required</p>}
+
+        {errors.passwordCheck && errors.passwordCheck.type === 'required' && (
+          <p>비밀번호 확인은 필수 입력값입니다.</p>
+        )}
+        {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
+          <p>
+            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
+          </p>
+        )} */}
+        {errors.passwordCheck && errors.passwordCheck.type === 'validate' && (
+          <p>비밀번호가 일치하지 않습니다.</p>
+        )}
         <label>이름</label>
         <input
           name="name"
           className={css.input}
-          {...register('exampleRequired', { required: true })}
+          {...register('name', { required: true })}
         />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <p>This field is required</p>}
+
+        {errors.name && <p>This field is required</p>}
         <label>닉네임</label>
         <input
           name="nickname"
           className={css.input}
-          {...register('exampleRequired', { required: true })}
+          {...register('nickname', { required: true })}
         />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <p>This field is required</p>}
+        {errors.nickname && <p>This field is required</p>}
         <label>생년월일</label>
         <input
           name="birth"
           type="date"
           className={css.input}
-          {...register('exampleRequired', { required: true })}
+          {...register('birth', { required: true })}
         />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <p>This field is required</p>}
+
+        {errors.birth && <p>This field is required</p>}
         <label>성별</label>
         <div className={css.flexContainer}>
           <div className={css.genderContainer}>
@@ -79,11 +115,12 @@ function Signup() {
               남자
             </label>
             <input
-              name="male"
+              name="gender"
               id="male"
               type="radio"
+              value="man"
               className={`${css.input} ${css.radioMargin}`}
-              {...register('exampleRequired', { required: true })}
+              {...register('gender', { required: true })}
             />
           </div>
           <div className={css.genderContainer}>
@@ -91,14 +128,15 @@ function Signup() {
               여자
             </label>
             <input
-              name="female"
+              name="gender"
               id="famale"
               type="radio"
+              value="female"
               className={`${css.input} ${css.radioMargin}`}
-              {...register('exampleRequired', { required: true })}
+              {...register('gender', { required: true })}
             />
-            {/* errors will return when field validation fails  */}
-            {errors.exampleRequired && <p>This field is required</p>}
+
+            {errors.gender && <p>성별은 필수 입력값입니다.</p>}
           </div>
         </div>
         <label for="famale">전화번호</label>
@@ -106,10 +144,10 @@ function Signup() {
           name="phoneNumber"
           type="tel"
           className={css.input}
-          {...register('exampleRequired', { required: true })}
+          {...register('phoneNumber', { required: true })}
         />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <p>This field is required</p>}
+
+        {errors.phoneNumber && <p>전화번호는 필수 입력 값입니다.</p>}
         <label>이용약관 문의</label>
         <div className={css.flex}>
           <label className={css.genderlabel} for="termsOfUse">
@@ -120,12 +158,14 @@ function Signup() {
             id="termsOfUse"
             type="checkbox"
             className={`${css.checkbox} ${css.radioMargin}`}
-            {...register('exampleRequired', { required: true })}
+            {...register('termsOfUsed', { required: true })}
           />
-          {/* errors will return when field validation fails  */}
-          {errors.exampleRequired && <p>This field is required</p>}
+
+          {errors.termsOfUse && (
+            <p>이용약관에 동의히자 않으면 가입이 불가능합니다.</p>
+          )}
         </div>
-        <input className={css.input} type="submit" onSubmit={onsubmit} />
+        <input className={css.input} type="submit" />
       </form>
     </div>
   );
