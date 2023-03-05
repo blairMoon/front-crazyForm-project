@@ -1,2 +1,29 @@
-.container {
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 18px 0;
+  border-bottom :1px solid #000;
 }
+.Wrapper{
+display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.Nav{
+ display: flex;
+ align-items: center;
+ margin-right: 20px;
+}
+.Icon{
+ color: #000;
+ margin-left: 5px;
+ text-decoration: none;
+}
+.User{
+  text-decoration: 'none'
+}
+
