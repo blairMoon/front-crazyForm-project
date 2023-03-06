@@ -36,10 +36,10 @@ function Signup() {
           <button className={css.button}>아이디 중복확인</button>
         </div>
         {errors.id && errors.id.type === 'required' && (
-          <p>아이디는 필수 입력값입니다.</p>
+          <p className={css.p}>아이디는 필수 입력값입니다.</p>
         )}
         {errors.id && errors.id.type === 'pattern' && (
-          <p>아이디는 소문자와 숫자로만 이루어져야 합니다.</p>
+          <p className={css.p}>아이디는 소문자와 숫자로만 이루어져야 합니다.</p>
         )}
         <label>비밀번호</label>
         <input
