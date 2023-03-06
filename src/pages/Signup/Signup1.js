@@ -1,5 +1,5 @@
 import React from 'react';
-import SignupForm from '../../components/Signup/SignupForm';
+
 import Header from '../../components/Header/Header';
 import css from './Signup1.module.scss';
 import { useForm } from 'react-hook-form';
