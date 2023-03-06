@@ -43,10 +43,10 @@ function Signup() {
         )}
         <label>비밀번호</label>
         <input
-          name="Password"
+          name="password"
           type="password"
           className={css.input}
-          {...register('Password', {
+          {...register('password', {
             required: true,
             pattern:
               /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
