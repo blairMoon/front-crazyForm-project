@@ -158,13 +158,12 @@ function Signup() {
             id="termsOfUse"
             type="checkbox"
             className={`${css.checkbox} ${css.radioMargin}`}
-            {...register('termsOfUsed', { required: true })}
+            {...register('termsOfUse', { required: true })}
           />
-
-          {errors.termsOfUse && (
-            <p>이용약관에 동의히자 않으면 가입이 불가능합니다.</p>
-          )}
         </div>
+        {errors.termsOfUse && (
+          <p>이용약관에 동의하지 않으면 가입이 불가능합니다.</p>
+        )}
         <input className={css.input} type="submit" />
       </form>
     </div>

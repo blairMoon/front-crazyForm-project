@@ -1,0 +1,87 @@
+.Container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.Wrapper {
+  max-width: 350px;
+  width: 100%;
+
+  .TopBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 40px 25px 40px;
+    margin-bottom: 10px;
+  }
+}
+.Form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+  justify-items: center;
+}
+.IdPassword {
+  width: 100%;
+  border-radius: 3px;
+  padding: 13px;
+  background-color: #fafafa;
+  border: 0.5px solid rgb(219, 219, 219);
+  margin-top: 5px;
+  box-sizing: border-box;
+  min-width: 270px;
+}
+.IdPassword:focus {
+  outline-color: #00c471;
+}
+.Seperater {
+  width: 100%;
+  margin: 20px 0px 30px 0px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Button {
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  margin-top: 12px;
+  background-color: #00c471;
+  color: white;
+  text-align: center;
+  padding: 8px 0px;
+  font-weight: bold;
+  max-width: 350px;
+}
+.GenderContainer {
+  text-align: left;
+  justify-content: left;
+  margin-right: 10px;
+}
+.Email {
+  width: 100%;
+  border-radius: 3px;
+  padding: 13px;
+  background-color: #fafafa;
+  border: 0.5px solid rgb(219, 219, 219);
+  margin-top: 5px;
+  box-sizing: border-box;
+  max-width: 150px;
+  margin-right: 1px;
+}
+.Email2 {
+  margin-left: 2px;
+  width: 100%;
+  border-radius: 3px;
+  padding: 13px;
+  background-color: #fafafa;
+  border: 0.5px solid rgb(219, 219, 219);
+  margin-top: 5px;
+  box-sizing: border-box;
+  max-width: 100px;
+}
