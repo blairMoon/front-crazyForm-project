@@ -5,17 +5,17 @@ import css from './Signup1.module.scss';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-function Signup1() {
+const Signup1 = ({ initialValues, onSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-  } = useForm();
-  // const password = useRef();
-  // password.current = watch('password');
+  } = useForm({
+    defaultValues: initialValues,
+  });
 
-  const onSubmit = data => {
+  const submitForm = data => {
+    onSubmit(data);
     console.log('data', data);
   };
 
@@ -26,7 +26,7 @@ function Signup1() {
         <div className={css.Wrapper}>
           <div className={css.TopBox}>
             <h1>SignUp</h1>
-            <form onSubmit={handleSubmit(onSubmit)} className={css.Form}>
+            <form onSubmit={handleSubmit(submitForm)} className={css.Form}>
               <div>
                 <label>아이디</label>
                 <input
@@ -152,7 +152,7 @@ function Signup1() {
                 )}
               </div>
               <button type="submit" value="회원가입" className={css.Button}>
-                회원가입
+                회원수정
               </button>
             </form>
             <div className={css.Seperater}>
@@ -165,6 +165,6 @@ function Signup1() {
       </div>
     </>
   );
-}
+};
 
 export default Signup1;
