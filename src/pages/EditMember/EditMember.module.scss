@@ -1,9 +1,7 @@
 .Container {
   display: flex;
-
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 .Wrapper {
   max-width: 350px;
@@ -18,6 +16,17 @@
     margin-bottom: 10px;
   }
 }
+
+.h1 {
+  margin: 0;
+  padding-top: 20px;
+  font-weight: 100;
+  color: black;
+  text-align: center;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
 .Form {
   display: flex;
   flex-direction: column;
@@ -25,7 +34,7 @@
   width: 100%;
   justify-items: center;
 }
-.IdPassword {
+.Input {
   width: 100%;
   border-radius: 3px;
   padding: 13px;
@@ -33,55 +42,68 @@
   border: 0.5px solid rgb(219, 219, 219);
   margin-top: 5px;
   box-sizing: border-box;
-  min-width: 270px;
+  max-width: 270px;
+  width: 100%;
 }
-.IdPassword:focus {
+.Input:focus {
   outline-color: #00c471;
 }
-.Seperater {
-  width: 100%;
-  margin: 20px 0px 30px 0px;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.p {
+  color: #00c471;
 }
-.Button {
+
+.p::before {
+  display: inline;
+  content: '⚠ ';
+}
+
+.input {
+  display: block;
+  box-sizing: border-box;
   width: 100%;
-  border: none;
-  border-radius: 3px;
-  margin-top: 12px;
-  background-color: #00c471;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.input:disabled {
+  opacity: 0.4;
+}
+
+.button {
+  margin-bottom: 10px;
   color: white;
-  text-align: center;
-  padding: 8px 0px;
-  font-weight: bold;
-  max-width: 350px;
-}
-.GenderContainer {
-  text-align: left;
-  justify-content: left;
-  margin-right: 10px;
-}
-.Email {
-  width: 100%;
+  background-color: #00c471;
   border-radius: 3px;
-  padding: 13px;
-  background-color: #fafafa;
-  border: 0.5px solid rgb(219, 219, 219);
-  margin-top: 5px;
-  box-sizing: border-box;
+  border: none;
   max-width: 150px;
-  margin-right: 1px;
 }
-.Email2 {
-  margin-left: 2px;
-  width: 100%;
-  border-radius: 3px;
-  padding: 13px;
-  background-color: #fafafa;
-  border: 0.5px solid rgb(219, 219, 219);
-  margin-top: 5px;
-  box-sizing: border-box;
-  max-width: 100px;
+.flexContainer {
+  display: flex;
+  justify-content: space-around;
+  .genderContainer {
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .genderlabel {
+      margin-right: 10px;
+    }
+  }
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.radioMargin {
+  // margin-right: 20px;
+  margin-bottom: 13px;
+  margin-top: 20px;
+}
+
+.errors {
+  display: block;
 }
