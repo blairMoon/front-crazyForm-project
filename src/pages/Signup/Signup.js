@@ -19,9 +19,9 @@ function Signup() {
   password.current = watch('password');
 
   return (
-    <div className={css.Container}>
+    <div className={css.body}>
       <h1 className={css.h1}>회원가입</h1>
-      <form className={css.Form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <label className="">아이디</label>
         <div className={css.idContainer}>
           <input
