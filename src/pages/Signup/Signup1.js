@@ -5,7 +5,7 @@ import css from './Signup1.module.scss';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-const Signup1 = ({ initialValues, onSubmit }) => {
+const Signup = ({ initialValues, onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -15,7 +15,6 @@ const Signup1 = ({ initialValues, onSubmit }) => {
   });
 
   const submitForm = data => {
-    onSubmit(data);
     console.log('data', data);
   };
 
@@ -167,4 +166,4 @@ const Signup1 = ({ initialValues, onSubmit }) => {
   );
 };
 
-export default Signup1;
+export default Signup;
