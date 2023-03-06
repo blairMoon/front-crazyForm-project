@@ -20,28 +20,28 @@ function Signup() {
 
   return (
     <div className={css.body}>
-      <h1>회원가입</h1>
+      <h1 className={css.h1}>회원가입</h1>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        <label>아이디</label>
+        <label className="">아이디</label>
         <div className={css.idContainer}>
           <input
-            name="UserId"
+            name="userId"
             className={css.input}
-            {...register('UserId', {
+            {...register('userId', {
               required: true,
-              pattern: /^[a-z0-9]{10,20}$/,
+              pattern: /^[a-z0-9]{5,20}$/,
             })}
           />
 
           <button className={css.button}>아이디 중복확인</button>
         </div>
-        {errors.id && errors.id.type === 'required' && (
+        {errors.userId && errors.userId.type === 'required' && (
           <p className={css.p}>아이디는 필수 입력값입니다.</p>
         )}
-        {errors.id && errors.id.type === 'pattern' && (
+        {errors.userId && errors.userId.type === 'pattern' && (
           <p className={css.p}>아이디는 소문자와 숫자로만 이루어져야 합니다.</p>
         )}
-        <label>비밀번호</label>
+        <label className={css.label}>비밀번호</label>
         <input
           name="password"
           type="password"
@@ -101,13 +101,13 @@ function Signup() {
         {errors.nickname && <p>닉네임은 필수 입력 값입니다.</p>}
         <label>생년월일</label>
         <input
-          name="birth"
+          name="dateBirth"
           type="date"
           className={css.input}
-          {...register('birth', { required: true })}
+          {...register('dateBirth', { required: true })}
         />
 
-        {errors.birth && <p>생년월일은 필수 입력 값입니다.</p>}
+        {errors.dateBirth && <p>생년월일은 필수 입력 값입니다.</p>}
         <label>성별</label>
         <div className={css.flexContainer}>
           <div className={css.genderContainer}>
