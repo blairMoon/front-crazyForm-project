@@ -31,19 +31,19 @@ const EditMember = ({ initialValues, onSubmit }) => {
             <label>아이디</label>
             <div>
               <input
-                name="userId"
+                name="username"
                 className={css.Input}
-                {...register('userId', {
+                {...register('username', {
                   required: true,
                   pattern: /^[a-z0-9]{5,20}$/,
                 })}
               />
             </div>
             <button className={css.button}>아이디 중복확인</button>
-            {errors.userId && errors.userId.type === 'required' && (
+            {errors.username && errors.username.type === 'required' && (
               <p className={css.p}>아이디는 필수 입력값입니다.</p>
             )}
-            {errors.userId && errors.userId.type === 'pattern' && (
+            {errors.username && errors.username.type === 'pattern' && (
               <p className={css.p}>
                 아이디는 소문자와 숫자로만 이루어져야 합니다.
               </p>
@@ -171,6 +171,17 @@ const EditMember = ({ initialValues, onSubmit }) => {
             {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
               <p className={css.p}>숫자만 입력가능합니다.</p>
             )}
+            <label>이메일</label>
+            <input
+              name="email"
+              type="text"
+              className={css.Input}
+              {...register('email', {
+                required: true,
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+              })}
+            />
+            {errors.email && <p className={css.p}>이메일 형식이 아닙니다.</p>}
             <label>이용약관 문의</label>
             <div className={css.flex}>
               <label className={css.genderlabel} htmlFor="termsOfUse">
