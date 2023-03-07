@@ -6,45 +6,19 @@ import { useForm } from 'react-hook-form';
 
 import { isLoggedInVar } from '../../apollo';
 
-import { userIdLogin } from '../../api';
+import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 
 const LoginPage = () => {
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-
-  const mutation = useMutation(userIdLogin, {
-    onMutate: () => {
-      console.log('mutation start...');
-    },
-    onSuccess: () => {
-      console.log('API CALL SUCCESS');
-      isLoggedInVar(true);
-    },
-    onError: () => {
-      console.log('API CALL ERROR');
-    },
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = event => {
-    event.preventDefault();
-    mutation.mutate({ username, password });
-  };
-
-  const onchange = event => {
-    const { name, value } = event.currentTarget;
-    console.log(name);
-    if (name === 'username') {
-      setUserName(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
+  const onSubmit = data => {
+    console.log('data', data);
+    isLoggedInVar(true);
   };
 
   return (
@@ -57,18 +31,17 @@ const LoginPage = () => {
               <input
                 className={css.IdPassword}
                 placeholder="아이디"
-                name="userName"
+                name="userId"
                 type="text"
-                onChange={onchange}
-                {...register('userName', {
+                {...register('userId', {
                   required: true,
                   maxLength: 20,
                 })}
               />
-              {errors.userId && errors.userId.type === 'required' && (
+              {errors.username && errors.username.type === 'required' && (
                 <p>아이디를 입력하세요!</p>
               )}
-              {errors.userId && errors.userId.type === 'maxLength' && (
+              {errors.username && errors.username.type === 'maxLength' && (
                 <p>20자 이하로 입력하세요.</p>
               )}
             </div>
