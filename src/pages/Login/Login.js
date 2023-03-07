@@ -10,15 +10,41 @@ import { userIdLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 
 const LoginPage = () => {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
+  const mutation = useMutation(userIdLogin, {
+    onMutate: () => {
+      console.log('mutation start...');
+    },
+    onSuccess: () => {
+      console.log('API CALL SUCCESS');
+      isLoggedInVar(true);
+    },
+    onError: () => {
+      console.log('API CALL ERROR');
+    },
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = data => {
-    console.log('data', data);
-    isLoggedInVar(true);
+  const onSubmit = event => {
+    event.preventDefault();
+    mutation.mutate({ username, password });
+  };
+
+  const onchange = event => {
+    const { name, value } = event.currentTarget;
+    console.log(name);
+    if (name === 'username') {
+      setUserName(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
   };
 
   return (
@@ -26,14 +52,15 @@ const LoginPage = () => {
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
           <h1>Login</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className={css.Form}>
+          <form onSubmit={onSubmit} className={css.Form}>
             <div>
               <input
                 className={css.IdPassword}
                 placeholder="아이디"
-                name="userId"
+                name="userName"
                 type="text"
-                {...register('userId', {
+                onChange={onchange}
+                {...register('userName', {
                   required: true,
                   maxLength: 20,
                 })}
@@ -51,6 +78,7 @@ const LoginPage = () => {
                 placeholder="비밀번호"
                 name="password"
                 type="password"
+                onChange={onchange}
                 {...register('password', {
                   required: true,
                   minLength: 6,
