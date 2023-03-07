@@ -14,3 +14,7 @@ export const userNameLogin = ({ username, password }) => {
     .post('users/login', { username, password })
     .then(res => res.data);
 };
+
+export const signUpUser = data => {
+  return instance.post('users/post', { data }).then(res => res.data);
+};
