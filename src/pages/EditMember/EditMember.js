@@ -26,12 +26,13 @@ const EditMember = ({ initialValues, onSubmit }) => {
     <div className={css.Container}>
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
-          <h1 className={css.h1}>회원가입</h1>
+          <h1 className={css.h1}>Edit My Profile</h1>
           <form className={css.Form} onSubmit={handleSubmit(submitForm)}>
             <label>아이디</label>
             <div>
               <input
                 name="username"
+                // defaultValue={username ? username : '빈칸'}
                 className={css.Input}
                 {...register('username', {
                   required: true,
