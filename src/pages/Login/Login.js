@@ -14,7 +14,8 @@ const LoginPage = () => {
     onMutate: () => {
       console.log('mutation start...');
     },
-    onSuccess: () => {
+    onSuccess: data => {
+      console.log(data);
       console.log('API CALL success...');
       isLoggedInVar(true);
     },
