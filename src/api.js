@@ -18,3 +18,11 @@ export const userNameLogin = ({ username, password }) => {
 export const signUpUser = data => {
   return instance.post('users/', data).then(res => res.data);
 };
+
+export const getUserFeeds = ({ queryKey }) => {
+  let data = queryKey[1];
+
+  return instance
+    .get('../public/data/userData.json', data)
+    .then(res => res.data);
+};
