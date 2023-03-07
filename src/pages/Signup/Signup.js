@@ -1,23 +1,45 @@
-import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-
+import React, { useRef } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import Header from '../../components/Header/Header';
 import css from './Signup.module.scss';
 import { valueToObjectRepresentation } from '@apollo/client/utilities';
 //`${css.movieName} ${css.show1}`
+
 function Signup() {
+  // mutation에서 불러온 값들
+
+  // mutate(variables, {
+  //   onError,
+  //   onSettled,
+  //   onSuccess,
+  // });
+
+  // const mutation = useMutation(userNameLogin, {
+  //   onMutate: () => {
+  //     console.log('mutation start...');
+  //   },
+  //   onSuccess: () => {
+  //     console.log('API CALL SUCCESS');
+  //     isLoggedInVar(true);
+  //   },
+  //   onError: () => {
+  //     console.log('API CALL ERROR');
+  //   },
+  // });
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = data => {
     console.log('data', data);
+    mutation.mutate({ username, password });
   };
   const password = useRef();
   password.current = watch('password');
-
   return (
     <div className={css.body}>
       <h1 className={css.h1}>회원가입</h1>
@@ -25,9 +47,9 @@ function Signup() {
         <label className="">아이디</label>
         <div className={css.idContainer}>
           <input
-            name="userId"
+            name="username"
             className={css.input}
-            {...register('userId', {
+            {...register('username', {
               required: true,
               pattern: /^[a-z0-9]{5,20}$/,
             })}
@@ -35,10 +57,10 @@ function Signup() {
 
           <button className={css.button}>아이디 중복확인</button>
         </div>
-        {errors.userId && errors.userId.type === 'required' && (
+        {errors.username && errors.username.type === 'required' && (
           <p className={css.p}>아이디는 필수 입력값입니다.</p>
         )}
-        {errors.userId && errors.userId.type === 'pattern' && (
+        {errors.username && errors.username.type === 'pattern' && (
           <p className={css.p}>아이디는 소문자와 숫자로만 이루어져야 합니다.</p>
         )}
         <label className={css.label}>비밀번호</label>
@@ -98,6 +120,7 @@ function Signup() {
           className={css.input}
           {...register('nickname', { required: true })}
         />
+
         {errors.nickname && <p>닉네임은 필수 입력 값입니다.</p>}
         <label>생년월일</label>
         <input
