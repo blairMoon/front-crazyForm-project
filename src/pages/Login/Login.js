@@ -6,10 +6,23 @@ import { useForm } from 'react-hook-form';
 
 import { isLoggedInVar } from '../../apollo';
 
-import { userIdLogin } from '../../api';
+import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 
 const LoginPage = () => {
+  const mutation = useMutation(userNameLogin, {
+    onMutate: () => {
+      console.log('mutation start...');
+    },
+    onSuccess: () => {
+      console.log('API CALL success...');
+      isLoggedInVar(true);
+    },
+    onError: () => {
+      console.log('API CALL error...');
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -17,8 +30,12 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = data => {
-    console.log('data', data);
-    isLoggedInVar(true);
+    // console.log('data', data);
+
+    console.log(data.username);
+    const username = data.username;
+    const password = data.password;
+    mutation.mutate({ username, password });
   };
 
   return (
@@ -31,17 +48,17 @@ const LoginPage = () => {
               <input
                 className={css.IdPassword}
                 placeholder="아이디"
-                name="userId"
+                name="username"
                 type="text"
-                {...register('userId', {
+                {...register('username', {
                   required: true,
                   maxLength: 20,
                 })}
               />
-              {errors.userId && errors.userId.type === 'required' && (
+              {errors.username && errors.username.type === 'required' && (
                 <p>아이디를 입력하세요!</p>
               )}
-              {errors.userId && errors.userId.type === 'maxLength' && (
+              {errors.username && errors.username.type === 'maxLength' && (
                 <p>20자 이하로 입력하세요.</p>
               )}
             </div>
