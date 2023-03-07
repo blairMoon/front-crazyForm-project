@@ -10,7 +10,7 @@ import { signUpUser } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 
 //`${css.movieName} ${css.show1}`
-const Signup = ({ onSubmit }) => {
+const Signup = ({ initialValues, onSubmit }) => {
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -29,7 +29,10 @@ const Signup = ({ onSubmit }) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm;
+  } = useForm({
+    defaultValues: initialValues,
+  });
+
   const submitForm = data => {
     mutation.mutate(data);
   };

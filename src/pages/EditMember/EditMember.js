@@ -7,29 +7,18 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 //`${css.movieName} ${css.show1}`
 const EditMember = ({ initialValues, onSubmit }) => {
-  const mutation = useMutation(signUpUser, {
-    onMutate: data => {
-      console.log('mutation start...');
-      console.log(data);
-    },
-    onSuccess: () => {
-      console.log('API CALL success...');
-      isLoggedInVar(true);
-    },
-    onError: () => {
-      console.log('API CALL error...');
-    },
-  });
-
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm;
+  } = useForm({
+    defaultValues: initialValues,
+  });
 
   const submitForm = data => {
-    mutation.mutate(data);
+    const data1 = data;
+    console.log('data', data1);
   };
   const password = useRef();
   password.current = watch('password');
