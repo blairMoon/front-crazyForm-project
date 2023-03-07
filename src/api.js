@@ -9,9 +9,9 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const userIdLogin = ({ userId, password }) => {
+export const userNameLogin = ({ username, password }) => {
   return instance
-    .post('users/login', { userId, password })
+    .post('users/login', { username, password })
     .then(res => res.data);
 };
 
