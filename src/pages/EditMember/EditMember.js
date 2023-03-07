@@ -5,18 +5,16 @@ import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
 
 //`${css.movieName} ${css.show1}`
-const EditMember = ({ initialValues, onSubmit }) => {
+const EditMember = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: initialValues,
-  });
+  } = useForm;
 
   const submitForm = data => {
-    // onSubmit(data);
+    onSubmit(data);
     console.log('data', data);
   };
   const password = useRef();

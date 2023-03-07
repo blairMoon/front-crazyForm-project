@@ -14,3 +14,12 @@ export const userNameLogin = ({ username, password }) => {
     .post('users/login', { username, password })
     .then(res => res.data);
 };
+
+export const getUserPages = ({ queryKey }) => {
+  console.log('api-username', queryKey[1]);
+
+  let username = queryKey[1];
+  console.log('api-username', username);
+
+  return instance.get(`editingPage/${username}`).then(res => res.data);
+};

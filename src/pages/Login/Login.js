@@ -30,9 +30,6 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = data => {
-    // console.log('data', data);
-
-    console.log(data.username);
     const username = data.username;
     const password = data.password;
     mutation.mutate({ username, password });
@@ -43,7 +40,7 @@ const LoginPage = () => {
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
           <h1>Login</h1>
-          <form onSubmit={onSubmit} className={css.Form}>
+          <form onSubmit={handleSubmit(onSubmit)} className={css.Form}>
             <div>
               <input
                 className={css.IdPassword}
@@ -68,7 +65,6 @@ const LoginPage = () => {
                 placeholder="비밀번호"
                 name="password"
                 type="password"
-                onChange={onchange}
                 {...register('password', {
                   required: true,
                   minLength: 6,
