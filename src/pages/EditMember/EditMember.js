@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
-import { valueToObjectRepresentation } from '@apollo/client/utilities';
+
 //`${css.movieName} ${css.show1}`
 const EditMember = ({ initialValues, onSubmit }) => {
   const {
@@ -60,10 +60,10 @@ const EditMember = ({ initialValues, onSubmit }) => {
               })}
             />
             {errors.password && errors.password.type === 'required' && (
-              <p>비밀번호는 필수 입력값입니다.</p>
+              <p className={css.p}>비밀번호는 필수 입력값입니다.</p>
             )}
             {errors.password && errors.password.type === 'pattern' && (
-              <p>
+              <p className={css.p}>
                 비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
                 조합해야합니다.
               </p>
@@ -83,7 +83,7 @@ const EditMember = ({ initialValues, onSubmit }) => {
 
             {errors.passwordCheck &&
               errors.passwordCheck.type === 'required' && (
-                <p>비밀번호 확인은 필수 입력값입니다.</p>
+                <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
               )}
             {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
           <p>
@@ -101,14 +101,16 @@ const EditMember = ({ initialValues, onSubmit }) => {
               {...register('name', { required: true })}
             />
 
-            {errors.name && <p>이름은 필수 입력값입니다.</p>}
+            {errors.name && <p className={css.p}>이름은 필수 입력값입니다.</p>}
             <label>닉네임</label>
             <input
               name="nickname"
               className={css.Input}
               {...register('nickname', { required: true })}
             />
-            {errors.nickname && <p>닉네임은 필수 입력 값입니다.</p>}
+            {errors.nickname && (
+              <p className={css.p}>닉네임은 필수 입력 값입니다.</p>
+            )}
             <label>생년월일</label>
             <input
               name="dateBirth"
@@ -117,7 +119,9 @@ const EditMember = ({ initialValues, onSubmit }) => {
               {...register('dateBirth', { required: true })}
             />
 
-            {errors.dateBirth && <p>생년월일은 필수 입력 값입니다.</p>}
+            {errors.dateBirth && (
+              <p className={css.p}>생년월일은 필수 입력 값입니다.</p>
+            )}
             <label>성별</label>
             <div className={css.flexContainer}>
               <div className={css.genderContainer}>
@@ -150,7 +154,9 @@ const EditMember = ({ initialValues, onSubmit }) => {
               </div>
             </div>
 
-            {errors.gender && <p>성별은 필수 입력값입니다.</p>}
+            {errors.gender && (
+              <p className={css.p}>성별은 필수 입력값입니다.</p>
+            )}
             <label>전화번호</label>
             <input
               name="phoneNumber"
@@ -159,9 +165,11 @@ const EditMember = ({ initialValues, onSubmit }) => {
               {...register('phoneNumber', { required: true })}
             />
 
-            {errors.phoneNumber && <p>전화번호는 필수 입력 값입니다.</p>}
+            {errors.phoneNumber && (
+              <p className={css.p}>전화번호는 필수 입력 값입니다.</p>
+            )}
             {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
-              <p>숫자만 입력가능합니다.</p>
+              <p className={css.p}>숫자만 입력가능합니다.</p>
             )}
             <label>이용약관 문의</label>
             <div className={css.flex}>
@@ -180,9 +188,13 @@ const EditMember = ({ initialValues, onSubmit }) => {
               />
             </div>
             {errors.termsOfUse && (
-              <p>이용약관에 동의히자 않으면 가입이 불가능합니다.</p>
+              <p className={css.p}>
+                이용약관에 동의히자 않으면 가입이 불가능합니다.
+              </p>
             )}
-            <input className={css.Input} type="submit" />
+            <button type="submit" value="수정하기" className={css.Button}>
+              수정하기
+            </button>
           </form>
         </div>
       </div>

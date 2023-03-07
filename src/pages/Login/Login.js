@@ -6,6 +6,9 @@ import { useForm } from 'react-hook-form';
 
 import { isLoggedInVar } from '../../apollo';
 
+import { userIdLogin } from '../../api';
+import { useMutation } from '@tanstack/react-query';
+
 const LoginPage = () => {
   const {
     register,
@@ -28,17 +31,17 @@ const LoginPage = () => {
               <input
                 className={css.IdPassword}
                 placeholder="아이디"
-                name="username"
+                name="userId"
                 type="text"
-                {...register('username', {
+                {...register('userId', {
                   required: true,
                   maxLength: 20,
                 })}
               />
-              {errors.username && errors.username.type === 'required' && (
+              {errors.userId && errors.userId.type === 'required' && (
                 <p>아이디를 입력하세요!</p>
               )}
-              {errors.username && errors.username.type === 'maxLength' && (
+              {errors.userId && errors.userId.type === 'maxLength' && (
                 <p>20자 이하로 입력하세요.</p>
               )}
             </div>
