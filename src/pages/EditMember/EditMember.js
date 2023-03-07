@@ -16,8 +16,8 @@ const EditMember = ({ initialValues, onSubmit }) => {
   });
 
   const submitForm = data => {
-    // onSubmit(data);
-    console.log('data', data);
+    const data1 = data;
+    console.log('data', data1);
   };
   const password = useRef();
   password.current = watch('password');
