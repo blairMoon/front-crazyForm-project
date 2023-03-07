@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "username": "hello621",
+      "password": "omg",
+      "name": true,
+      "email": "catherine",
+      "dateBirth": 200,
+      "gender": "8,500",
+      "phoneNumber": 18,
+      "nickname": 556
+    }
+  ]
+}

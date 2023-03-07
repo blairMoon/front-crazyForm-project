@@ -1,13 +1,14 @@
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import Header from '../../components/Header/Header';
+// import Header from '../../components/Header/Header';
 import css from '../EditMember/EditMember.module.scss';
 
 import { isLoggedInVar } from '../../apollo';
 
 import { signUpUser } from '../../api';
 import { useMutation } from '@tanstack/react-query';
+
 //`${css.movieName} ${css.show1}`
 const Signup = ({ onSubmit }) => {
   const mutation = useMutation(signUpUser, {
@@ -30,9 +31,6 @@ const Signup = ({ onSubmit }) => {
     formState: { errors },
   } = useForm;
   const submitForm = data => {
-    onSubmit(data);
-    // console.log('data', data);
-    // const dataApi = data;
     mutation.mutate(data);
   };
   const password = useRef();
@@ -180,7 +178,6 @@ const Signup = ({ onSubmit }) => {
               className={css.Input}
               {...register('phoneNumber', { required: true })}
             />
-
             {errors.phoneNumber && (
               <p className={css.p}>전화번호는 필수 입력 값입니다.</p>
             )}
