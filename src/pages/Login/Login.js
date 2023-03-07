@@ -10,6 +10,19 @@ import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 
 const LoginPage = () => {
+  const mutation = useMutation(userNameLogin, {
+    onMutate: () => {
+      console.log('mutation start...');
+    },
+    onSuccess: () => {
+      console.log('API CALL success...');
+      isLoggedInVar(true);
+    },
+    onError: () => {
+      console.log('API CALL error...');
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -17,8 +30,12 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = data => {
-    console.log('data', data);
-    isLoggedInVar(true);
+    // console.log('data', data);
+
+    console.log(data.username);
+    const username = data.username;
+    const password = data.password;
+    mutation.mutate({ username, password });
   };
 
   return (
@@ -31,9 +48,9 @@ const LoginPage = () => {
               <input
                 className={css.IdPassword}
                 placeholder="아이디"
-                name="userId"
+                name="username"
                 type="text"
-                {...register('userId', {
+                {...register('username', {
                   required: true,
                   maxLength: 20,
                 })}
