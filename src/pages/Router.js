@@ -9,6 +9,7 @@ import Signup1 from './Signup/Signup1';
 
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 function Router() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
