@@ -9,7 +9,7 @@ import { isLoggedInVar } from '../../apollo';
 import { signUpUser } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 //`${css.movieName} ${css.show1}`
-const Signup = ({ initialValues, onSubmit }) => {
+const Signup = ({ onSubmit }) => {
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -28,12 +28,9 @@ const Signup = ({ initialValues, onSubmit }) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: initialValues,
-  });
-
+  } = useForm;
   const submitForm = data => {
-    // onSubmit(data);
+    onSubmit(data);
     // console.log('data', data);
     // const dataApi = data;
     mutation.mutate(data);

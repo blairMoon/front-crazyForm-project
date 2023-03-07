@@ -4,8 +4,27 @@ import { useForm } from 'react-hook-form';
 import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
 
+import { isLoggedInVar } from '../../apollo';
+
+import { signUpUser } from '../../api';
+import { useMutation } from '@tanstack/react-query';
+
 //`${css.movieName} ${css.show1}`
-const EditMember = ({ onSubmit }) => {
+const EditMember = ({ initialValues, onSubmit }) => {
+  const mutation = useMutation(signUpUser, {
+    onMutate: data => {
+      console.log('mutation start...');
+      console.log(data);
+    },
+    onSuccess: () => {
+      console.log('API CALL success...');
+      isLoggedInVar(true);
+    },
+    onError: () => {
+      console.log('API CALL error...');
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -14,8 +33,7 @@ const EditMember = ({ onSubmit }) => {
   } = useForm;
 
   const submitForm = data => {
-    const data1 = data;
-    console.log('data', data1);
+    mutation.mutate(data);
   };
   const password = useRef();
   password.current = watch('password');
