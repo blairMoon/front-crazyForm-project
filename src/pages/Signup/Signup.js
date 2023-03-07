@@ -4,29 +4,23 @@ import { useMutation } from '@tanstack/react-query';
 import Header from '../../components/Header/Header';
 import css from './Signup.module.scss';
 import { valueToObjectRepresentation } from '@apollo/client/utilities';
+import { signUpUser } from '../../api';
 //`${css.movieName} ${css.show1}`
 
 function Signup() {
   // mutation에서 불러온 값들
 
-  // mutate(variables, {
-  //   onError,
-  //   onSettled,
-  //   onSuccess,
-  // });
-
-  // const mutation = useMutation(userNameLogin, {
-  //   onMutate: () => {
-  //     console.log('mutation start...');
-  //   },
-  //   onSuccess: () => {
-  //     console.log('API CALL SUCCESS');
-  //     isLoggedInVar(true);
-  //   },
-  //   onError: () => {
-  //     console.log('API CALL ERROR');
-  //   },
-  // });
+  const mutation = useMutation(signUpUser, {
+    onMutate: () => {
+      console.log('mutation start...');
+    },
+    onSuccess: () => {
+      console.log('API CALL SUCCESS');
+    },
+    onError: () => {
+      console.log('API CALL ERROR');
+    },
+  });
   const {
     register,
     handleSubmit,
@@ -36,7 +30,7 @@ function Signup() {
 
   const onSubmit = data => {
     console.log('data', data);
-    mutation.mutate({ username, password });
+    // mutation.mutate({ username, password });
   };
   const password = useRef();
   password.current = watch('password');
