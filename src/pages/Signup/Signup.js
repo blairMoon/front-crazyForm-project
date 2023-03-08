@@ -19,10 +19,6 @@ const Signup = ({ initialValues, onSubmit }) => {
     },
     onSuccess: () => {
       console.log('API CALL success...');
-<<<<<<< HEAD
-      navigate('/login');
-=======
->>>>>>> 64ab3bad98e63a0c70d62d2b5cf111629635a8ca
     },
     onError: () => {
       console.log('API CALL error...');
