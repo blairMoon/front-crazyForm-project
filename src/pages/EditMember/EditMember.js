@@ -10,7 +10,6 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 // import LoginOnlyPage from '../../components/LoginOnlyPage';
 import { getMyProfile } from '../../api';
-import { getMyProfile } from '../../api';
 
 const EditMember = () => {
   // LoginOnlyPage();
