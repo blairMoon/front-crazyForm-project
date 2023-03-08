@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-//`${css.movieName} ${css.show1}`
+
 const EditMember = ({ initialValues, onSubmit }) => {
   const {
     register,
@@ -17,8 +17,7 @@ const EditMember = ({ initialValues, onSubmit }) => {
   });
 
   const submitForm = data => {
-    const data1 = data;
-    console.log('data', data1);
+    console.log('data', data);
   };
   const password = useRef();
   password.current = watch('password');
@@ -87,11 +86,6 @@ const EditMember = ({ initialValues, onSubmit }) => {
               errors.passwordCheck.type === 'required' && (
                 <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
               )}
-            {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
-          <p>
-            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
-          </p>
-        )} */}
             {errors.passwordCheck &&
               errors.passwordCheck.type === 'validate' && (
                 <p>비밀번호가 일치하지 않습니다.</p>
