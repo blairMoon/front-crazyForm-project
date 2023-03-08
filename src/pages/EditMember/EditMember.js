@@ -21,7 +21,7 @@ const EditMember = () => {
   } = useForm();
 
   const submitForm = data => {
-    console.log('data', data);
+    console.log('formdata', data);
   };
   // const { username } = useParams();
   // console.log('username', username);
@@ -32,6 +32,9 @@ const EditMember = () => {
 
   password.current = watch('password');
   const navigate = useNavigate();
+
+  const { data } = useQuery(['myprofile'], getMyProfile);
+  console.log('data', data);
 
   return (
     <>
@@ -63,6 +66,8 @@ const EditMember = () => {
               )}
               <label>비밀번호</label>
               <input
+                name="username"
+                // defaultValue={data.username ? data.username : '빈칸'}
                 name="password"
                 type="password"
                 className={css.Input}

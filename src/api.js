@@ -27,8 +27,9 @@ export const signUpUser = data => {
 //     .then(res => res.data);
 // };
 
-export const getMyProfile = () =>
-  instance.get('users/myprofile').then(res => res.data);
+export const getMyProfile = () => {
+  return instance.get('users/myprofile').then(res => res.data);
+};
 export const putMyProfile = () => {
   return instance.put('users/myprofile').then(res => res.data);
 };
