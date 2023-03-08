@@ -29,7 +29,6 @@ const EditMember = () => {
   // console.log('data', data);
 
   const password = useRef();
-
   password.current = watch('password');
 
   const { data } = useQuery(['myprofile'], getMyProfile);
@@ -47,6 +46,7 @@ const EditMember = () => {
               <div>
                 <input
                   name="username"
+                  // defaultValue={data.username ? data.username : '빈칸'}
                   className={css.Input}
                   {...register('username', {
                     required: true,
@@ -65,8 +65,7 @@ const EditMember = () => {
               )}
               <label>비밀번호</label>
               <input
-                // defaultValue={data.username ? data.username : '빈칸'}
-
+                name="password"
                 type="password"
                 className={css.Input}
                 {...register('password', {
