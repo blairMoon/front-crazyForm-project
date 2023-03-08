@@ -31,7 +31,6 @@ const EditMember = () => {
   const password = useRef();
 
   password.current = watch('password');
-  const navigate = useNavigate();
 
   const { data } = useQuery(['myprofile'], getMyProfile);
   console.log('data', data);
@@ -66,7 +65,6 @@ const EditMember = () => {
               )}
               <label>비밀번호</label>
               <input
-                name="username"
                 // defaultValue={data.username ? data.username : '빈칸'}
 
                 type="password"
