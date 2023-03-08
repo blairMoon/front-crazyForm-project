@@ -39,7 +39,6 @@ const EditMember = () => {
     mutation.mutate(data);
   };
   const password = useRef();
-
   password.current = watch('password');
   // console.log('data', data);
   if (data) {
@@ -64,6 +63,7 @@ const EditMember = () => {
                     })}
                   />
                 </div>
+
                 <button className={css.button}>아이디 중복확인</button>
                 {errors.username && errors.username.type === 'required' && (
                   <p className={css.p}>아이디는 필수 입력값입니다.</p>
@@ -75,7 +75,6 @@ const EditMember = () => {
                 )}
                 <label>비밀번호</label>
                 <input
-                  // defaultValue={data.username ? data.username : '빈칸'}
                   name="password"
                   type="password"
                   className={css.Input}
@@ -88,6 +87,29 @@ const EditMember = () => {
                 {errors.password && errors.password.type === 'required' && (
                   <p className={css.p}>비밀번호는 필수 입력값입니다.</p>
                 )}
+                {errors.password && errors.password.type === 'pattern' && (
+                  <p className={css.p}>
+                    비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
+                    조합해야합니다.
+                  </p>
+                )}
+                <label>비밀번호 확인</label>
+                <input
+                  name="passwordCheck"
+                  type="password"
+                  className={css.Input}
+                  {...register('passwordCheck ', {
+                    required: true,
+                    pattern:
+                      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
+                    validate: value => value === password.current,
+                  })}
+                />
+
+                {errors.passwordCheck &&
+                  errors.passwordCheck.type === 'required' && (
+                    <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
+                  )}
                 {errors.password && errors.password.type === 'pattern' && (
                   <p className={css.p}>
                     비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
