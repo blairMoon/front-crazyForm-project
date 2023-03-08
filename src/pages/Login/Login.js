@@ -19,7 +19,8 @@ const LoginPage = () => {
       console.log('API CALL success...');
       isLoggedInVar(true);
     },
-    onError: () => {
+    onError: e => {
+      console.log(e);
       console.log('API CALL error...');
     },
   });

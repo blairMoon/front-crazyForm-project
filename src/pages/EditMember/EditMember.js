@@ -1,15 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { getMyProfile } from '../../api';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
+import LoginOnlyPage from '../../components/LoginOnlyPage';
 // import { putMyProfile } from '../../api';
 
 const EditMember = () => {
+  LoginOnlyPage();
   const {
     register,
     handleSubmit,
@@ -22,9 +24,7 @@ const EditMember = () => {
   };
   const password = useRef();
   password.current = watch('password');
-
-  const { getData } = useQuery(['users/myprofile'], getMyProfile);
-  console.log('getData', getData);
+  const navigate = useNavigate();
 
   return (
     <div className={css.Container}>
