@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 
 const LoginPage = () => {
   const mutation = useMutation(userNameLogin, {
-    onMutate: data => {
+    onMutate: () => {
       console.log('mutation start...');
     },
     onSuccess: () => {
@@ -31,11 +31,12 @@ const LoginPage = () => {
 
   const onSubmit = data => {
     // console.log('data', data);
+    // console.log(data.username);
 
-    console.log(data.username);
     const username = data.username;
     const password = data.password;
     mutation.mutate({ username, password });
+    // console.log({ username, password });
   };
 
   return (
