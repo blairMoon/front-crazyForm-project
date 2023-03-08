@@ -23,10 +23,8 @@ const EditMember = () => {
   const submitForm = data => {
     console.log('data', data);
   };
-  const { username } = useParams();
-  console.log('username', username);
-  const { data } = useQuery(['feeds', username], getUserFeeds);
-  console.log('data', data);
+  // const { username } = useParams();
+  // console.log('username', username);
 
   const password = useRef();
   password.current = watch('password');
