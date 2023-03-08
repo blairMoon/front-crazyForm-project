@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { getUserFeeds } from '../../api';
+// import { getUserFeeds } from '../../api';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import css from './EditMember.module.scss';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { getMyProfile } from '../../api';
+// import { getMyProfile } from '../../api';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
-import LoginOnlyPage from '../../components/LoginOnlyPage';
-// import { putMyProfile } from '../../api';
+// import LoginOnlyPage from '../../components/LoginOnlyPage';
+import { getMyProfile } from '../../api';
 
 const EditMember = () => {
   // LoginOnlyPage();
@@ -25,10 +25,12 @@ const EditMember = () => {
   };
   // const { username } = useParams();
   // console.log('username', username);
+  // const { data } = useQuery(['feeds', username], getUserFeeds);
+  // console.log('data', data);
 
   const password = useRef();
+
   password.current = watch('password');
-  const navigate = useNavigate();
 
   const { data } = useQuery(['myprofile'], getMyProfile);
   console.log('data', data);
@@ -63,7 +65,6 @@ const EditMember = () => {
               )}
               <label>비밀번호</label>
               <input
-                name="username"
                 // defaultValue={data.username ? data.username : '빈칸'}
                 name="password"
                 type="password"
