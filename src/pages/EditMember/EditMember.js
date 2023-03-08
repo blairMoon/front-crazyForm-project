@@ -1,12 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-//`${css.movieName} ${css.show1}`
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+import { getMyProfile } from '../../api';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
+import LoginOnlyPage from '../../components/LoginOnlyPage';
+// import { putMyProfile } from '../../api';
+
 const EditMember = () => {
+  LoginOnlyPage();
   const {
     register,
     handleSubmit,
@@ -15,22 +20,23 @@ const EditMember = () => {
   } = useForm();
 
   const submitForm = data => {
-    const data1 = data;
-    console.log('data', data1);
+    console.log('data', data);
   };
   const password = useRef();
   password.current = watch('password');
+  const navigate = useNavigate();
 
   return (
     <div className={css.Container}>
       <div className={css.Wrapper}>
         <div className={css.TopBox}>
-          <h1 className={css.h1}>회원가입</h1>
+          <h1 className={css.h1}>Edit My Profile</h1>
           <form className={css.Form} onSubmit={handleSubmit(submitForm)}>
             <label>아이디</label>
             <div>
               <input
                 name="username"
+                // defaultValue={username ? username : '빈칸'}
                 className={css.Input}
                 {...register('username', {
                   required: true,
@@ -84,11 +90,6 @@ const EditMember = () => {
               errors.passwordCheck.type === 'required' && (
                 <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
               )}
-            {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
-          <p>
-            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
-          </p>
-        )} */}
             {errors.passwordCheck &&
               errors.passwordCheck.type === 'validate' && (
                 <p>비밀번호가 일치하지 않습니다.</p>
