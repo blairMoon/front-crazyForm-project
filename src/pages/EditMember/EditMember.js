@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 
 import Header from '../../components/Header/Header';
 import css from './EditMember.module.scss';
-
+import { useLocation, useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 //`${css.movieName} ${css.show1}`
 const EditMember = ({ initialValues, onSubmit }) => {
   const {
