@@ -3,21 +3,22 @@ import PropTypes from 'prop-types';
 import css from './Login.module.scss';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import { useNavigate } from 'react-router-dom';
 import { isLoggedInVar } from '../../apollo';
 
 import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 import Header from '../../components/Header/Header';
 const LoginPage = () => {
+  const navigate = useNavigate();
   const mutation = useMutation(userNameLogin, {
     onMutate: () => {
       console.log('mutation start...');
     },
     onSuccess: data => {
-      console.log(data);
       console.log('API CALL success...');
       isLoggedInVar(true);
+      navigate('/');
     },
     onError: e => {
       console.log(e);
