@@ -11,7 +11,7 @@ import LoginOnlyPage from '../../components/LoginOnlyPage';
 // import { putMyProfile } from '../../api';
 
 const EditMember = () => {
-  LoginOnlyPage();
+  // LoginOnlyPage();
   const {
     register,
     handleSubmit,
@@ -20,11 +20,14 @@ const EditMember = () => {
   } = useForm();
 
   const submitForm = data => {
-    console.log('data', data);
+    console.log('formdata', data);
   };
   const password = useRef();
   password.current = watch('password');
   const navigate = useNavigate();
+
+  const { data } = useQuery(['myprofile'], getMyProfile);
+  console.log('data', data);
 
   return (
     <div className={css.Container}>
@@ -36,7 +39,7 @@ const EditMember = () => {
             <div>
               <input
                 name="username"
-                // defaultValue={username ? username : '빈칸'}
+                // defaultValue={data.username ? data.username : '빈칸'}
                 className={css.Input}
                 {...register('username', {
                   required: true,
