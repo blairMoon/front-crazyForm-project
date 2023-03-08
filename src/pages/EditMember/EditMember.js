@@ -1,25 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { getUserFeeds } from '../../api';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import css from './EditMember.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-//`${css.movieName} ${css.show1}`
-const EditMember = ({ initialValues, onSubmit }) => {
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+import { getMyProfile } from '../../api';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
+import LoginOnlyPage from '../../components/LoginOnlyPage';
+// import { putMyProfile } from '../../api';
+
+const EditMember = () => {
+  LoginOnlyPage();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: initialValues,
-  });
+  } = useForm();
 
   const submitForm = data => {
-    const data1 = data;
-    console.log('data', data1);
+    console.log('data', data);
   };
   const { username } = useParams();
   console.log('username', username);
@@ -28,6 +30,7 @@ const EditMember = ({ initialValues, onSubmit }) => {
 
   const password = useRef();
   password.current = watch('password');
+  const navigate = useNavigate();
 
   return (
     <>
