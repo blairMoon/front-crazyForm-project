@@ -16,7 +16,6 @@ const EditMember = () => {
     watch,
     formState: { errors },
   } = useForm();
-  } = useForm();
 
   const submitForm = data => {
     console.log('data', data);
