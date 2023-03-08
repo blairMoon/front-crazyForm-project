@@ -6,15 +6,13 @@ import css from './EditMember.module.scss';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 //`${css.movieName} ${css.show1}`
-const EditMember = ({ initialValues, onSubmit }) => {
+const EditMember = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: initialValues,
-  });
+  } = useForm();
 
   const submitForm = data => {
     const data1 = data;
