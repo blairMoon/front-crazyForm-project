@@ -14,7 +14,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={isLoggedIn ? <Home /> : <Login />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/editingPage" element={<EditMember />} />
