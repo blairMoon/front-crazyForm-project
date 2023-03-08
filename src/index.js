@@ -10,8 +10,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={true} />
-    <Router />
-  </QueryClientProvider>
+  <ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} />
+      <Router />
+    </QueryClientProvider>
+  </ChakraProvider>
 );
