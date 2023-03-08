@@ -30,6 +30,6 @@ export const signUpUser = data => {
 export const getMyProfile = () => {
   return instance.get('users/myprofile').then(res => res.data);
 };
-export const upDateMyProfile = () => {
+export const putMyProfile = () => {
   return instance.put('users/myprofile').then(res => res.data);
 };

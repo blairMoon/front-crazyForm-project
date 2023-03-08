@@ -6,21 +6,25 @@ import css from './EditMember.module.scss';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-const EditMember = ({ initialValues, onSubmit }) => {
+import { getMyProfile } from '../../api';
+// import { putMyProfile } from '../../api';
+
+const EditMember = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: initialValues,
-  });
+  } = useForm();
 
   const submitForm = data => {
     console.log('data', data);
   };
   const password = useRef();
   password.current = watch('password');
+
+  const { getData } = useQuery(['users/myprofile'], getMyProfile);
+  console.log('getData', getData);
 
   return (
     <div className={css.Container}>
