@@ -18,7 +18,6 @@ const Signup = ({ initialValues, onSubmit }) => {
     },
     onSuccess: () => {
       console.log('API CALL success...');
-      isLoggedInVar(true);
     },
     onError: () => {
       console.log('API CALL error...');

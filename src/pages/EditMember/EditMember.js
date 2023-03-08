@@ -9,7 +9,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 // import { getMyProfile } from '../../api';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 // import LoginOnlyPage from '../../components/LoginOnlyPage';
-import { putMyProfile } from '../../api';
+import { getMyProfile } from '../../api';
 
 const EditMember = () => {
   // LoginOnlyPage();
@@ -29,9 +29,8 @@ const EditMember = () => {
   // console.log('data', data);
 
   const password = useRef();
-
   password.current = watch('password');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { data } = useQuery(['myprofile'], getMyProfile);
   console.log('data', data);
@@ -48,6 +47,7 @@ const EditMember = () => {
               <div>
                 <input
                   name="username"
+                  // defaultValue={data.username ? data.username : '빈칸'}
                   className={css.Input}
                   {...register('username', {
                     required: true,
@@ -66,8 +66,6 @@ const EditMember = () => {
               )}
               <label>비밀번호</label>
               <input
-                name="username"
-                // defaultValue={data.username ? data.username : '빈칸'}
                 name="password"
                 type="password"
                 className={css.Input}
