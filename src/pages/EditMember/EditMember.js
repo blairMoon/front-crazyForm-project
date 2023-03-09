@@ -65,7 +65,7 @@ const EditMember = () => {
                   <input
                     name="username"
                     className={css.Input}
-                    value={data.username}
+                    defaultValue={data.username}
                     {...register('username', {
                       required: true,
                       pattern: /^[a-z0-9]{5,20}$/,
@@ -130,11 +130,13 @@ const EditMember = () => {
                     조합해야합니다.
                   </p>
                 )}
-                {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
-          <p>
-            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
-          </p>
-        )} */}
+                {errors.passwordCheck &&
+                  errors.passwordCheck.type === 'pattern' && (
+                    <p>
+                      비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
+                      조합해야합니다.
+                    </p>
+                  )}
                 {errors.passwordCheck &&
                   errors.passwordCheck.type === 'validate' && (
                     <p>비밀번호가 일치하지 않습니다.</p>

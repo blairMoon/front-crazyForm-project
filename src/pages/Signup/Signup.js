@@ -19,6 +19,8 @@ const Signup = ({ initialValues, onSubmit }) => {
     },
     onSuccess: () => {
       console.log('API CALL success...');
+      alert('회원가입에 성공하셨습니다. 로그인페이지로 이동합니다.');
+      setTimeout(() => navigate('/login'), 1000);
     },
     onError: () => {
       console.log('API CALL error...');
@@ -26,7 +28,10 @@ const Signup = ({ initialValues, onSubmit }) => {
   });
 
   const checkUsename = id => {
-    return instance.get(`users/@${id}`).then(res => res.data);
+    return instance
+      .get(`users/@${id}`)
+      .then(res => res.data)
+      .then(res => alert(res));
   };
 
   const {
@@ -63,7 +68,7 @@ const Signup = ({ initialValues, onSubmit }) => {
             </div>
             <button
               className={css.button}
-              onClick={checkUsename(watch('username'))}
+              onClick={() => checkUsename(watch('username'))}
             >
               아이디 중복확인
             </button>
@@ -107,16 +112,17 @@ const Signup = ({ initialValues, onSubmit }) => {
                 validate: value => value === password.current,
               })}
             />
-
             {errors.passwordCheck &&
               errors.passwordCheck.type === 'required' && (
                 <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
               )}
-            {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
-          <p>
-            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
-          </p>
-        )} */}
+            {errors.passwordCheck &&
+              errors.passwordCheck.type === 'pattern' && (
+                <p>
+                  비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
+                  조합해야합니다.
+                </p>
+              )}{' '}
             {errors.passwordCheck &&
               errors.passwordCheck.type === 'validate' && (
                 <p>비밀번호가 일치하지 않습니다.</p>
@@ -127,7 +133,6 @@ const Signup = ({ initialValues, onSubmit }) => {
               className={css.Input}
               {...register('name', { required: true })}
             />
-
             {errors.name && <p className={css.p}>이름은 필수 입력값입니다.</p>}
             <label>닉네임</label>
             <input
@@ -145,7 +150,6 @@ const Signup = ({ initialValues, onSubmit }) => {
               className={css.Input}
               {...register('dateBirth', { required: true })}
             />
-
             {errors.dateBirth && (
               <p className={css.p}>생년월일은 필수 입력 값입니다.</p>
             )}
@@ -180,7 +184,6 @@ const Signup = ({ initialValues, onSubmit }) => {
                 />
               </div>
             </div>
-
             {errors.gender && (
               <p className={css.p}>성별은 필수 입력값입니다.</p>
             )}
