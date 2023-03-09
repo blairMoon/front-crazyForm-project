@@ -24,13 +24,8 @@ const Signup = ({ initialValues, onSubmit }) => {
       console.log('API CALL error...');
     },
   });
-  const [asd, setAsd] = useState('');
 
-  useEffect(() => {
-    console.log(asd);
-  }, [asd]);
   const checkUsename = id => {
-    console.log(asd);
     return instance.get(`users/@${id}`).then(res => res.data);
   };
 
@@ -58,7 +53,6 @@ const Signup = ({ initialValues, onSubmit }) => {
             <label>아이디</label>
             <div>
               <input
-                onChange={event => setAsd(event.target.value)}
                 name="username"
                 className={css.Input}
                 {...register('username', {
@@ -67,7 +61,12 @@ const Signup = ({ initialValues, onSubmit }) => {
                 })}
               />
             </div>
-            <button className={css.button}>아이디 중복확인</button>
+            <button
+              className={css.button}
+              onClick={checkUsename(watch('username'))}
+            >
+              아이디 중복확인
+            </button>
             {errors.username && errors.username.type === 'required' && (
               <p className={css.p}>아이디는 필수 입력값입니다.</p>
             )}
