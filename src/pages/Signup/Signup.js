@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // import Header from '../../components/Header/Header';
@@ -6,11 +6,12 @@ import css from '../EditMember/EditMember.module.scss';
 
 import { isLoggedInVar } from '../../apollo';
 
-import { signUpUser } from '../../api';
+import { signUpUser, instance } from '../../api';
 import { useMutation } from '@tanstack/react-query';
-
+import { useNavigate } from 'react-router-dom';
 //`${css.movieName} ${css.show1}`
 const Signup = ({ initialValues, onSubmit }) => {
+  const navigate = useNavigate();
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -23,6 +24,16 @@ const Signup = ({ initialValues, onSubmit }) => {
       console.log('API CALL error...');
     },
   });
+  const [asd, setAsd] = useState('');
+
+  useEffect(() => {
+    console.log(asd);
+  }, [asd]);
+  const checkUsename = id => {
+    console.log(asd);
+    return instance.get(`users/@${id}`).then(res => res.data);
+  };
+
   const {
     register,
     handleSubmit,
@@ -47,6 +58,7 @@ const Signup = ({ initialValues, onSubmit }) => {
             <label>아이디</label>
             <div>
               <input
+                onChange={event => setAsd(event.target.value)}
                 name="username"
                 className={css.Input}
                 {...register('username', {
@@ -218,8 +230,8 @@ const Signup = ({ initialValues, onSubmit }) => {
                 이용약관에 동의히자 않으면 가입이 불가능합니다.
               </p>
             )}
-            <button type="submit" value="수정하기" className={css.Button}>
-              수정하기
+            <button type="submit" className={css.Button}>
+              가입하기
             </button>
           </form>
         </div>
