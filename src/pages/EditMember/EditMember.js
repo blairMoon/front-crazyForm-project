@@ -52,7 +52,7 @@ const EditMember = () => {
                     required: true,
                     pattern: /^[a-z0-9]{5,20}$/,
                   })}
-                />
+                ></input>
               </div>
               <button className={css.button}>아이디 중복확인</button>
               {errors.username && errors.username.type === 'required' && (
