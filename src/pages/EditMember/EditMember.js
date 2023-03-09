@@ -9,7 +9,12 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 // import { getMyProfile } from '../../api';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 // import LoginOnlyPage from '../../components/LoginOnlyPage';
-import { getMyProfile, userNameLogin, changeProfileUser } from '../../api';
+import {
+  getMyProfile,
+  userNameLogin,
+  changeProfileUser,
+  instance,
+} from '../../api';
 
 import { useMutation } from '@tanstack/react-query';
 const EditMember = () => {
@@ -40,6 +45,13 @@ const EditMember = () => {
   };
   const password = useRef();
   password.current = watch('password');
+
+  const checkUsename = id => {
+    return instance
+      .get(`users/@${id}`)
+      .then(res => res.data)
+      .then(res => alert(res));
+  };
   // console.log('data', data);
   if (data) {
     return (
@@ -56,15 +68,20 @@ const EditMember = () => {
                   <input
                     name="username"
                     className={css.Input}
-                    value={data.username}
+                    defaultValue={data.username}
                     {...register('username', {
                       required: true,
                       pattern: /^[a-z0-9]{5,20}$/,
                     })}
-                  />
+                  ></input>
                 </div>
 
-                <button className={css.button}>아이디 중복확인</button>
+                <button
+                  className={css.button}
+                  onClick={() => checkUsename(watch('username'))}
+                >
+                  아이디 중복확인
+                </button>
                 {errors.username && errors.username.type === 'required' && (
                   <p className={css.p}>아이디는 필수 입력값입니다.</p>
                 )}
@@ -116,28 +133,13 @@ const EditMember = () => {
                     조합해야합니다.
                   </p>
                 )}
-                <label>비밀번호 확인</label>
-                <input
-                  name="passwordCheck"
-                  type="password"
-                  className={css.Input}
-                  {...register('passwordCheck ', {
-                    required: true,
-                    pattern:
-                      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/,
-                    validate: value => value === password.current,
-                  })}
-                />
-
                 {errors.passwordCheck &&
-                  errors.passwordCheck.type === 'required' && (
-                    <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
+                  errors.passwordCheck.type === 'pattern' && (
+                    <p>
+                      비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
+                      조합해야합니다.
+                    </p>
                   )}
-                {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
-          <p>
-            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
-          </p>
-        )} */}
                 {errors.passwordCheck &&
                   errors.passwordCheck.type === 'validate' && (
                     <p>비밀번호가 일치하지 않습니다.</p>
