@@ -47,7 +47,10 @@ const EditMember = () => {
   password.current = watch('password');
 
   const checkUsename = id => {
-    return instance.get(`users/@${id}`).then(res => res.data);
+    return instance
+      .get(`users/@${id}`)
+      .then(res => res.data)
+      .then(res => alert(res));
   };
   // console.log('data', data);
   if (data) {
@@ -75,7 +78,7 @@ const EditMember = () => {
 
                 <button
                   className={css.button}
-                  onClick={checkUsename(watch('username'))}
+                  onClick={() => checkUsename(watch('username'))}
                 >
                   아이디 중복확인
                 </button>
