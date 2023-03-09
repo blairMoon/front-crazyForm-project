@@ -65,7 +65,7 @@ const EditMember = () => {
                   <input
                     name="username"
                     className={css.Input}
-                    value={data.username}
+                    defaultValue={data.username}
                     {...register('username', {
                       required: true,
                       pattern: /^[a-z0-9]{5,20}$/,

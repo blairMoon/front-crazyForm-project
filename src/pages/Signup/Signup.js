@@ -19,6 +19,7 @@ const Signup = ({ initialValues, onSubmit }) => {
     },
     onSuccess: () => {
       console.log('API CALL success...');
+      navigate('/login');
     },
     onError: () => {
       console.log('API CALL error...');
@@ -63,7 +64,7 @@ const Signup = ({ initialValues, onSubmit }) => {
             </div>
             <button
               className={css.button}
-              onClick={checkUsename(watch('username'))}
+              onClick={() => checkUsename(watch('username'))}
             >
               아이디 중복확인
             </button>
@@ -79,6 +80,7 @@ const Signup = ({ initialValues, onSubmit }) => {
             <input
               name="password"
               type="password"
+              autoComplete="off"
               className={css.Input}
               {...register('password', {
                 required: true,
@@ -99,6 +101,7 @@ const Signup = ({ initialValues, onSubmit }) => {
             <input
               name="passwordCheck"
               type="password"
+              autoComplete="off"
               className={css.Input}
               {...register('passwordCheck ', {
                 required: true,
