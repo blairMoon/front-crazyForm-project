@@ -69,6 +69,7 @@ const EditMember = () => {
                     name="username"
                     className={css.Input}
                     defaultValue={data.username}
+                    readOnly
                     {...register('username', {
                       required: true,
                       pattern: /^[a-z0-9]{5,20}$/,
@@ -77,6 +78,7 @@ const EditMember = () => {
                 </div>
 
                 <button
+                  type="button"
                   className={css.button}
                   onClick={() => checkUsename(watch('username'))}
                 >
@@ -188,7 +190,7 @@ const EditMember = () => {
                       name="gender"
                       id="male"
                       type="radio"
-                      defaultValue="man"
+                      defaultValue="male"
                       className={`${css.radioMargin}`}
                       {...register('gender', { required: true })}
                     />
@@ -253,7 +255,7 @@ const EditMember = () => {
                     name="termsOfUse"
                     id="termsOfUse"
                     type="checkbox"
-                    checked="true"
+                    checked={true}
                     className={`${css.checkbox} ${css.radioMargin}`}
                     {...register('termsOfUse', {
                       required: true,
