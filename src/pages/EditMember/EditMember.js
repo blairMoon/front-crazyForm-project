@@ -184,7 +184,7 @@ const EditMember = () => {
                       남자
                     </label>
                     <input
-                      checked={data.gender === 'male' ? 'true' : 'false'}
+                      checked={data.gender === 'male' ? true : false}
                       name="gender"
                       id="male"
                       type="radio"
@@ -198,7 +198,7 @@ const EditMember = () => {
                       여자
                     </label>
                     <input
-                      checked={data.gender === 'female' ? 'true' : 'false'}
+                      checked={data.gender === 'female' ? true : false}
                       name="gender"
                       id="female"
                       type="radio"
