@@ -21,6 +21,9 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Input,
+  InputGroup,
+  InputRightAddon,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -28,6 +31,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+import { SearchIcon } from '@chakra-ui/icons';
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -79,6 +83,22 @@ export default function Header() {
           direction={'row'}
           spacing={6}
         >
+          <InputGroup display={{ base: 'none', md: 'inline-flex' }}>
+            <Input
+              className="Input"
+              pr="10rem"
+              variant="outline"
+              placeholder={``}
+            />
+            <InputRightAddon>
+              <Button
+                h="1.75rem"
+                size="sm"
+                borderRadius="10px"
+                children={<SearchIcon color="green.500" />}
+              ></Button>
+            </InputRightAddon>
+          </InputGroup>
           <Button
             as={'a'}
             fontSize={'sm'}
