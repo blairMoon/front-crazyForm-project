@@ -47,7 +47,10 @@ const EditMember = () => {
   password.current = watch('password');
 
   const checkUsename = id => {
-    return instance.get(`users/@${id}`).then(res => res.data);
+    return instance
+      .get(`users/@${id}`)
+      .then(res => res.data)
+      .then(res => alert(res));
   };
   // console.log('data', data);
   if (data) {
@@ -75,7 +78,7 @@ const EditMember = () => {
 
                 <button
                   className={css.button}
-                  onClick={checkUsename(watch('username'))}
+                  onClick={() => checkUsename(watch('username'))}
                 >
                   아이디 중복확인
                 </button>
@@ -130,11 +133,13 @@ const EditMember = () => {
                     조합해야합니다.
                   </p>
                 )}
-                {/* {errors.passwordCheck && errors.passwordCheck.type === 'pattern' && (
-          <p>
-            비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를 조합해야합니다.
-          </p>
-        )} */}
+                {errors.passwordCheck &&
+                  errors.passwordCheck.type === 'pattern' && (
+                    <p>
+                      비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
+                      조합해야합니다.
+                    </p>
+                  )}
                 {errors.passwordCheck &&
                   errors.passwordCheck.type === 'validate' && (
                     <p>비밀번호가 일치하지 않습니다.</p>
