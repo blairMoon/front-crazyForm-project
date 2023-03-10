@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import css from './Login.module.scss';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { isLoggedInVar } from '../../apollo';
-
+import { getAccessToken } from '../../auth';
 import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 import Header from '../../components/Header/Header';
@@ -24,7 +24,17 @@ const LoginPage = () => {
       console.log(e);
       console.log('API CALL error...');
     },
+    headers: isLoggedInVar() && {
+      Authorization: `Bearer ${getAccessToken()}`,
+    },
   });
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      isLoggedInVar(true);
+    }
+  }, []);
 
   const {
     register,

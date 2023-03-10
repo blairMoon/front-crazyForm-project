@@ -19,7 +19,7 @@ const Signup = ({ initialValues, onSubmit }) => {
     },
     onSuccess: () => {
       console.log('API CALL success...');
-      alert('회원가입에 성공하셨습니다. 로그인페이지로 이동합니다.');
+      alert('회원가입에 성공하셨습니다');
       setTimeout(() => navigate('/login'), 1000);
     },
     onError: () => {

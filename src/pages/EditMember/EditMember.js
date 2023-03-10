@@ -68,6 +68,7 @@ const EditMember = () => {
                     name="username"
                     className={css.Input}
                     defaultValue={data.username}
+                    readOnly
                     {...register('username', {
                       required: true,
                       pattern: /^[a-z0-9]{5,20}$/,
@@ -76,6 +77,7 @@ const EditMember = () => {
                 </div>
 
                 <button
+                  type="button"
                   className={css.button}
                   onClick={() => checkUsename(watch('username'))}
                 >
