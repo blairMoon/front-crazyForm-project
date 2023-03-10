@@ -5,7 +5,7 @@ import EditMember from './EditMember/EditMember';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Lectures from './WholeLectures/WholeLectures';
+import WholeLectures from './WholeLectures/WholeLectures';
 
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
