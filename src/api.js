@@ -9,11 +9,26 @@ export const instance = axios.create({
   withCredentials: true,
 });
 
-export const userNameLogin = ({ username, password }) => {
-  return instance
-    .post('users/login', { username, password })
-    .then(res => res.data);
-};
+export async function userNameLogin({ username, password }) {
+  const response = await fetch('http://127.0.0.1:8000/api/v1/users/jwttoken', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username, password }),
+    credentials: 'include',
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    const token = data.token;
+    window.localStorage.setItem('token', token);
+    return true;
+  } else {
+    const { message } = await response.json();
+    throw new Error(message);
+  }
+}
 
 export const signUpUser = data => {
   return instance.post('users/', data).then(res => res.data);
