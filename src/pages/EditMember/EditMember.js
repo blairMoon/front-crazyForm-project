@@ -64,7 +64,6 @@ const EditMember = () => {
               <form className={css.Form} onSubmit={handleSubmit(submitForm)}>
                 <label>아이디</label>
                 <div>
-                  {console.log(isLoading)}
                   <input
                     name="username"
                     className={css.Input}
@@ -129,12 +128,7 @@ const EditMember = () => {
                   errors.passwordCheck.type === 'required' && (
                     <p className={css.p}>비밀번호 확인은 필수 입력값입니다.</p>
                   )}
-                {errors.password && errors.password.type === 'pattern' && (
-                  <p className={css.p}>
-                    비밀번호는 8~20자 사이여야 하며 문자,숫자,특수문자를
-                    조합해야합니다.
-                  </p>
-                )}
+
                 {errors.passwordCheck &&
                   errors.passwordCheck.type === 'pattern' && (
                     <p>
@@ -205,9 +199,7 @@ const EditMember = () => {
                       id="female"
                       type="radio"
                       defaultValue="female"
-                      className={`
-                  
-                  ${css.radioMargin}`}
+                      className={`${css.radioMargin}`}
                       {...register('gender', { required: true })}
                     />
                   </div>

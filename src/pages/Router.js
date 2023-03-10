@@ -5,6 +5,7 @@ import EditMember from './EditMember/EditMember';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
+import WholeLectures from './WholeLectures/WholeLectures';
 
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
@@ -17,7 +18,8 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/editingpage" element={<EditMember />} />
+        <Route path="/mypage" element={<EditMember />} />
+        <Route path="/lectures" element={<WholeLectures />} />
       </Routes>
     </BrowserRouter>
   );

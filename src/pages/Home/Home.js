@@ -2,6 +2,7 @@ import React from 'react';
 
 import css from './Home.module.scss';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import {
   Flex,
   Button,
@@ -160,6 +161,7 @@ function HomePage() {
           </Container>
         </Box>
       </Flex>
+      <Footer />
     </>
   );
 }
