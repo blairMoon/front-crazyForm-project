@@ -17,7 +17,7 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react';
 
-function HomePage() {
+function Lectures() {
   const ListHeader = ({ children }) => {
     return (
       <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
@@ -166,4 +166,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Lectures;
