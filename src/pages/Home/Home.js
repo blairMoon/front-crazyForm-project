@@ -55,8 +55,8 @@ function Home() {
               align={'flex-start'}
             >
               <Stack align={'center'}>
-                <Link href={'/lecture'}>강의</Link>
-                <Link href={'#'}>관열이와 아이들</Link>
+                <ListHeader>강의</ListHeader>
+                <Link href={'/lectures'}>관열이와 아이들</Link>
                 <Stack direction={'row'} align={'center'} spacing={2}>
                   <Link href={'#'}>관열이와 아이들</Link>
                   {/* <Tag

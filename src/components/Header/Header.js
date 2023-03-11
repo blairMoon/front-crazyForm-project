@@ -147,7 +147,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Link
                 p={2}
-                href={navItem.href ?? '#'}
+                href={navItem.href}
                 fontSize={'sm'}
                 fontWeight={500}
                 color={linkColor}
@@ -290,6 +290,7 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: '강의',
+    href: '/lectures',
     children: [
       {
         label: '프론트엔드',
@@ -305,6 +306,7 @@ const NAV_ITEMS = [
   },
   {
     label: '소개',
+    href: '/lectures',
     children: [
       {
         label: '금쪽같은 내새끼',
@@ -320,6 +322,7 @@ const NAV_ITEMS = [
   },
   {
     label: '로드맵',
+    href: '/lectures',
     children: [
       {
         label: '금쪽같은 내새끼',
