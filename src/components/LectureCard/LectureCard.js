@@ -4,14 +4,15 @@ import { Text, Button, Stack, Image, Heading } from '@chakra-ui/react';
 const LectureCard = () => {
   return (
     <Card
-      width={'300px'}
-      height={'350px'}
+      width={'250px'}
+      height={'270px'}
       direction={{ base: 'column' }}
       overflow="hidden"
       variant="outline"
     >
       <Image
         objectFit="cover"
+        w="100%"
         maxW={{ base: '100%', sm: '100%' }}
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSABTaW4jy-lxGATrw8bfRsNlkKK1mSxvlb_A&usqp=CAU"
         alt="Caffe Latte"
