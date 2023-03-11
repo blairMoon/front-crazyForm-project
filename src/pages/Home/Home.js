@@ -17,7 +17,7 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react';
 
-function Lectures() {
+function Home() {
   const ListHeader = ({ children }) => {
     return (
       <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
@@ -55,7 +55,7 @@ function Lectures() {
               align={'flex-start'}
             >
               <Stack align={'center'}>
-                <ListHeader>강의</ListHeader>
+                <Link href={'/lecture'}>강의</Link>
                 <Link href={'#'}>관열이와 아이들</Link>
                 <Stack direction={'row'} align={'center'} spacing={2}>
                   <Link href={'#'}>관열이와 아이들</Link>
@@ -166,4 +166,4 @@ function Lectures() {
   );
 }
 
-export default Lectures;
+export default Home;
