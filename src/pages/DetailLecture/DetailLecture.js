@@ -11,7 +11,7 @@ const DetailLecture = () => {
     }
     return (
       <div>
-        <div>{id}</div>
+        <div>{id}번째페이지 입니당당당당다아</div>
         <div>{data.results[id].gu}</div>
         <div>{data.results[id].title}</div>
         <div>{data.results[id].description}</div>
