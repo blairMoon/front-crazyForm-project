@@ -1,0 +1,902 @@
+[
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Buteo jamaicensis",
+    "targetAudience": "Red-tailed hawk",
+    "lectureFee": 79,
+    "thumbnail": "http://dummyimage.com/124x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "org",
+    "lectureDescription": "Lepilemur rufescens",
+    "targetAudience": "Lemur, sportive",
+    "lectureFee": 42,
+    "thumbnail": "http://dummyimage.com/195x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Antidorcas marsupialis",
+    "targetAudience": "Springbuck",
+    "lectureFee": 66,
+    "thumbnail": "http://dummyimage.com/125x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Myrmecophaga tridactyla",
+    "targetAudience": "Giant anteater",
+    "lectureFee": 464,
+    "thumbnail": "http://dummyimage.com/192x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Climacteris melanura",
+    "targetAudience": "Black-tailed tree creeper",
+    "lectureFee": 183,
+    "thumbnail": "http://dummyimage.com/207x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Psittacula krameri",
+    "targetAudience": "Rose-ringed parakeet",
+    "lectureFee": 111,
+    "thumbnail": "http://dummyimage.com/205x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "mil",
+    "lectureDescription": "Rana sp.",
+    "targetAudience": "Frog (unidentified)",
+    "lectureFee": 340,
+    "thumbnail": "http://dummyimage.com/173x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Columba palumbus",
+    "targetAudience": "Ring dove",
+    "lectureFee": 211,
+    "thumbnail": "http://dummyimage.com/161x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Lycosa godeffroyi",
+    "targetAudience": "Wolf spider",
+    "lectureFee": 86,
+    "thumbnail": "http://dummyimage.com/161x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Globicephala melas",
+    "targetAudience": "Whale, long-finned pilot",
+    "lectureFee": 98,
+    "thumbnail": "http://dummyimage.com/195x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Ciconia episcopus",
+    "targetAudience": "Stork, white-necked",
+    "lectureFee": 96,
+    "thumbnail": "http://dummyimage.com/225x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Crocuta crocuta",
+    "targetAudience": "Hyena, spotted",
+    "lectureFee": 137,
+    "thumbnail": "http://dummyimage.com/218x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Haliaetus vocifer",
+    "targetAudience": "Eagle, african fish",
+    "lectureFee": 352,
+    "thumbnail": "http://dummyimage.com/114x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Corallus hortulanus cooki",
+    "targetAudience": "Boa, cook's tree",
+    "lectureFee": 80,
+    "thumbnail": "http://dummyimage.com/226x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "info",
+    "lectureDescription": "unavailable",
+    "targetAudience": "Turtle (unidentified)",
+    "lectureFee": 295,
+    "thumbnail": "http://dummyimage.com/235x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Phalacrocorax albiventer",
+    "targetAudience": "King cormorant",
+    "lectureFee": 345,
+    "thumbnail": "http://dummyimage.com/223x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Antidorcas marsupialis",
+    "targetAudience": "Springbok",
+    "lectureFee": 13,
+    "thumbnail": "http://dummyimage.com/247x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Lycaon pictus",
+    "targetAudience": "Dog, african wild",
+    "lectureFee": 154,
+    "thumbnail": "http://dummyimage.com/248x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Pycnonotus nigricans",
+    "targetAudience": "Bulbul, african red-eyed",
+    "lectureFee": 456,
+    "thumbnail": "http://dummyimage.com/121x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Oxybelis fulgidus",
+    "targetAudience": "Green vine snake",
+    "lectureFee": 323,
+    "thumbnail": "http://dummyimage.com/134x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Lutra canadensis",
+    "targetAudience": "North American river otter",
+    "lectureFee": 401,
+    "thumbnail": "http://dummyimage.com/216x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Thamnolaea cinnmomeiventris",
+    "targetAudience": "Mocking cliffchat",
+    "lectureFee": 168,
+    "thumbnail": "http://dummyimage.com/168x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Varanus salvator",
+    "targetAudience": "Two-banded monitor",
+    "lectureFee": 29,
+    "thumbnail": "http://dummyimage.com/246x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Phoeniconaias minor",
+    "targetAudience": "Flamingo, lesser",
+    "lectureFee": 130,
+    "thumbnail": "http://dummyimage.com/235x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Centrocercus urophasianus",
+    "targetAudience": "Hen, sage",
+    "lectureFee": 228,
+    "thumbnail": "http://dummyimage.com/176x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Connochaetus taurinus",
+    "targetAudience": "Gnu, brindled",
+    "lectureFee": 430,
+    "thumbnail": "http://dummyimage.com/215x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Philetairus socius",
+    "targetAudience": "Weaver, sociable",
+    "lectureFee": 171,
+    "thumbnail": "http://dummyimage.com/116x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Macropus rufogriseus",
+    "targetAudience": "Wallaby, bennett's",
+    "lectureFee": 443,
+    "thumbnail": "http://dummyimage.com/131x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "org",
+    "lectureDescription": "Cracticus nigroagularis",
+    "targetAudience": "Pied butcher bird",
+    "lectureFee": 1,
+    "thumbnail": "http://dummyimage.com/118x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Mazama americana",
+    "targetAudience": "Red brocket",
+    "lectureFee": 308,
+    "thumbnail": "http://dummyimage.com/107x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Rhea americana",
+    "targetAudience": "Rhea, greater",
+    "lectureFee": 339,
+    "thumbnail": "http://dummyimage.com/228x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Pelecanus occidentalis",
+    "targetAudience": "Brown pelican",
+    "lectureFee": 419,
+    "thumbnail": "http://dummyimage.com/244x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Rhea americana",
+    "targetAudience": "Common rhea",
+    "lectureFee": 328,
+    "thumbnail": "http://dummyimage.com/240x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "mil",
+    "lectureDescription": "Colobus guerza",
+    "targetAudience": "Colobus, black and white",
+    "lectureFee": 248,
+    "thumbnail": "http://dummyimage.com/167x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Microcebus murinus",
+    "targetAudience": "Lemur, grey mouse",
+    "lectureFee": 421,
+    "thumbnail": "http://dummyimage.com/155x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Francolinus coqui",
+    "targetAudience": "Coqui partridge",
+    "lectureFee": 117,
+    "thumbnail": "http://dummyimage.com/156x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Canis mesomelas",
+    "targetAudience": "Silver-backed jackal",
+    "lectureFee": 19,
+    "thumbnail": "http://dummyimage.com/234x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "org",
+    "lectureDescription": "Anthropoides paradisea",
+    "targetAudience": "Crane, blue",
+    "lectureFee": 284,
+    "thumbnail": "http://dummyimage.com/238x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Tapirus terrestris",
+    "targetAudience": "Tapir, brazilian",
+    "lectureFee": 52,
+    "thumbnail": "http://dummyimage.com/196x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Milvago chimachima",
+    "targetAudience": "Yellow-headed caracara",
+    "lectureFee": 279,
+    "thumbnail": "http://dummyimage.com/113x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "mil",
+    "lectureDescription": "Alces alces",
+    "targetAudience": "Moose",
+    "lectureFee": 293,
+    "thumbnail": "http://dummyimage.com/167x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Colobus guerza",
+    "targetAudience": "White-mantled colobus",
+    "lectureFee": 99,
+    "thumbnail": "http://dummyimage.com/211x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Dicrurus adsimilis",
+    "targetAudience": "Drongo, fork-tailed",
+    "lectureFee": 294,
+    "thumbnail": "http://dummyimage.com/181x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Mabuya spilogaster",
+    "targetAudience": "Skink, african",
+    "lectureFee": 110,
+    "thumbnail": "http://dummyimage.com/162x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Sitta canadensis",
+    "targetAudience": "Nuthatch, red-breasted",
+    "lectureFee": 268,
+    "thumbnail": "http://dummyimage.com/197x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Canis aureus",
+    "targetAudience": "Jackal, indian",
+    "lectureFee": 236,
+    "thumbnail": "http://dummyimage.com/242x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Aonyx cinerea",
+    "targetAudience": "Oriental short-clawed otter",
+    "lectureFee": 493,
+    "thumbnail": "http://dummyimage.com/225x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Bubo virginianus",
+    "targetAudience": "Owl, great horned",
+    "lectureFee": 277,
+    "thumbnail": "http://dummyimage.com/220x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Ardea golieth",
+    "targetAudience": "Heron, giant",
+    "lectureFee": 173,
+    "thumbnail": "http://dummyimage.com/107x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Seiurus aurocapillus",
+    "targetAudience": "Ovenbird",
+    "lectureFee": 462,
+    "thumbnail": "http://dummyimage.com/190x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Picoides pubescens",
+    "targetAudience": "Woodpecker, downy",
+    "lectureFee": 6,
+    "thumbnail": "http://dummyimage.com/249x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Felis silvestris lybica",
+    "targetAudience": "Cat, kaffir",
+    "lectureFee": 443,
+    "thumbnail": "http://dummyimage.com/189x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Loris tardigratus",
+    "targetAudience": "Loris, slender",
+    "lectureFee": 173,
+    "thumbnail": "http://dummyimage.com/186x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "unavailable",
+    "targetAudience": "Gecko (unidentified)",
+    "lectureFee": 460,
+    "thumbnail": "http://dummyimage.com/177x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Ninox superciliaris",
+    "targetAudience": "Owl, madagascar hawk",
+    "lectureFee": 78,
+    "thumbnail": "http://dummyimage.com/120x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Zosterops pallidus",
+    "targetAudience": "Pale white-eye",
+    "lectureFee": 460,
+    "thumbnail": "http://dummyimage.com/137x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Zalophus californicus",
+    "targetAudience": "Lion, galapagos sea",
+    "lectureFee": 144,
+    "thumbnail": "http://dummyimage.com/247x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Calyptorhynchus magnificus",
+    "targetAudience": "Cockatoo, red-tailed",
+    "lectureFee": 174,
+    "thumbnail": "http://dummyimage.com/150x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Sarcophilus harrisii",
+    "targetAudience": "Devil, tasmanian",
+    "lectureFee": 477,
+    "thumbnail": "http://dummyimage.com/162x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Felis caracal",
+    "targetAudience": "Caracal",
+    "lectureFee": 54,
+    "thumbnail": "http://dummyimage.com/188x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Thamnolaea cinnmomeiventris",
+    "targetAudience": "Mocking cliffchat",
+    "lectureFee": 382,
+    "thumbnail": "http://dummyimage.com/231x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Ursus arctos",
+    "targetAudience": "Bear, grizzly",
+    "lectureFee": 196,
+    "thumbnail": "http://dummyimage.com/211x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Estrilda erythronotos",
+    "targetAudience": "Waxbill, black-cheeked",
+    "lectureFee": 214,
+    "thumbnail": "http://dummyimage.com/180x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Chionis alba",
+    "targetAudience": "Snowy sheathbill",
+    "lectureFee": 124,
+    "thumbnail": "http://dummyimage.com/188x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Libellula quadrimaculata",
+    "targetAudience": "Russian dragonfly",
+    "lectureFee": 296,
+    "thumbnail": "http://dummyimage.com/120x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "mil",
+    "lectureDescription": "Corythornis cristata",
+    "targetAudience": "Malachite kingfisher",
+    "lectureFee": 385,
+    "thumbnail": "http://dummyimage.com/236x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "mil",
+    "lectureDescription": "Theropithecus gelada",
+    "targetAudience": "Gelada baboon",
+    "lectureFee": 319,
+    "thumbnail": "http://dummyimage.com/239x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Uraeginthus granatina",
+    "targetAudience": "Violet-eared waxbill",
+    "lectureFee": 18,
+    "thumbnail": "http://dummyimage.com/141x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Ninox superciliaris",
+    "targetAudience": "White-browed owl",
+    "lectureFee": 162,
+    "thumbnail": "http://dummyimage.com/130x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Zosterops pallidus",
+    "targetAudience": "White-eye, cape",
+    "lectureFee": 171,
+    "thumbnail": "http://dummyimage.com/124x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Sarcophilus harrisii",
+    "targetAudience": "Tasmanian devil",
+    "lectureFee": 294,
+    "thumbnail": "http://dummyimage.com/104x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Lycaon pictus",
+    "targetAudience": "Dog, african wild",
+    "lectureFee": 34,
+    "thumbnail": "http://dummyimage.com/140x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Agkistrodon piscivorus",
+    "targetAudience": "Moccasin, water",
+    "lectureFee": 437,
+    "thumbnail": "http://dummyimage.com/193x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "name",
+    "lectureDescription": "Cercatetus concinnus",
+    "targetAudience": "Possum, western pygmy",
+    "lectureFee": 254,
+    "thumbnail": "http://dummyimage.com/115x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Phalacrocorax brasilianus",
+    "targetAudience": "Cormorant, neotropic",
+    "lectureFee": 347,
+    "thumbnail": "http://dummyimage.com/207x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Sus scrofa",
+    "targetAudience": "Boar, wild",
+    "lectureFee": 64,
+    "thumbnail": "http://dummyimage.com/129x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Pitangus sulphuratus",
+    "targetAudience": "Kiskadee, great",
+    "lectureFee": 237,
+    "thumbnail": "http://dummyimage.com/183x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Bubo virginianus",
+    "targetAudience": "Great horned owl",
+    "lectureFee": 459,
+    "thumbnail": "http://dummyimage.com/236x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Cervus duvauceli",
+    "targetAudience": "Deer, swamp",
+    "lectureFee": 353,
+    "thumbnail": "http://dummyimage.com/114x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mrs",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Paradoxurus hermaphroditus",
+    "targetAudience": "Civet, common palm",
+    "lectureFee": 249,
+    "thumbnail": "http://dummyimage.com/170x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Trichoglossus haematodus moluccanus",
+    "targetAudience": "Lory, rainbow",
+    "lectureFee": 446,
+    "thumbnail": "http://dummyimage.com/145x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Nectarinia chalybea",
+    "targetAudience": "Lesser double-collared sunbird",
+    "lectureFee": 387,
+    "thumbnail": "http://dummyimage.com/199x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "edu",
+    "lectureDescription": "Choloepus hoffmani",
+    "targetAudience": "Hoffman's sloth",
+    "lectureFee": 7,
+    "thumbnail": "http://dummyimage.com/239x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Neotis denhami",
+    "targetAudience": "Bustard, denham's",
+    "lectureFee": 104,
+    "thumbnail": "http://dummyimage.com/227x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "org",
+    "lectureDescription": "Lutra canadensis",
+    "targetAudience": "Canadian river otter",
+    "lectureFee": 63,
+    "thumbnail": "http://dummyimage.com/234x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Lamprotornis chalybaeus",
+    "targetAudience": "Starling, greater blue-eared",
+    "lectureFee": 210,
+    "thumbnail": "http://dummyimage.com/147x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Procyon cancrivorus",
+    "targetAudience": "Raccoon, crab-eating",
+    "lectureFee": 126,
+    "thumbnail": "http://dummyimage.com/100x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "gov",
+    "lectureDescription": "Bubalus arnee",
+    "targetAudience": "Asian water buffalo",
+    "lectureFee": 127,
+    "thumbnail": "http://dummyimage.com/113x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "info",
+    "lectureDescription": "Antilope cervicapra",
+    "targetAudience": "Blackbuck",
+    "lectureFee": 386,
+    "thumbnail": "http://dummyimage.com/232x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "com",
+    "lectureDescription": "Ratufa indica",
+    "targetAudience": "Indian giant squirrel",
+    "lectureFee": 243,
+    "thumbnail": "http://dummyimage.com/200x100.png/dddddd/000000",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "biz",
+    "lectureDescription": "Lasiodora parahybana",
+    "targetAudience": "Salmon pink bird eater tarantula",
+    "lectureFee": 230,
+    "thumbnail": "http://dummyimage.com/117x100.png/ff4444/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Corythornis cristata",
+    "targetAudience": "Malachite kingfisher",
+    "lectureFee": 279,
+    "thumbnail": "http://dummyimage.com/197x100.png/ff4444/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "org",
+    "lectureDescription": "unavailable",
+    "targetAudience": "Old world fruit bat (unidentified)",
+    "lectureFee": 417,
+    "thumbnail": "http://dummyimage.com/175x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Mr",
+    "lectureDifficulty": "org",
+    "lectureDescription": "Sceloporus magister",
+    "targetAudience": "Desert spiny lizard",
+    "lectureFee": 85,
+    "thumbnail": "http://dummyimage.com/151x100.png/cc0000/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Cynomys ludovicianus",
+    "targetAudience": "Dog, black-tailed prairie",
+    "lectureFee": 324,
+    "thumbnail": "http://dummyimage.com/110x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Ms",
+    "lectureDifficulty": "mil",
+    "lectureDescription": "Crotalus adamanteus",
+    "targetAudience": "Rattlesnake, eastern diamondback",
+    "lectureFee": 201,
+    "thumbnail": "http://dummyimage.com/184x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Mazama gouazoubira",
+    "targetAudience": "Brown brocket",
+    "lectureFee": 394,
+    "thumbnail": "http://dummyimage.com/136x100.png/5fa2dd/ffffff",
+    "isOpened": false
+  },
+  {
+    "lectureTitle": "Honorable",
+    "lectureDifficulty": "org",
+    "lectureDescription": "Nannopterum harrisi",
+    "targetAudience": "Cormorant, flightless",
+    "lectureFee": 314,
+    "thumbnail": "http://dummyimage.com/240x100.png/cc0000/ffffff",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Rev",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Lepus arcticus",
+    "targetAudience": "Hare, arctic",
+    "lectureFee": 458,
+    "thumbnail": "http://dummyimage.com/190x100.png/dddddd/000000",
+    "isOpened": true
+  },
+  {
+    "lectureTitle": "Dr",
+    "lectureDifficulty": "net",
+    "lectureDescription": "Equus hemionus",
+    "targetAudience": "Ass, asiatic wild",
+    "lectureFee": 387,
+    "thumbnail": "http://dummyimage.com/200x100.png/5fa2dd/ffffff",
+    "isOpened": true
+  }
+]
