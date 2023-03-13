@@ -22,15 +22,14 @@ import {
   AccordionIcon,
 } from '@chakra-ui/react';
 import { getLectureInfo } from '../../api';
-import PaginatedItems from './PaginatedItems';
 
 function WholeLectures() {
   const { isLoading, data } = useQuery(['lectureInfo'], getLectureInfo);
+  // const { lectureData, setLectureData } = useState([]);
 
-  if (data && data.length > 0) {
+  if (data) {
     return (
       <>
-        {console.log(data)}
         <Header />
         <Grid
           templateAreas={`"nav search"
@@ -136,56 +135,9 @@ function WholeLectures() {
             </Grid>
           </GridItem>
         </Grid>
-
-        <GridItem area={'main'} w="800px" mx="auto">
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap="5">
-            {data.slice(indexOfFirstItem, indexOfLastItem).map((number, i) => (
-              <GridItem key={i}>
-                <LectureCard lectureNumber={i} key={i} />
-              </GridItem>
-            ))}
-          </Grid>
-        </GridItem>
-        <GridItem area={'main'} w="800px" mx="auto">
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap="5">
-            {data.slice(indexOfFirstItem, indexOfLastItem).map((number, i) => (
-              <GridItem key={i}>
-                <LectureCard lectureNumber={i} key={i} />
-              </GridItem>
-            ))}
-          </Grid>
-          <VStack align="center" mt="4">
-            <Button
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              이전
-            </Button>
-            <HStack>
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <Button
-                  key={i}
-                  isActive={currentPage === i + 1}
-                  onClick={() => handlePageChange(i + 1)}
-                >
-                  {i + 1}
-                </Button>
-              ))}
-            </HStack>
-            <Button
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              다음
-            </Button>
-          </VStack>
-        </GridItem>
-
         <Footer />
       </>
     );
-  } else {
-    return null; // or return no data state
   }
 }
 
