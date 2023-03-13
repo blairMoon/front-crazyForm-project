@@ -2,9 +2,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const instance = axios.create({
-  baseURL: 'https://izuna.pythonanywhere.com/api/v1/',
+  baseURL: 'http://127.0.0.1:8000/api/v1/',
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
+    Jwt: localStorage.getItem('token'),
   },
   withCredentials: true,
 });
