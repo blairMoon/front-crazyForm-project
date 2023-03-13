@@ -1,5 +1,5 @@
 import React from 'react';
-
+import CaptionCarousel from '../../components/Carousel/Carousel';
 import css from './Home.module.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -15,6 +15,8 @@ import {
   Link,
   ListHeader,
   SimpleGrid,
+  IconButton,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 
 function Home() {
@@ -29,24 +31,32 @@ function Home() {
     <>
       <Header />
       <Flex direction="column" align="center">
-        <Box bg="gray.100" w="100%" h="200px" mb="4">
-          <Flex align="center" justify="center" h="100%">
-            <Box textAlign="center">
-              <Heading size="2xl">Learn new skills online</Heading>
-              <Text fontSize="lg" mt="4">
-                Explore courses on business, technology, personal development,
-                and more.
+        <Box bg="black" w="100%" h="600px">
+          <Flex align="center" justify="left" h="100%">
+            <Box textAlign="left">
+              <Heading size="2xl" color="white">
+                온라인 동영상 강의
+              </Heading>
+              <Text fontSize="lg" mt="4" color="white">
+                온라인의 고품질 강의를 만나보세요
               </Text>
-              <Button mt="6" colorScheme="blue" size="lg">
-                Get started
+              <Button
+                mt="6"
+                size="lg"
+                bg="black"
+                border="1px"
+                borderColor="white"
+                color="white"
+              >
+                VIEW
               </Button>
             </Box>
           </Flex>
         </Box>
 
-        <Box maxW="1000px" w="100%" mb="8">
-          <Heading size="lg" mb="4">
-            Popular courses
+        <Box bg="gray.100" w="100%" h="400px" textAlign="center">
+          <Heading size="lg" mb="4" mt="5">
+            POPULAR CLASS
           </Heading>
           <Container as={Stack} maxW={'6xl'} py={10}>
             <SimpleGrid
@@ -57,6 +67,51 @@ function Home() {
               <Stack align={'center'}>
                 <ListHeader>강의</ListHeader>
                 <Link href={'/lectures'}>관열이와 아이들</Link>
+                <Stack direction={'row'} align={'center'} spacing={2}>
+                  <Link href={'#'}>관열이와 아이들</Link>
+                </Stack>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>소개</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>로드맵</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>커뮤니티</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+            </SimpleGrid>
+          </Container>
+        </Box>
+
+        <Box bg="gray.100" w="100%" h="400px" textAlign="center">
+          <Heading size="lg" mb="4" mt="5">
+            Featured instructors
+          </Heading>
+
+          <Container as={Stack} maxW={'6xl'} py={10}>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={8}>
+              <Stack align={'center'}>
+                <ListHeader>강의</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
                 <Stack direction={'row'} align={'center'} spacing={2}>
                   <Link href={'#'}>관열이와 아이들</Link>
                   {/* <Tag
@@ -96,12 +151,79 @@ function Home() {
                 <Link href={'#'}>관열이와 아이들</Link>
                 <Link href={'#'}>관열이와 아이들</Link>
               </Stack>
+              <Stack align={'center'}>
+                <ListHeader>커뮤니티</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
             </SimpleGrid>
           </Container>
         </Box>
+        <Box bg="gray.100" w="100%" h="400px" textAlign="center">
+          <Heading size="lg" mb="4" mt="5">
+            Featured instructors
+          </Heading>
 
-        <Box maxW="1000px" w="100%">
-          <Heading size="lg" mb="4">
+          <Container as={Stack} maxW={'6xl'} py={10}>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={8}>
+              <Stack align={'center'}>
+                <ListHeader>강의</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Stack direction={'row'} align={'center'} spacing={2}>
+                  <Link href={'#'}>관열이와 아이들</Link>
+                  {/* <Tag
+                size={'sm'}
+                bg={useColorModeValue('green.300', 'green.800')}
+                ml={2}
+                color={'white'}
+              >
+                New
+              </Tag> */}
+                </Stack>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>소개</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>로드맵</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>커뮤니티</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+              <Stack align={'center'}>
+                <ListHeader>커뮤니티</ListHeader>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+                <Link href={'#'}>관열이와 아이들</Link>
+              </Stack>
+            </SimpleGrid>
+          </Container>
+        </Box>
+        <Box bg="gray.100" w="100%" h="400px" textAlign="center">
+          <Heading size="lg" mb="4" mt="5">
             Featured instructors
           </Heading>
 

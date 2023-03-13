@@ -5,3 +5,6 @@ export function getAccessToken() {
   }
   return token;
 }
+export const removeAccessToken = () => {
+  localStorage.removeItem('token');
+};
