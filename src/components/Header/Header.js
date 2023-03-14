@@ -42,7 +42,14 @@ export default function Header() {
     isLoggedInVar(false); // set isLoggedInVar to false
   };
   return (
-    <Box mx="auto" whiteSpace="nowrap">
+    <Box
+      mx="auto"
+      whiteSpace="nowrap"
+      position="fixed"
+      width="100%"
+      boxShadow="md"
+      zIndex="sticky"
+    >
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
