@@ -7,14 +7,13 @@ const DetailLecture = () => {
   let { id } = useParams();
   if (data) {
     {
-      console.log(data);
+      console.log(data.data);
     }
     return (
       <div>
         <div>{id}번째페이지 입니당당당당다아</div>
-        <div>{data.results[id].gu}</div>
-        <div>{data.results[id].title}</div>
-        <div>{data.results[id].description}</div>
+        <h1>{data.data[id].lectureTitle}</h1>
+        <h2>{data.data[id].lectureDescription}</h2>
       </div>
     );
   }

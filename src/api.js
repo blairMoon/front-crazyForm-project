@@ -2,10 +2,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const instance = axios.create({
-<<<<<<< HEAD
-  // baseURL: 'http://127.0.0.1:8000/api/v1/',
-=======
->>>>>>> 21eafc95ec9fe1a465c999a389ffc38a120ec107
   baseURL: 'http://127.0.0.1:8000/api/v1/',
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
@@ -48,6 +44,6 @@ export const putMyProfile = () => {
 export const changeProfileUser = data => {
   return instance.put('users/myprofile', data).then(res => res.data);
 };
-export const getLectureInfo = () => {
-  return instance.get('lectures/').then(res => res.data);
+export const getLectureInfo = (page, pageSize) => {
+  return instance.get(`lectures/?page=${page}`).then(res => res.data);
 };
