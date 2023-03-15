@@ -1,8 +1,9 @@
 import React from 'react';
-import CaptionCarousel from '../../components/Carousel/Carousel';
 import css from './Home.module.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {
   Flex,
   Button,
@@ -56,114 +57,220 @@ function Home() {
             </Box>
           </Flex>
         </Box>
+
         <Flex>
           <Box w="100%" h="500px" textAlign="center">
             <Heading size="lg" mb="4" mt="7">
               POPULAR CLASS
             </Heading>
-            <Container as={Stack} maxW={'6xl'} py={10}>
-              <SimpleGrid
-                columns={{ base: 1, sm: 2, md: 4 }}
-                spacing={8}
-                align={'flex-start'}
-              >
-                <Stack align={'center'}>
-                  <ListHeader>강의</ListHeader>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                  >
-                    <Image
-                      objectFit="cover"
-                      maxW={{ base: '100%', sm: '100%' }}
-                      src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
-                      alt="Caffe Latte"
-                    />
-                    <Stack>
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          김수람의 파이썬강의
-                        </Heading>
-                        <Text py="2">람람이</Text>
-                      </CardBody>
-                    </Stack>
-                  </Card>
-                </Stack>
-                <Stack align={'center'}>
-                  <ListHeader>소개</ListHeader>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                  >
-                    <Image
-                      objectFit="cover"
-                      maxW={{ base: '100%', sm: '100%' }}
-                      src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
-                      alt="Caffe Latte"
-                    />
-                    <Stack>
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          김수람의 파이썬강의
-                        </Heading>
-                        <Text py="2">람람이</Text>
-                      </CardBody>
-                    </Stack>
-                  </Card>
-                </Stack>
-                <Stack align={'center'}>
-                  <ListHeader>로드맵</ListHeader>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                  >
-                    <Image
-                      objectFit="cover"
-                      maxW={{ base: '100%', sm: '100%' }}
-                      src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
-                      alt="Caffe Latte"
-                    />
-                    <Stack>
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          김수람의 파이썬강의
-                        </Heading>
-                        <Text py="2">람람이</Text>
-                      </CardBody>
-                    </Stack>
-                  </Card>
-                </Stack>
-                <Stack align={'center'}>
-                  <ListHeader>커뮤니티</ListHeader>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                  >
-                    <Image
-                      objectFit="cover"
-                      maxW={{ base: '100%', sm: '100%' }}
-                      src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
-                      alt="Caffe Latte"
-                    />
-                    <Stack>
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          김수람의 파이썬강의
-                        </Heading>
-                        <Text py="2">람람이</Text>
-                      </CardBody>
-                    </Stack>
-                  </Card>
-                </Stack>
-              </SimpleGrid>
+            <Container as={Stack} maxW={'6xl'} py={10} mb={10}>
+              <Carousel showThumbs={false} showIndicators={true}>
+                <SimpleGrid
+                  columns={{ base: 1, sm: 2, md: 4 }}
+                  spacing={8}
+                  align={'flex-start'}
+                  mb={10}
+                >
+                  <Stack align={'center'}>
+                    <ListHeader>강의</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                  <Stack align={'center'}>
+                    <ListHeader>소개</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                  <Stack align={'center'}>
+                    <ListHeader>로드맵</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                  <Stack align={'center'}>
+                    <ListHeader>커뮤니티</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                </SimpleGrid>
+                <SimpleGrid
+                  columns={{ base: 1, sm: 2, md: 4 }}
+                  spacing={8}
+                  align={'flex-start'}
+                >
+                  <Stack align={'center'}>
+                    <ListHeader>강의</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                  <Stack align={'center'}>
+                    <ListHeader>소개</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                  <Stack align={'center'}>
+                    <ListHeader>로드맵</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                  <Stack align={'center'}>
+                    <ListHeader>커뮤니티</ListHeader>
+                    <Card
+                      width={'250px'}
+                      height={'250px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                    >
+                      <Image
+                        objectFit="cover"
+                        maxW={{ base: '100%', sm: '100%' }}
+                        src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
+                        alt="Caffe Latte"
+                      />
+                      <Stack>
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            김수람의 파이썬강의
+                          </Heading>
+                          <Text py="2">람람이</Text>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Stack>
+                </SimpleGrid>
+              </Carousel>
             </Container>
           </Box>
         </Flex>
