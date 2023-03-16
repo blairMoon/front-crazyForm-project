@@ -1,9 +1,11 @@
 import React from 'react';
-import css from './Home.module.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import styles from './Home.module.scss';
+import { FaHtml5, FaReact, FaMobile } from 'react-icons/fa';
+import { SiSpring } from 'react-icons/si';
 import {
   Flex,
   Button,
@@ -13,14 +15,12 @@ import {
   Image,
   Container,
   Stack,
-  Link,
-  ListHeader,
   SimpleGrid,
-  IconButton,
-  useBreakpointValue,
   CardBody,
   Card,
-  HStack,
+  VStack,
+  AspectRatio,
+  Center,
 } from '@chakra-ui/react';
 
 function Home() {
@@ -34,29 +34,46 @@ function Home() {
   return (
     <>
       <Header />
-      <Flex direction="column" align="center">
-        <Box bg="black" w="100%" h="600px">
-          <Flex align="center" justify="left" h="100%">
-            <Box textAlign="left" ml={20}>
-              <Heading size="2xl" color="white">
-                온라인 동영상 강의
-              </Heading>
-              <Text fontSize="lg" mt="4" color="white">
-                온라인의 고품질 강의를 만나보세요
-              </Text>
-              <Button
-                mt="6"
-                size="lg"
-                bg="black"
-                border="1px"
-                borderColor="white"
-                color="white"
-              >
-                VIEW
-              </Button>
-            </Box>
-          </Flex>
-        </Box>
+      <Flex direction="column" align="center" h="100%">
+        <VStack align="center" h="100%">
+          <Box w="100%" h="100%" mt={19}>
+            <Carousel
+              showThumbs={false}
+              autoPlay={true}
+              infiniteLoop={true}
+              interval={5000}
+              style={{ height: '100%' }}
+            >
+              <Box>
+                <Image
+                  src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-4502.jpg?w=1060&t=st=1678866285~exp=1678866885~hmac=0917b38dfe1c84eefb8c9be6eeb723b39619c4cdb06affcde4b083d1307b1944"
+                  alt="Carousel slide 1"
+                  objectFit="cover"
+                  width="100%"
+                  height="500px"
+                />
+              </Box>
+              <Box>
+                <Image
+                  src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-4502.jpg?w=1060&t=st=1678866285~exp=1678866885~hmac=0917b38dfe1c84eefb8c9be6eeb723b39619c4cdb06affcde4b083d1307b1944"
+                  alt="Carousel slide 2"
+                  objectFit="cover"
+                  width="100%"
+                  height="500px"
+                />
+              </Box>
+              <Box>
+                <Image
+                  src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-4502.jpg?w=1060&t=st=1678866285~exp=1678866885~hmac=0917b38dfe1c84eefb8c9be6eeb723b39619c4cdb06affcde4b083d1307b1944"
+                  alt="Carousel slide 3"
+                  objectFit="cover"
+                  width="100%"
+                  height="500px"
+                />
+              </Box>
+            </Carousel>
+          </Box>
+        </VStack>
 
         <Flex>
           <Box w="100%" h="500px" textAlign="center">
@@ -64,7 +81,11 @@ function Home() {
               POPULAR CLASS
             </Heading>
             <Container as={Stack} maxW={'6xl'} py={10} mb={10}>
-              <Carousel showThumbs={false} showIndicators={true}>
+              <Carousel
+                showThumbs={false}
+                showIndicators={true}
+                showArrows={true}
+              >
                 <SimpleGrid
                   columns={{ base: 1, sm: 2, md: 4 }}
                   spacing={8}
@@ -78,6 +99,7 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderRadius={10}
                     >
                       <Image
                         objectFit="cover"
@@ -102,6 +124,7 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderRadius={10}
                     >
                       <Image
                         objectFit="cover"
@@ -126,6 +149,7 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderRadius={10}
                     >
                       <Image
                         objectFit="cover"
@@ -180,12 +204,14 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderRadius={10}
                     >
                       <Image
                         objectFit="cover"
                         maxW={{ base: '100%', sm: '100%' }}
                         src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
                         alt="Caffe Latte"
+                        borderTopRadius={10}
                       />
                       <Stack>
                         <CardBody>
@@ -204,12 +230,14 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderTopRadius={10}
                     >
                       <Image
                         objectFit="cover"
                         maxW={{ base: '100%', sm: '100%' }}
                         src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
                         alt="Caffe Latte"
+                        borderTopRadius={10}
                       />
                       <Stack>
                         <CardBody>
@@ -228,12 +256,14 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderRadius={10}
                     >
                       <Image
                         objectFit="cover"
                         maxW={{ base: '100%', sm: '100%' }}
                         src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
                         alt="Caffe Latte"
+                        borderTopRadius={10}
                       />
                       <Stack>
                         <CardBody>
@@ -252,12 +282,14 @@ function Home() {
                       height={'250px'}
                       direction={{ base: 'column' }}
                       variant="outline"
+                      borderRadius={10}
                     >
                       <Image
                         objectFit="cover"
                         maxW={{ base: '100%', sm: '100%' }}
                         src="http://images.khan.co.kr/article/2021/04/24/l_2021042402001358100229521.jpg"
                         alt="Caffe Latte"
+                        borderTopRadius={10}
                       />
                       <Stack>
                         <CardBody>
@@ -277,85 +309,83 @@ function Home() {
 
         <Box bg="gray.100" w="100%" h="500px" textAlign="center">
           <Heading size="lg" mb="4" mt="10">
-            금쪽이
+            수강항목
           </Heading>
 
           <Container as={Stack} maxW={'6xl'} py={10}>
-            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+            <SimpleGrid columns={{ base: 1, md: 4 }} spacing={8}>
               <Stack align={'center'}>
-                <ListHeader>강의</ListHeader>
                 <Card
                   width={'250px'}
                   height={'280px'}
                   direction={{ base: 'column' }}
                   variant="outline"
                   borderRadius={20}
+                  align={'center'}
                 >
-                  <Image
-                    objectFit="cover"
-                    maxW={{ base: '100%', sm: '100%' }}
-                    src="https://thumb.mt.co.kr/06/2021/11/2021112109175268995_1.jpg/dims/optimize/"
-                    alt="Caffe Latte"
-                    borderTopRadius={20}
-                  />
-                  <Stack>
+                  <Stack mt={5}>
+                    <FaHtml5 size="160" />
                     <CardBody>
                       <Heading size="md" fontSize="17px">
-                        김수람의 파이썬강의
+                        기초코딩
                       </Heading>
-                      <Text py="2">람람이</Text>
                     </CardBody>
                   </Stack>
                 </Card>
               </Stack>
               <Stack align={'center'}>
-                <ListHeader>소개</ListHeader>
                 <Card
                   width={'250px'}
                   height={'280px'}
                   direction={{ base: 'column' }}
                   variant="outline"
                   borderRadius={20}
+                  align={'center'}
                 >
-                  <Image
-                    objectFit="cover"
-                    maxW={{ base: '100%', sm: '100%' }}
-                    src="https://thumb.mt.co.kr/06/2021/11/2021112109175268995_1.jpg/dims/optimize/"
-                    alt="Caffe Latte"
-                    borderTopRadius={20}
-                  />
-                  <Stack>
+                  <Stack mt={7}>
+                    <FaReact size="150" />
                     <CardBody>
                       <Heading size="md" fontSize="17px">
-                        김수람의 파이썬강의
+                        프론트엔드
                       </Heading>
-                      <Text py="2">람람이</Text>
                     </CardBody>
                   </Stack>
                 </Card>
               </Stack>
               <Stack align={'center'}>
-                <ListHeader>로드맵</ListHeader>
                 <Card
                   width={'250px'}
                   height={'280px'}
                   direction={{ base: 'column' }}
                   variant="outline"
                   borderRadius={20}
+                  align={'center'}
                 >
-                  <Image
-                    objectFit="cover"
-                    maxW={{ base: '100%', sm: '100%' }}
-                    src="https://thumb.mt.co.kr/06/2021/11/2021112109175268995_1.jpg/dims/optimize/"
-                    alt="Caffe Latte"
-                    borderTopRadius={20}
-                  />
-                  <Stack>
+                  <Stack mt={10}>
+                    <SiSpring size="140" />
                     <CardBody>
                       <Heading size="md" fontSize="17px">
-                        김수람의 파이썬강의
+                        백엔드
                       </Heading>
-                      <Text py="2">람람이</Text>
+                    </CardBody>
+                  </Stack>
+                </Card>
+              </Stack>
+              <Stack align={'center'}>
+                <Card
+                  width={'250px'}
+                  height={'280px'}
+                  direction={{ base: 'column' }}
+                  variant="outline"
+                  borderRadius={20}
+                  align={'center'}
+                >
+                  <Stack mt={9}>
+                    <FaMobile size="150" />
+                    <CardBody>
+                      <Heading size="md" fontSize="17px">
+                        모바일
+                      </Heading>
                     </CardBody>
                   </Stack>
                 </Card>

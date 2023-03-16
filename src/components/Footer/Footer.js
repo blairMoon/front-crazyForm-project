@@ -45,8 +45,12 @@ export default function LargeWithLogoCentered() {
       color={useColorModeValue('gray.700', 'gray.200')}
     >
       <Container as={Stack} maxW={'6xl'} py={10}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
-          <Stack align={'flex-start'}>
+        <SimpleGrid
+          columns={{ base: 1, sm: 2, md: 4 }}
+          spacing={8}
+          textAlign="center"
+        >
+          <Stack align={'center'}>
             <ListHeader>강의</ListHeader>
             <Link href={'#'}>관열이와 아이들</Link>
             <Stack direction={'row'} align={'center'} spacing={2}>

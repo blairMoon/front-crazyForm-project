@@ -1,2 +1,5 @@
-.container {
+.carousel-image {
+  max-height: 300px; /* Adjust this value to your desired height */
+  width: auto;
+  object-fit: contain;
 }

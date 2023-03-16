@@ -4,7 +4,7 @@ import { isLoggedInVar } from '../../apollo';
 // import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 // import { faAddressCard, faUser } from '@fortawesome/free-regular-svg-icons';
 // import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { getAccessToken, removeAccessToken } from '../../auth';
+import { getAccessToken, removeAccessToken } from '../../Token';
 import css from './Header.module.scss';
 import {
   Box,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EditMember from './EditMember/EditMember';
-
+import UserInfoPage from './Userinfopage/Userinfopage';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
@@ -21,6 +21,7 @@ function Router() {
         <Route path="/mypage" element={<EditMember />} />
         <Route path="/lectures/" element={<WholeLectures />} />
         <Route path="/lectures/:id" element={<DetailLecture />} />
+        <Route path="/userinfo" element={<UserInfoPage />} />
       </Routes>
     </BrowserRouter>
   );
