@@ -108,6 +108,7 @@ function WholeLectures() {
     // queryClient.invalidateQueries(['lectureInfo', newPage]);
   };
   if (data) {
+    console.log(data);
     return (
       <>
         <Header />
