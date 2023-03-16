@@ -144,12 +144,7 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box
-                      as="span"
-                      flex="1"
-                      textAlign="left"
-                      onClick={handleCategory()}
-                    >
+                    <Box as="span" flex="1" textAlign="left">
                       전체 강의
                     </Box>
                     <AccordionIcon />
@@ -161,12 +156,7 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box
-                      as="span"
-                      flex="1"
-                      textAlign="left"
-                      onClick={handleCategory()}
-                    >
+                    <Box as="span" flex="1" textAlign="left">
                       기초 코딩
                     </Box>
                     <AccordionIcon />
@@ -195,12 +185,7 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box
-                      as="span"
-                      flex="1"
-                      textAlign="left"
-                      onClick={handleCategory()}
-                    >
+                    <Box as="span" flex="1" textAlign="left">
                       백엔드
                     </Box>
                     <AccordionIcon />
@@ -211,12 +196,7 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box
-                      as="span"
-                      flex="1"
-                      textAlign="left"
-                      onClick={handleCategory()}
-                    >
+                    <Box as="span" flex="1" textAlign="left">
                       모바일
                     </Box>
                     <AccordionIcon />
