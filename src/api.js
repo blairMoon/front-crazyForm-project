@@ -47,3 +47,9 @@ export const changeProfileUser = data => {
 export const getLectureInfo = (page, pageSize) => {
   return instance.get(`lectures/?page=${page}`).then(res => res.data);
 };
+export const getLectureDetail = page => {
+  return instance.get(`lectures/${page}`).then(res => res.data);
+};
+export const getLectureCategory = category => {
+  return instance.get(`lectures/${category}`).then(res => res.data);
+};
