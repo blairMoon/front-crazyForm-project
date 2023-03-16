@@ -2,9 +2,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const instance = axios.create({
-  baseURL: 'https://izuna.pythonanywhere.com/api/v1/',
+  baseURL: 'http://127.0.0.1:8000/api/v1/',
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
+    Jwt: localStorage.getItem('token'),
   },
   withCredentials: true,
 });
@@ -43,6 +44,12 @@ export const putMyProfile = () => {
 export const changeProfileUser = data => {
   return instance.put('users/myprofile', data).then(res => res.data);
 };
-export const getLectureInfo = () => {
-  return instance.get('houses').then(res => res.data);
+export const getLectureInfo = (page, pageSize) => {
+  return instance.get(`lectures/?page=${page}`).then(res => res.data);
+};
+export const getLectureDetail = page => {
+  return instance.get(`lectures/${page}`).then(res => res.data);
+};
+export const getLectureCategory = category => {
+  return instance.get(`lectures/${category}`).then(res => res.data);
 };

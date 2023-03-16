@@ -1,9 +1,9 @@
-import { React, useState } from 'react';
+import { Redirect, React, useState, useEffect } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import LectureCard from '../../components/LectureCard/LectureCard';
-import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
-import css from './WholeLectures.module.scss';
 import {
   Box,
   Grid,
@@ -21,12 +21,92 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureInfo } from '../../api';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 function WholeLectures() {
-  const { isLoading, data } = useQuery(['lectureInfo'], getLectureInfo);
-  // const { lectureData, setLectureData } = useState([]);
+  const { pageNum } = useParams();
+  const navigate = useNavigate();
+  // const [currentPage, setCurrentPage] = useState(1);  useEffect(() => {
+  // setCurrentPage(pageNum);  }, [pageNum]);
+  const [pages, setPages] = useState([]);
+  const pageSize = 30;
+  const queryClient = useQueryClient();
+  const { isLoading, data } = useQuery(['lectureInfo', pageNum], () =>
+    getLectureInfo(pageNum, pageSize)
+  );
+  const totalPages = Math.ceil(data?.totalNum / pageSize) || 0;
 
+  useEffect(() => {
+    const pageNumbers = [];
+    let startPage, endPage;
+
+    if (totalPages <= 5) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      if (pageNum <= 3) {
+        startPage = 1;
+        endPage = 5;
+      } else if (pageNum + 1 >= totalPages) {
+        startPage = totalPages - 4;
+        endPage = totalPages;
+      } else {
+        startPage = pageNum - 2;
+        endPage = pageNum + 2;
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    setPages(pageNumbers);
+  }, [pageNum, totalPages]);
+  // const [searchResult, setSearchResult] = useState([]);
+  // const [resultCount, setResultCount] = useState([]);
+  // const [content, setContent] = useState('');
+  // let location = useLocation();
+  // let params = new URLSearchParams(location.search); //?query=구름
+  // let searchText = params.get('searchText');
+  // console.log(searchText);
+  const handleCategory = category => {
+    navigate(`/lectures/page/${category}`);
+  };
+  useEffect(() => {
+    const pageNumbers = [];
+    let startPage, endPage;
+
+    if (totalPages <= 5) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      if (pageNum <= 3) {
+        startPage = 1;
+        endPage = 5;
+      } else if (pageNum + 1 >= totalPages) {
+        startPage = totalPages - 4;
+        endPage = totalPages;
+      } else {
+        startPage = pageNum - 2;
+        endPage = pageNum + 2;
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    setPages(pageNumbers);
+  }, []);
+
+  const handlePageChange = async newPage => {
+    navigate(`/lectures/page/${newPage}`);
+
+    // sessionStorage.setItem('currentPage', newPage);
+    // queryClient.invalidateQueries(['lectureInfo', newPage]);
+  };
   if (data) {
     return (
       <>
@@ -64,7 +144,12 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      onClick={handleCategory()}
+                    >
                       전체 강의
                     </Box>
                     <AccordionIcon />
@@ -76,7 +161,12 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      onClick={handleCategory()}
+                    >
                       기초 코딩
                     </Box>
                     <AccordionIcon />
@@ -88,7 +178,12 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      onClick={() => handleCategory()}
+                    >
                       프론트엔드
                     </Box>
                     <AccordionIcon />
@@ -100,7 +195,12 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      onClick={handleCategory()}
+                    >
                       백엔드
                     </Box>
                     <AccordionIcon />
@@ -111,7 +211,12 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      onClick={handleCategory()}
+                    >
                       모바일
                     </Box>
                     <AccordionIcon />
@@ -126,12 +231,57 @@ function WholeLectures() {
               templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']}
               gap="5"
             >
-              {data.results.map((number, i) => (
-                <GridItem key={i} mx="auto">
-                  <LectureCard lectureNumber={i} key={i} />
+              {data.data.map(item => (
+                <GridItem key={item.LectureId} mx="auto">
+                  <LectureCard
+                    lectureNumber={item.LectureId}
+                    key={item.id}
+                    img={item.thumbnail}
+                    lectureDescription={item.lectureDescription}
+                    lectureTitle={item.lectureTitle}
+                    targetAudience={item.targetAudience}
+                    instructor={item.instructor.username}
+                  />
                 </GridItem>
               ))}
             </Grid>
+            <VStack mt="4" spacing="2">
+              <InputGroup>
+                <Button
+                  leftIcon={<ChevronLeftIcon />}
+                  onClick={() =>
+                    handlePageChange(pageNum > 1 ? pageNum - 1 : 1)
+                  }
+                  disabled={pageNum <= 1}
+                >
+                  이전
+                </Button>
+                <HStack spacing="1">
+                  {pages.map(page => (
+                    <Button
+                      key={page}
+                      colorScheme={
+                        page.toString() === pageNum ? 'blue' : 'gray'
+                      }
+                      onClick={() => handlePageChange(page)}
+                    >
+                      {page}
+                    </Button>
+                  ))}
+                </HStack>
+                <Button
+                  rightIcon={<ChevronRightIcon />}
+                  onClick={() =>
+                    handlePageChange(
+                      pageNum < totalPages ? pageNum + 1 : totalPages
+                    )
+                  }
+                  disabled={pageNum >= totalPages}
+                >
+                  다음
+                </Button>
+              </InputGroup>
+            </VStack>
           </GridItem>
         </Grid>
         <Footer />

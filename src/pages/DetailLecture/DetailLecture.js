@@ -39,11 +39,13 @@ import StartButton from '../../components/Button/StartButton';
 import { useForm } from 'react-hook-form';
 
 const DetailLecture = () => {
-  const { isLoading, data } = useQuery(['lectureInfo'], getLectureInfo);
   let { id } = useParams();
+  const { isLoading, data } = useQuery(['lectureInfo'], () =>
+    getLectureDetail(id)
+  );
   if (data) {
     {
-      console.log(data);
+      console.log('data:', data);
     }
     return (
       <>

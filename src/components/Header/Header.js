@@ -1,9 +1,10 @@
 import React from 'react';
+import { isLoggedInVar } from '../../apollo';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 // import { faAddressCard, faUser } from '@fortawesome/free-regular-svg-icons';
 // import { faHome } from '@fortawesome/free-solid-svg-icons';
-
+import { getAccessToken, removeAccessToken } from '../../Token';
 import css from './Header.module.scss';
 import {
   Box,
@@ -36,8 +37,19 @@ import { SearchIcon } from '@chakra-ui/icons';
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
 
+  const handleLogout = () => {
+    removeAccessToken(); // remove JWT token from local storage
+    isLoggedInVar(false); // set isLoggedInVar to false
+  };
   return (
-    <Box mx="auto" w="1300px">
+    <Box
+      mx="auto"
+      whiteSpace="nowrap"
+      position="fixed"
+      width="100%"
+      boxShadow="md"
+      zIndex="sticky"
+    >
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -64,7 +76,7 @@ export default function Header() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Link href="/">
+          <Link href="/" ml={3}>
             <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
@@ -88,9 +100,10 @@ export default function Header() {
           <InputGroup display={{ base: 'none', md: 'inline-flex' }}>
             <Input
               className="Input"
-              pr="10rem"
+              type="text"
+              width="200px"
               variant="outline"
-              placeholder={``}
+              placeholder={`검색`}
             />
             <InputRightAddon>
               <Button
@@ -109,6 +122,16 @@ export default function Header() {
             href={'/login'}
           >
             Log in
+          </Button>
+          <Button
+            as={'a'}
+            fontSize={'sm'}
+            fontWeight={400}
+            variant={'link'}
+            onClick={handleLogout}
+            cursor={'pointer'}
+          >
+            Log out
           </Button>
           <Button
             as={'a'}
@@ -290,7 +313,7 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: '강의',
-    href: '/lectures',
+    href: '/lectures/page/1',
     children: [
       {
         label: '프론트엔드',

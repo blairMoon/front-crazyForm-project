@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { isLoggedInVar } from '../../apollo';
-import { getAccessToken } from '../../auth';
+import { getAccessToken } from '../../Token';
 import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 import Header from '../../components/Header/Header';
