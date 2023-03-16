@@ -1,0 +1,46 @@
+import React from 'react';
+
+import { RiHomeHeartLine } from 'react-icons/ri';
+import { BsShare } from 'react-icons/bs';
+
+import { HStack, Box, Flex, Button } from '@chakra-ui/react';
+
+const StartButton = () => {
+  return (
+    <HStack
+      position="fixed"
+      bottom="20px"
+      w="100%"
+      h="75px"
+      justifyContent="center"
+    >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        h="100%"
+        w="70%"
+        fontWeight="bold"
+        bg="white"
+        rounded="15"
+        py="2"
+        px="20"
+        boxShadow="1px 1px 10px rgba(0, 0, 0, 0.1)"
+      >
+        <Box fontSize="20px" color="gray.600">
+          오뚜니의 파이썬 강의
+        </Box>
+        <Box h="100%">
+          <Button h="100%" colorScheme="gray" px="5" mr="3">
+            <BsShare size={30} style={{ color: 'gray' }} />
+          </Button>
+          <Button h="100%" colorScheme="whatsapp" fontSize="24px" px="20">
+            강의 수강 신청하기
+          </Button>
+        </Box>
+      </Box>
+    </HStack>
+  );
+};
+
+export default StartButton;

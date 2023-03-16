@@ -123,7 +123,6 @@ function WholeLectures() {
           pb="10"
           px="4"
           gap="1"
-          color="black"
           mx="auto"
         >
           <GridItem area={'search'}>
@@ -209,7 +208,7 @@ function WholeLectures() {
               gap="5"
             >
               {data.data.map(item => (
-                <GridItem key={item.LectureId}>
+                <GridItem key={item.LectureId} mx="auto">
                   <LectureCard
                     lectureNumber={item.LectureId}
                     key={item.id}
