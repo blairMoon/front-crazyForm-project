@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import StarRating from './StarRating';
 
-// import { Link } from 'react-router-dom';
 const LectureCard = ({ lectureNumber }) => {
   return (
     <Link to={`/lectures/${lectureNumber}`}>
