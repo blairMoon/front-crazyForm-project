@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getLectureInfo } from '../../api';
+import { getLectureDetail } from '../../api';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
