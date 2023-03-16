@@ -5,6 +5,8 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './Home.module.scss';
 import { FaHtml5, FaReact, FaMobile } from 'react-icons/fa';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { getLectureInfoTest } from '../../api';
 import { SiSpring } from 'react-icons/si';
 import {
   Flex,
@@ -31,6 +33,7 @@ function Home() {
       </Text>
     );
   };
+
   return (
     <>
       <Header />

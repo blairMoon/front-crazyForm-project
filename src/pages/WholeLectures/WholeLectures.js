@@ -108,6 +108,7 @@ function WholeLectures() {
     // queryClient.invalidateQueries(['lectureInfo', newPage]);
   };
   if (data) {
+    console.log(data);
     return (
       <>
         <Header />
@@ -168,12 +169,7 @@ function WholeLectures() {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box
-                      as="span"
-                      flex="1"
-                      textAlign="left"
-                      onClick={() => handleCategory()}
-                    >
+                    <Box as="span" flex="1" textAlign="left">
                       프론트엔드
                     </Box>
                     <AccordionIcon />

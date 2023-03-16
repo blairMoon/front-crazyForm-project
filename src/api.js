@@ -53,3 +53,6 @@ export const getLectureDetail = page => {
 export const getLectureCategory = category => {
   return instance.get(`lectures/${category}`).then(res => res.data);
 };
+export const getLectureInfoTest = () => {
+  return instance.get('lectures/').then(res => res.data);
+};
