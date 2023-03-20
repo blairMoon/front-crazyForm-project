@@ -85,7 +85,6 @@ const DetailLecture = () => {
     }
     return (
       <>
-        <Header />
         <Grid
           w="1300px"
           pt="20"
@@ -177,7 +176,6 @@ const DetailLecture = () => {
           </GridItem>
         </Grid>
         <StartButton />
-        <Footer />
       </>
     );
   }

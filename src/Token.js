@@ -1,10 +1,12 @@
+import Cookies from 'js-cookie';
+
 export function getAccessToken() {
-  const token = window.localStorage.getItem('token');
+  const token = Cookies.get('token');
   if (!token) {
     throw new Error('No token found');
   }
   return token;
 }
 export const removeAccessToken = () => {
-  localStorage.removeItem('token');
+  Cookies.remove('token');
 };

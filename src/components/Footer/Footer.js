@@ -55,20 +55,12 @@ export default function LargeWithLogoCentered() {
             <Link href={'#'}>관열이와 아이들</Link>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Link href={'#'}>관열이와 아이들</Link>
-              {/* <Tag
-                size={'sm'}
-                bg={useColorModeValue('green.300', 'green.800')}
-                ml={2}
-                color={'white'}
-              >
-                New
-              </Tag> */}
             </Stack>
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>
           </Stack>
-          <Stack align={'flex-start'}>
+          <Stack align={'center'}>
             <ListHeader>소개</ListHeader>
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>
@@ -76,7 +68,7 @@ export default function LargeWithLogoCentered() {
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>
           </Stack>
-          <Stack align={'flex-start'}>
+          <Stack align={'center'}>
             <ListHeader>로드맵</ListHeader>
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>
@@ -84,7 +76,7 @@ export default function LargeWithLogoCentered() {
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>
           </Stack>
-          <Stack align={'flex-start'}>
+          <Stack align={'center'}>
             <ListHeader>커뮤니티</ListHeader>
             <Link href={'#'}>관열이와 아이들</Link>
             <Link href={'#'}>관열이와 아이들</Link>

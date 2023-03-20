@@ -5,7 +5,7 @@ export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-    Jwt: localStorage.getItem('token'),
+    Jwt: Cookies.get('token'),
   },
   withCredentials: true,
 });
@@ -23,7 +23,7 @@ export async function userNameLogin({ username, password }) {
   if (response.ok) {
     const data = await response.json();
     const token = data.token;
-    window.localStorage.setItem('token', token);
+    Cookies.set('token', data.token, { expires: 7, httpOnly: true });
     return true;
   } else {
     const { message } = await response.json();
@@ -44,16 +44,47 @@ export const putMyProfile = () => {
 export const changeProfileUser = data => {
   return instance.put('users/myprofile', data).then(res => res.data);
 };
-export const getLectureInfo = (page, pageSize) => {
-  return instance.get(`lectures/?page=${page}`).then(res => res.data);
-};
+
+// export const getLectureInfo = (page, pageSize) => {
+//   return instance.get(`lectures/?page=${page}`).then(res => res.data);
+// };
+
 export const getLectureDetail = page => {
   return instance.get(`lectures/${page}`).then(res => res.data);
 };
-export const getLectureCategory = category => {
-  return instance.get(`lectures/${category}`).then(res => res.data);
+// export const getLectureAndCategory = (
+//   bigCategory,
+//   smallCategory,
+//   page,
+//   pageSize
+// ) => {
+//   return instance
+//     .get(`lectures/${bigCategory}/${smallCategory}/?page=${page}`)
+//     .then(res => res.data);
+// };
+export const getLectureAndCategory = async ({ queryKey }) => {
+  const [, bigCategory, smallCategory, page] = queryKey;
+  const response = await instance.get(
+    `lectures/${bigCategory}/${smallCategory}/?page=${page}`
+  );
+  return response.data;
 };
 
+export const getLectureAndCategoryAndSearch = async ({ queryKey }) => {
+  const [, bigCategory, smallCategory, page, searchName] = queryKey;
+
+  if (searchName) {
+    return await instance
+      .get(
+        `lectures/${bigCategory}/${smallCategory}/?page=${page}&search=${searchName}`
+      )
+      .then(res => res.data);
+  } else {
+    return await instance
+      .get(`lectures/${bigCategory}/${smallCategory}/?page=${page}`)
+      .then(res => res.data);
+  }
+};
 export const postReview = ({ lectureNum, data }) => {
   return instance.post(`reviews/${lectureNum}`, data).then(res => res.data);
 };

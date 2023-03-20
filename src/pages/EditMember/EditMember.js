@@ -56,7 +56,6 @@ const EditMember = () => {
   if (data) {
     return (
       <>
-        <Header />
         <div className={css.Container}>
           <div className={css.Wrapper}>
             <div className={css.TopBox}>
@@ -267,7 +266,6 @@ const EditMember = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </>
     );
   }
