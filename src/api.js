@@ -50,9 +50,36 @@ export const getLectureInfo = (page, pageSize) => {
 export const getLectureDetail = page => {
   return instance.get(`lectures/${page}`).then(res => res.data);
 };
-export const getLectureCategory = category => {
-  return instance.get(`lectures/${category}`).then(res => res.data);
+// export const getLectureAndCategory = (
+//   bigCategory,
+//   smallCategory,
+//   page,
+//   pageSize
+// ) => {
+//   return instance
+//     .get(`lectures/${bigCategory}/${smallCategory}/?page=${page}`)
+//     .then(res => res.data);
+// };
+export const getLectureAndCategory = async ({ queryKey }) => {
+  const [, bigCategory, smallCategory, page] = queryKey;
+  const response = await instance.get(
+    `lectures/${bigCategory}/${smallCategory}/?page=${page}`
+  );
+  return response.data;
 };
-export const getLectureInfoTest = () => {
-  return instance.get('lectures/').then(res => res.data);
+
+export const getLectureAndCategoryAndSearch = async ({ queryKey }) => {
+  const [, bigCategory, smallCategory, page, searchName] = queryKey;
+
+  if (searchName) {
+    return await instance
+      .get(
+        `lectures/${bigCategory}/${smallCategory}/?page=${page}&search=${searchName}`
+      )
+      .then(res => res.data);
+  } else {
+    return await instance
+      .get(`lectures/${bigCategory}/${smallCategory}/?page=${page}`)
+      .then(res => res.data);
+  }
 };

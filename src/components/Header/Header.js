@@ -264,7 +264,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 const NAV_ITEMS = [
   {
     label: '강의',
-    href: '/lectures/page/1',
+    href: '/lectures/all/all?page=1',
     children: [
       {
         label: '프론트엔드',
