@@ -1,11 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { isLoggedInVar } from '../../apollo';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-// import { faAddressCard, faUser } from '@fortawesome/free-regular-svg-icons';
-// import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { getAccessToken, removeAccessToken } from '../../Token';
-import css from './Header.module.scss';
+import { removeAccessToken } from '../../Token';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -13,7 +9,6 @@ import {
   IconButton,
   Button,
   Stack,
-  Collapse,
   Icon,
   Link,
   Popover,
@@ -33,14 +28,27 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { SearchIcon } from '@chakra-ui/icons';
+import { FaUserCheck } from 'react-icons/fa';
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const navigate = useNavigate();
   const handleLogout = () => {
-    removeAccessToken(); // remove JWT token from local storage
-    isLoggedInVar(false); // set isLoggedInVar to false
+    removeAccessToken();
+    isLoggedInVar(false);
+    navigate('/');
   };
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+      isLoggedInVar(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('isLoggedIn', isLoggedInVar());
+  }, [isLoggedInVar()]);
+
   return (
     <Box
       mx="auto"
@@ -48,7 +56,7 @@ export default function Header() {
       position="fixed"
       width="100%"
       boxShadow="md"
-      zIndex="sticky"
+      zIndex="999"
     >
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
@@ -114,45 +122,55 @@ export default function Header() {
               ></Button>
             </InputRightAddon>
           </InputGroup>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'/login'}
-          >
-            Log in
-          </Button>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            onClick={handleLogout}
-            cursor={'pointer'}
-          >
-            Log out
-          </Button>
-          <Button
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'green.400'}
-            href={'/signup'}
-            _hover={{
-              bg: 'green.300',
-            }}
-          >
-            Sign Up
-          </Button>
+          {isLoggedInVar() ? (
+            <>
+              <Link href={'/userinfo'}>
+                <Box mt={2}>
+                  <FaUserCheck size="25" />
+                </Box>
+              </Link>
+              <Button
+                as={'a'}
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                onClick={handleLogout}
+                cursor={'pointer'}
+                marginTop={2}
+                href={'/'}
+                pr={2}
+              >
+                Log out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                as={'a'}
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                href={'/login'}
+              >
+                Log in
+              </Button>
+              <Button
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'green.400'}
+                href={'/signup'}
+                _hover={{
+                  bg: 'green.300',
+                }}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </Stack>
       </Flex>
-
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
     </Box>
   );
 }
@@ -240,73 +258,6 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         </Flex>
       </Stack>
     </Link>
-  );
-};
-
-const MobileNav = () => {
-  return (
-    <Stack
-      bg={useColorModeValue('white', 'gray.800')}
-      p={4}
-      display={{ md: 'none' }}
-    >
-      {NAV_ITEMS.map(navItem => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  );
-};
-
-const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure();
-
-  return (
-    <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
-        py={2}
-        as={Link}
-        href={href ?? '#'}
-        justify={'space-between'}
-        align={'center'}
-        _hover={{
-          textDecoration: 'none',
-        }}
-      >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}
-        >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={'all .25s ease-in-out'}
-            transform={isOpen ? 'rotate(180deg)' : ''}
-            w={6}
-            h={6}
-          />
-        )}
-      </Flex>
-
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={'solid'}
-          borderColor={useColorModeValue('gray.200', 'gray.700')}
-          align={'start'}
-        >
-          {children &&
-            children.map(child => (
-              <Link key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Link>
-            ))}
-        </Stack>
-      </Collapse>
-    </Stack>
   );
 };
 

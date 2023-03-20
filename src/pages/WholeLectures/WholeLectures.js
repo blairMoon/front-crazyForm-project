@@ -389,7 +389,6 @@ function WholeLectures() {
             </VStack>
           </GridItem>
         </Grid>
-        <Footer />
       </>
     );
   }

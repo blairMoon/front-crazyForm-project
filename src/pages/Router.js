@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EditMember from './EditMember/EditMember';
 import UserInfoPage from './Userinfopage/Userinfopage';
@@ -9,28 +9,54 @@ import WholeLectures from './WholeLectures/WholeLectures';
 import DetailLecture from './DetailLecture/DetailLecture';
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
+import Layout from '../components/Layout/Layout';
+import MyLecture from './Mylecturepage/Mylecture';
+import Video from './Lectureplaypage/Lectureplaypage';
 
 function Router() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
+  // useEffect(() => {
+  //   const isLoggedIn = localStorage.getItem('isLoggedIn');
+  //   if (isLoggedIn === 'true') {
+  //     isLoggedInVar(true);
+  //   }
+
+  //   const previousPageUrl = localStorage.getItem('previousPageUrl');
+  //   if (previousPageUrl) {
+  //     localStorage.removeItem('previousPageUrl');
+  //     window.location.href = previousPageUrl;
+  //   }
+  // }, []);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/mypage" element={<EditMember />} />
-        {/* <Route path="/lectures/?page=:page" element={<WholeLectures />} /> */}
-        {/* <Route
-          path="/lectures/:categoryBig/:categorySmall/:page"
-          element={<WholeLectures />}
-        /> */}
         <Route
-          path="/lectures/:bigCategory/:smallCategory"
-          element={<WholeLectures />}
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
         />
-        {/* <Route path="/lectures/page/:pageNum" element={<WholeLectures />} /> */}
-        <Route path="/lectures/:id" element={<DetailLecture />} />
-        <Route path="/userinfo" element={<UserInfoPage />} />
+        <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
+        <Route
+          path="/signup"
+          element={
+            <Layout>
+              <Signup />
+            </Layout>
+          }
+        />
+        <Route
+          path="/mypage"
+          element={
+            <Layout>
+              <EditMember />
+            </Layout>
+          }
+        />
+        {/* <Route path="/lectures/?page=:page" element={<WholeLectures />} /> */}
+
       </Routes>
     </BrowserRouter>
   );
