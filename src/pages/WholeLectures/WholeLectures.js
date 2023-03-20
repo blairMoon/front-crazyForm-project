@@ -19,6 +19,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Text,
 } from '@chakra-ui/react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureAndCategoryAndSearch } from '../../api';
@@ -49,16 +50,6 @@ function WholeLectures() {
     getLectureAndCategoryAndSearch
   );
 
-  // const handleSearchData = async () => {
-  //   if (!searchResult) {
-  //     return alert('검색결과가 없습니다.');
-  //   }
-  //   refetchSearch();
-  // };
-  // const { isLoading, data } = useQuery(
-  //   ['lectureInfo', bigCategory, smallCategory, pageNum],
-  //   getLectureAndCategory
-  // );
   const totalPages = Math.ceil(data?.totalNum / pageSize) || 0;
 
   useEffect(() => {
@@ -105,7 +96,8 @@ function WholeLectures() {
       searchName,
     ]);
     if (searchResult === '' || searchResult === undefined) {
-      navigate(`/lectures/${bigCategory}/${smallCategory}?page=${newPage}`);
+      alert('검색어를 입력해주세요');
+      // navigate(`/lectures/${bigCategory}/${smallCategory}?page=${newPage}`);
     } else {
       navigate(
         `/lectures/${bigCategory}/${smallCategory}?page=${newPage}&search=${searchResult}`
@@ -317,38 +309,44 @@ function WholeLectures() {
             </Accordion>
           </GridItem>
           <GridItem area={'main'} w="800px" mx="auto">
-            <Grid
-              templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']}
-              gap="5"
-            >
-              {searchName && !isSearching
-                ? data?.data?.map(item => (
-                    <GridItem key={item.LectureId} mx="auto">
-                      <LectureCard
-                        lectureNumber={item.LectureId}
-                        key={item.id}
-                        img={item.thumbnail}
-                        lectureDescription={item.lectureDescription}
-                        lectureTitle={item.lectureTitle}
-                        targetAudience={item.targetAudience}
-                        instructor={item.instructor.username}
-                      />
-                    </GridItem>
-                  ))
-                : data?.data?.map(item => (
-                    <GridItem key={item.LectureId} mx="auto">
-                      <LectureCard
-                        lectureNumber={item.LectureId}
-                        key={item.id}
-                        img={item.thumbnail}
-                        lectureDescription={item.lectureDescription}
-                        lectureTitle={item.lectureTitle}
-                        targetAudience={item.targetAudience}
-                        instructor={item.instructor.username}
-                      />
-                    </GridItem>
-                  ))}
-            </Grid>
+            {data?.data?.length === 0 || undefined ? (
+              <Box>
+                <Text>{searchName} 에 대한 검색결과가 없습니다.</Text>
+              </Box>
+            ) : (
+              <Grid
+                templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']}
+                gap="5"
+              >
+                {searchName && !isSearching
+                  ? data?.data?.map(item => (
+                      <GridItem key={item.LectureId} mx="auto">
+                        <LectureCard
+                          lectureNumber={item.LectureId}
+                          key={item.id}
+                          img={item.thumbnail}
+                          lectureDescription={item.lectureDescription}
+                          lectureTitle={item.lectureTitle}
+                          targetAudience={item.targetAudience}
+                          instructor={item.instructor.username}
+                        />
+                      </GridItem>
+                    ))
+                  : data?.data?.map(item => (
+                      <GridItem key={item.LectureId} mx="auto">
+                        <LectureCard
+                          lectureNumber={item.LectureId}
+                          key={item.id}
+                          img={item.thumbnail}
+                          lectureDescription={item.lectureDescription}
+                          lectureTitle={item.lectureTitle}
+                          targetAudience={item.targetAudience}
+                          instructor={item.instructor.username}
+                        />
+                      </GridItem>
+                    ))}
+              </Grid>
+            )}
 
             <VStack mt="4" spacing="2">
               <InputGroup>

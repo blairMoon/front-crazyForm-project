@@ -52,23 +52,6 @@ export const changeProfileUser = data => {
 export const getLectureDetail = page => {
   return instance.get(`lectures/${page}`).then(res => res.data);
 };
-// export const getLectureAndCategory = (
-//   bigCategory,
-//   smallCategory,
-//   page,
-//   pageSize
-// ) => {
-//   return instance
-//     .get(`lectures/${bigCategory}/${smallCategory}/?page=${page}`)
-//     .then(res => res.data);
-// };
-export const getLectureAndCategory = async ({ queryKey }) => {
-  const [, bigCategory, smallCategory, page] = queryKey;
-  const response = await instance.get(
-    `lectures/${bigCategory}/${smallCategory}/?page=${page}`
-  );
-  return response.data;
-};
 
 export const getLectureAndCategoryAndSearch = async ({ queryKey }) => {
   const [, bigCategory, smallCategory, page, searchName] = queryKey;

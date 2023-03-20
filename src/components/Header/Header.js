@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { isLoggedInVar } from '../../apollo';
 import { removeAccessToken } from '../../Token';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +31,7 @@ import { SearchIcon } from '@chakra-ui/icons';
 import { FaUserCheck } from 'react-icons/fa';
 
 export default function Header() {
+  const [searchTextHeader, setSearchTextHeader] = useState('');
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -38,6 +39,7 @@ export default function Header() {
     isLoggedInVar(false);
     navigate('/');
   };
+
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
@@ -111,6 +113,10 @@ export default function Header() {
               type="text"
               width="200px"
               variant="outline"
+              defaultValue={searchTextHeader}
+              onChange={e => {
+                setSearchTextHeader(e.target.value);
+              }}
               placeholder={`검색`}
             />
             <InputRightAddon>
