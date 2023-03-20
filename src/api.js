@@ -53,3 +53,15 @@ export const getLectureDetail = page => {
 export const getLectureCategory = category => {
   return instance.get(`lectures/${category}`).then(res => res.data);
 };
+
+export const postReview = ({ lectureNum, data }) => {
+  return instance.post(`reviews/${lectureNum}`, data).then(res => res.data);
+};
+// export const postReview = async ({ lectureNum, data }) => {
+//   try {
+//     const res = await instance.post(`reviews/${lectureNum}`, data);
+//     return res.data;
+//   } catch (error) {
+//     throw new Error(error.response.data.message);
+//   }
+// };

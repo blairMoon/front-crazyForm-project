@@ -1,7 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getLectureDetail } from '../../api';
+import {
+  QueryClient,
+  useQuery,
+  useQueryClient,
+  useMutation,
+} from '@tanstack/react-query';
+import { getLectureDetail, postReview } from '../../api';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -43,6 +48,37 @@ const DetailLecture = () => {
   const { isLoading, data } = useQuery(['lectureInfo'], () =>
     getLectureDetail(id)
   );
+
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading: isSubmitting } = useMutation(postReview, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['lectureInfo']);
+    },
+  });
+
+  const {
+    register,
+    setValue,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async data => {
+    try {
+      await mutate(
+        { lectureNum: data.LectureId, data },
+        {
+          isLoading: true,
+        }
+      );
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (data) {
     {
       console.log('data:', data);
@@ -82,16 +118,16 @@ const DetailLecture = () => {
               <Box w="10%"></Box>
               <Box w="45%">
                 <Stack h="100%" spacing={3}>
-                  <Box>카테고리</Box>
-                  <Box fontSize="24">오뚜니의 파이썬 강의</Box>
+                  <Box>{data.categories.parent.name}</Box>
+                  <Box fontSize="24">{data.lectureTitle}</Box>
                   <Box pb="8">
                     <FontAwesomeIcon icon={faChalkboardTeacher} />
-                    &nbsp;뚜니코딩
+                    &nbsp;{data.instructor.username}
                   </Box>
                   <Box>
-                    <StarRating rating={3.7} /> (3.7)
+                    <StarRating rating={data.rating} /> ({data.rating})
                   </Box>
-                  <Box>119개의 수강평 ∙ 4088명의 수강생</Box>
+                  <Box>{data.reviews_num}개의 수강평 ∙ 4088명의 수강생</Box>
                   <Box>
                     <Stack direction="row" spacing={4}>
                       <Button colorScheme="black" variant="outline" w="150px">
@@ -115,15 +151,28 @@ const DetailLecture = () => {
             justifyContent="center"
           >
             <Stack w="800px">
-              <ReviewForm />
+              <ReviewForm
+                reviewsNum={data.reviews_num}
+                ratingScore={data.rating}
+                lectureNum={data.LectureId}
+                onSubmit={onSubmit}
+                isSubmitting={isSubmitting}
+              />
               <Box fontSize="18px" fontWeight="600" pt="10">
                 Reviews
               </Box>
               <Divider borderColor="black.500" pt="3" />
               <Box pt="3"></Box>
-              <Review />
-              <Review />
-              <Review />
+              {data.reviews?.reverse().map(review => (
+                <Review
+                  key={review.id}
+                  username={review.user.username}
+                  rating={review.rating}
+                  content={review.content}
+                  created_at={review.created_at.slice(0, 10)}
+                  reply={review.reply}
+                />
+              ))}
             </Stack>
           </GridItem>
         </Grid>
