@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+
 import css from './Login.module.scss';
-import { Link } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { isLoggedInVar } from '../../apollo';
 import { getAccessToken } from '../../Token';
 import { userNameLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
-import Header from '../../components/Header/Header';
+
+import Cookies from 'js-cookie';
 const LoginPage = () => {
   const navigate = useNavigate();
   const mutation = useMutation(userNameLogin, {
     onMutate: () => {
       console.log('mutation start...');
     },
-    onSuccess: () => {
+    onSuccess: data => {
       console.log('API CALL success...');
+      Cookies.set('token', data.token, { expires: 7, httpOnly: true });
       isLoggedInVar(true);
       navigate('/');
     },
@@ -30,7 +32,7 @@ const LoginPage = () => {
   });
 
   useEffect(() => {
-    const token = window.localStorage.getItem('token');
+    const token = Cookies.get('token');
     if (token) {
       isLoggedInVar(true);
     }
@@ -42,19 +44,16 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = data => {
-    // console.log('data', data);
-    // console.log(data.username);
-
-    const username = data.username;
-    const password = data.password;
-    mutation.mutate({ username, password });
-    // console.log({ username, password });
+  const onSubmit = ({ username, password }) => {
+    try {
+      mutation.mutate({ username, password });
+    } catch (error) {
+      console.error('login error', error);
+    }
   };
 
   return (
     <>
-      <Header />
       <div className={css.Container}>
         <div className={css.Wrapper}>
           <div className={css.TopBox}>

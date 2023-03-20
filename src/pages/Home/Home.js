@@ -36,7 +36,6 @@ function Home() {
 
   return (
     <>
-      <Header />
       <Flex direction="column" align="center" h="100%">
         <VStack align="center" h="100%">
           <Box w="100%" h="100%" mt={19}>
@@ -452,7 +451,6 @@ function Home() {
           </Container>
         </Box>
       </Flex>
-      <Footer />
     </>
   );
 }

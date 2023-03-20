@@ -51,7 +51,6 @@ const Signup = ({ initialValues, onSubmit }) => {
 
   return (
     <>
-      <Header />
       <div className={css.Container}>
         <div className={css.Wrapper}>
           <div className={css.TopBox}>
