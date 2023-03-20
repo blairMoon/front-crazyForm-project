@@ -6,7 +6,7 @@ import {
   useQueryClient,
   useMutation,
 } from '@tanstack/react-query';
-import { getLectureDetail, postReview } from '../../api';
+import { getLectureDetail, postReview, postReply } from '../../api';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -51,11 +51,15 @@ const DetailLecture = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading: isSubmitting } = useMutation(postReview, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['lectureInfo']);
-    },
-  });
+  const { mutate, isLoading: isSubmitting } = useMutation(
+    postReview,
+    postReply,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['lectureInfo']);
+      },
+    }
+  );
 
   const {
     register,
@@ -65,19 +69,19 @@ const DetailLecture = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async data => {
-    try {
-      await mutate(
-        { lectureNum: data.LectureId, data },
-        {
-          isLoading: true,
-        }
-      );
-      reset();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const onSubmit = async data => {
+  //   try {
+  //     await mutate(
+  //       { lectureNum: data.LectureId, data },
+  //       {
+  //         isLoading: true,
+  //       }
+  //     );
+  //     reset();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   if (data) {
     {
@@ -154,7 +158,7 @@ const DetailLecture = () => {
                 reviewsNum={data.reviews_num}
                 ratingScore={data.rating}
                 lectureNum={data.LectureId}
-                onSubmit={onSubmit}
+                // onSubmit={onSubmit}
                 isSubmitting={isSubmitting}
               />
               <Box fontSize="18px" fontWeight="600" pt="10">
@@ -170,7 +174,8 @@ const DetailLecture = () => {
                   content={review.content}
                   created_at={review.created_at.slice(0, 10)}
                   reply={review.reply}
-                  // replyName={review.reply.user.username}
+                  lectureNum={data.LectureId}
+                  reviewNum={review.id}
                 />
               ))}
             </Stack>

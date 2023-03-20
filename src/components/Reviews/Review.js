@@ -19,13 +19,18 @@ import { RiHomeHeartLine } from 'react-icons/ri';
 
 import Reply from './Reply';
 
+import { postReply } from '../../api';
+
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+
 const Review = ({
   username,
   rating,
   content,
   created_at,
   reply,
-  // replyName,
+  lectureNum,
+  reviewNum,
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const { register, handleSubmit, reset } = useForm();
@@ -38,13 +43,29 @@ const Review = ({
     setShowReplyForm(false);
   };
 
-  const onSubmit = data => {
-    console.log(data);
-    reset(); // 입력 폼을 초기화
-    setShowReplyForm(false); // 답글 작성 창을 숨김
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(postReply, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['lectureInfo']);
+    },
+  });
+
+  const onSubmit = async data => {
+    try {
+      await mutate({
+        lectureNum,
+        reviewNum,
+        data,
+      }); // postReply API 요청 보내기
+      reset(); // 입력 폼을 초기화
+      setShowReplyForm(false); // 답글 작성 창을 숨김
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  console.log('reply', reply);
+  // console.log('reply', reply);
 
   return (
     <Stack pt="4">
@@ -79,12 +100,12 @@ const Review = ({
             rounded="5"
           >
             <Box fontWeight="700" color="#958E96" fontSize="14">
-              {/* {replyName} */}
-              나그네
+              로그인한 유저네임
             </Box>
             <Box maxH="100px" overflowY="auto" w="100%" h="100%">
               <Textarea
-                {...register('replyText', { required: true })}
+                name="content"
+                {...register('content', { required: true })}
                 focusBorderColor="green.400"
                 max="1000"
                 min="1"
