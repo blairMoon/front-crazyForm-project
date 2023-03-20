@@ -20,7 +20,15 @@ function Router() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mypage" element={<EditMember />} />
         {/* <Route path="/lectures/?page=:page" element={<WholeLectures />} /> */}
-        <Route path="/lectures/page/:pageNum" element={<WholeLectures />} />
+        {/* <Route
+          path="/lectures/:categoryBig/:categorySmall/:page"
+          element={<WholeLectures />}
+        /> */}
+        <Route
+          path="/lectures/:bigCategory/:smallCategory"
+          element={<WholeLectures />}
+        />
+        {/* <Route path="/lectures/page/:pageNum" element={<WholeLectures />} /> */}
         <Route path="/lectures/:id" element={<DetailLecture />} />
         <Route path="/userinfo" element={<UserInfoPage />} />
       </Routes>
