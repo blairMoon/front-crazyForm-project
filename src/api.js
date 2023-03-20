@@ -44,9 +44,11 @@ export const putMyProfile = () => {
 export const changeProfileUser = data => {
   return instance.put('users/myprofile', data).then(res => res.data);
 };
-export const getLectureInfo = (page, pageSize) => {
-  return instance.get('lectures/all/all').then(res => res.data);
-};
+
+// export const getLectureInfo = (page, pageSize) => {
+//   return instance.get(`lectures/?page=${page}`).then(res => res.data);
+// };
+
 export const getLectureDetail = page => {
   return instance.get(`lectures/${page}`).then(res => res.data);
 };

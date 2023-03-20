@@ -56,39 +56,7 @@ function Router() {
           }
         />
         {/* <Route path="/lectures/?page=:page" element={<WholeLectures />} /> */}
-        <Route
-          path="/lectures/page/:pageNum"
-          element={
-            <Layout>
-              <WholeLectures />
-            </Layout>
-          }
-        />
-        <Route
-          path="/lectures/:id"
-          element={
-            <Layout>
-              <DetailLecture />
-            </Layout>
-          }
-        />
-        <Route
-          path="/userinfo"
-          element={
-            <Layout>
-              <UserInfoPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/mylecture"
-          element={
-            <Layout>
-              <MyLecture />
-            </Layout>
-          }
-        />
-        <Route path="/lectureplay" element={<Video />} />
+
       </Routes>
     </BrowserRouter>
   );
