@@ -18,7 +18,7 @@ const LoginPage = () => {
     },
     onSuccess: data => {
       console.log('API CALL success...');
-      Cookies.set('token', data.token, { expires: 7, httpOnly: true });
+
       isLoggedInVar(true);
       navigate('/');
     },
@@ -32,7 +32,7 @@ const LoginPage = () => {
   });
 
   useEffect(() => {
-    const token = Cookies.get('token');
+    const token = window.localStorage.getItem('token');
     if (token) {
       isLoggedInVar(true);
     }

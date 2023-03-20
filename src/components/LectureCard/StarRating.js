@@ -21,7 +21,10 @@ const StarRating = ({ rating }) => {
     // 반 별점 채우기
     if (hasHalfStar) {
       stars.push(
-        <BsStarHalf style={{ display: 'inline', color: 'rgb(253 204 15)' }} />
+        <BsStarHalf
+          key="half"
+          style={{ display: 'inline', color: 'rgb(253 204 15)' }}
+        />
       );
     }
 

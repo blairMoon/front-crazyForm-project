@@ -160,7 +160,6 @@ function WholeLectures() {
                     <Box as="span" flex="1" textAlign="left">
                       전체 강의
                     </Box>
-                    <AccordionIcon />
                   </AccordionButton>
                 </h2>
               </AccordionItem>
