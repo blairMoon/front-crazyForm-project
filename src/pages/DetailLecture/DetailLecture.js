@@ -170,6 +170,7 @@ const DetailLecture = () => {
                   content={review.content}
                   created_at={review.created_at.slice(0, 10)}
                   reply={review.reply}
+                  // replyName={review.reply.user.username}
                 />
               ))}
             </Stack>

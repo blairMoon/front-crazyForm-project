@@ -19,7 +19,14 @@ import { RiHomeHeartLine } from 'react-icons/ri';
 
 import Reply from './Reply';
 
-const Review = ({ username, rating, content, created_at, reply }) => {
+const Review = ({
+  username,
+  rating,
+  content,
+  created_at,
+  reply,
+  // replyName,
+}) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
@@ -72,7 +79,8 @@ const Review = ({ username, rating, content, created_at, reply }) => {
             rounded="5"
           >
             <Box fontWeight="700" color="#958E96" fontSize="14">
-              지나가는비트위의나그네
+              {/* {replyName} */}
+              나그네
             </Box>
             <Box maxH="100px" overflowY="auto" w="100%" h="100%">
               <Textarea
