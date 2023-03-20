@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import { useForm } from 'react-hook-form';
 
 import {
@@ -33,6 +33,7 @@ const Review = ({
   reviewNum,
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
+  const [visible, setVisible] = useState(5); // 5개씩 보이도록 설정
   const { register, handleSubmit, reset } = useForm();
 
   const handleReplyButtonClick = () => {

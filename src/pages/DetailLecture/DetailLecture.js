@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   QueryClient,
@@ -68,6 +68,14 @@ const DetailLecture = () => {
     control,
     formState: { errors },
   } = useForm();
+
+  const [loadMoreCount, setLoadMoreCount] = useState(0);
+
+  const handleLoadMore = () => {
+    setLoadMoreCount(loadMoreCount + 1);
+  };
+
+  const reviewsToShow = 5 * (loadMoreCount + 1); // 처음 5개, 10개, 15개 이런 식으로 늘어남.
 
   // const onSubmit = async data => {
   //   try {
@@ -166,18 +174,33 @@ const DetailLecture = () => {
               </Box>
               <Divider borderColor="black.500" pt="3" />
               <Box pt="3"></Box>
-              {data.reviews?.reverse().map(review => (
-                <Review
-                  key={review.id}
-                  username={review.user.username}
-                  rating={review.rating}
-                  content={review.content}
-                  created_at={review.created_at.slice(0, 10)}
-                  reply={review.reply}
-                  lectureNum={data.LectureId}
-                  reviewNum={review.id}
-                />
-              ))}
+              {data.reviews
+                ?.slice(0, reviewsToShow)
+                // .reverse()
+                .map(review => (
+                  <Review
+                    key={review.id}
+                    username={review.user.username}
+                    rating={review.rating}
+                    content={review.content}
+                    created_at={review.created_at.slice(0, 10)}
+                    reply={review.reply}
+                    lectureNum={data.LectureId}
+                    reviewNum={review.id}
+                  />
+                ))}
+              <Box
+                display="flex"
+                justifyContent="center"
+                border="1px solid #DCDCDC"
+                rounded="5"
+              >
+                {data.reviews.length > reviewsToShow && (
+                  <Button w="100%" variant="ghost" onClick={handleLoadMore}>
+                    수강평 더보기
+                  </Button>
+                )}
+              </Box>
             </Stack>
           </GridItem>
         </Grid>
