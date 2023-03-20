@@ -56,7 +56,10 @@ function Router() {
           }
         />
         {/* <Route path="/lectures/?page=:page" element={<WholeLectures />} /> */}
-
+        <Route
+          path="/lectures/:bigCategory/:smallCategory"
+          element={<WholeLectures />}
+        />
       </Routes>
     </BrowserRouter>
   );
