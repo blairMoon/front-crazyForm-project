@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useForm, Controller } from 'react-hook-form';
 import {
   VStack,
   HStack,
@@ -10,13 +10,49 @@ import {
 } from '@chakra-ui/react';
 
 import StarRating from '../../components/LectureCard/StarRating';
+import StarScore from './StarScore';
+import { postReview } from '../../api';
 
-const ReviewForm = () => {
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+
+const ReviewForm = ({
+  lectureNum,
+  reviewsNum,
+  ratingScore,
+  onSubmit,
+  isSubmitting,
+}) => {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(postReview, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['lectureInfo']);
+    },
+  });
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const onFormSubmit = async data => {
+    try {
+      await mutate({ lectureNum: lectureNum, data: data });
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onFormSubmit)}>
       <HStack fontWeight="600">
         <Box fontSize="22px">수강평</Box>
-        <Box color="#A6A6A6">총 119개</Box>
+        <Box color="#A6A6A6">총 {reviewsNum}개</Box>
       </HStack>
       <Box py="4">수강생분들이 직접 작성하신 수강평입니다.</Box>
       <FormControl id="review">
@@ -28,11 +64,11 @@ const ReviewForm = () => {
             rounded="5"
             justifyContent="center"
           >
-            <Box fontSize="40px">3.8</Box>
+            <Box fontSize="40px">{ratingScore}</Box>
             <Box fontSize="24px">
-              <StarRating rating={3.8} />
+              <StarRating rating={ratingScore} />
             </Box>
-            <Box color="#A6A6A6">119개의 수강평</Box>
+            <Box color="#A6A6A6">{reviewsNum}개의 수강평</Box>
           </VStack>
           <VStack
             w="60%"
@@ -42,7 +78,19 @@ const ReviewForm = () => {
             justifyContent="center"
           >
             <Box fontSize="36px">
-              <StarRating rating={0} />
+              <Controller
+                name="rating"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <StarScore
+                    {...field}
+                    onRatingChange={value => {
+                      setValue('rating', value);
+                    }}
+                  />
+                )}
+              />
             </Box>
             <Box fontSize="14px">별점을 선택해주세요</Box>
           </VStack>
@@ -56,6 +104,12 @@ const ReviewForm = () => {
         >
           <Box maxH="100px" overflowY="auto" w="100%" h="100%">
             <Textarea
+              name="content"
+              {...register('content', {
+                name: 'content',
+                required: true,
+                minLength: 5,
+              })}
               focusBorderColor="green.400"
               placeholder="좋은 수강평을 남겨주시면 배우는 사람들에게 큰 도움이 됩니다!(5자이상)"
               max="1000"
@@ -70,6 +124,8 @@ const ReviewForm = () => {
             colorScheme="whatsapp"
             width="100px"
             height="100px"
+            isLoading={isSubmitting}
+            disabled={isSubmitting}
           >
             댓글 쓰기
           </Button>
