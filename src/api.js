@@ -22,7 +22,7 @@ export async function userNameLogin({ username, password }) {
 
   if (response.ok) {
     const data = await response.json();
-    const token = data.token;
+
     Cookies.set('token', data.token, { expires: 7, httpOnly: true });
     return true;
   } else {
