@@ -62,7 +62,9 @@ const LectureCard = ({
         </Box>
         <Image
           objectFit="cover"
-          maxW={{ base: '100%', sm: '100%' }}
+          // maxW={{ base: '100%', sm: '100%' }}
+          minH="180px"
+          height="180px"
           src={img}
           alt="Caffe Latte"
         />
