@@ -77,6 +77,11 @@ export const postReply = ({ lectureNum, reviewNum, data }) => {
     .post(`reviews/${lectureNum}/${reviewNum}`, data)
     .then(res => res.data);
 };
+export const registerLecture = ({ lectureNum }) => {
+  return instance
+    .put(`users/calculated-lectures/${lectureNum}/`, '')
+    .then(res => res.status);
+};
 // export const postReview = async ({ lectureNum, data }) => {
 //   try {
 //     const res = await instance.post(`reviews/${lectureNum}`, data);
