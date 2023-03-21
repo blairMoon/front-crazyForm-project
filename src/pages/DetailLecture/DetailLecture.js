@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   QueryClient,
@@ -6,7 +6,7 @@ import {
   useQueryClient,
   useMutation,
 } from '@tanstack/react-query';
-import { getLectureDetail, postReview } from '../../api';
+import { getLectureDetail, postReview, postReply } from '../../api';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -51,11 +51,15 @@ const DetailLecture = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading: isSubmitting } = useMutation(postReview, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['lectureInfo']);
-    },
-  });
+  // const { mutate, isLoading: isSubmitting } = useMutation(
+  //   postReview,
+  //   postReply,
+  //   {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries(['lectureInfo']);
+  //     },
+  //   }
+  // );
 
   const {
     register,
@@ -65,19 +69,27 @@ const DetailLecture = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async data => {
-    try {
-      await mutate(
-        { lectureNum: data.LectureId, data },
-        {
-          isLoading: true,
-        }
-      );
-      reset();
-    } catch (error) {
-      console.error(error);
-    }
+  const [loadMoreCount, setLoadMoreCount] = useState(0);
+
+  const handleLoadMore = () => {
+    setLoadMoreCount(loadMoreCount + 1);
   };
+
+  const reviewsToShow = 5 * (loadMoreCount + 1); // 처음 5개, 10개, 15개 이런 식으로 늘어남.
+
+  // const onSubmit = async data => {
+  //   try {
+  //     await mutate(
+  //       { lectureNum: data.LectureId, data },
+  //       {
+  //         isLoading: true,
+  //       }
+  //     );
+  //     reset();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   if (data) {
     {
@@ -154,28 +166,46 @@ const DetailLecture = () => {
                 reviewsNum={data.reviews_num}
                 ratingScore={data.rating}
                 lectureNum={data.LectureId}
-                onSubmit={onSubmit}
-                isSubmitting={isSubmitting}
+                // onSubmit={onSubmit}
+                // isSubmitting={isSubmitting}
               />
               <Box fontSize="18px" fontWeight="600" pt="10">
                 Reviews
               </Box>
               <Divider borderColor="black.500" pt="3" />
               <Box pt="3"></Box>
-              {data.reviews?.reverse().map(review => (
-                <Review
-                  key={review.id}
-                  username={review.user.username}
-                  rating={review.rating}
-                  content={review.content}
-                  created_at={review.created_at.slice(0, 10)}
-                  reply={review.reply}
-                />
-              ))}
+              {data.reviews
+                ?.slice(0, reviewsToShow)
+                // .reverse()
+                .map(review => (
+                  <Review
+                    key={review.id}
+                    username={review.user.username}
+                    rating={review.rating}
+                    content={review.content}
+                    created_at={review.created_at.slice(0, 10)}
+                    reply={review.reply}
+                    lectureNum={data.LectureId}
+                    reviewNum={review.id}
+                  />
+                ))}
+              {data.reviews.length > reviewsToShow && (
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  border="1px solid #DCDCDC"
+                  rounded="5"
+                  color="#958E96"
+                >
+                  <Button w="100%" variant="ghost" onClick={handleLoadMore}>
+                    수강평 더보기
+                  </Button>
+                </Box>
+              )}
             </Stack>
           </GridItem>
         </Grid>
-        <StartButton />
+        <StartButton lectureTitle={data.lectureTitle} />
       </>
     );
   }

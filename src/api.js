@@ -71,6 +71,12 @@ export const getLectureAndCategoryAndSearch = async ({ queryKey }) => {
 export const postReview = ({ lectureNum, data }) => {
   return instance.post(`reviews/${lectureNum}`, data).then(res => res.data);
 };
+
+export const postReply = ({ lectureNum, reviewNum, data }) => {
+  return instance
+    .post(`reviews/${lectureNum}/${reviewNum}`, data)
+    .then(res => res.data);
+};
 // export const postReview = async ({ lectureNum, data }) => {
 //   try {
 //     const res = await instance.post(`reviews/${lectureNum}`, data);
