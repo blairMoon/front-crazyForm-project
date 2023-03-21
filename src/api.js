@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
   headers: {
-    'X-CSRFToken': Cookies.get('csrftoken'),
+    'X-CSRFToken': localStorage.getItem('csrftoken'),
     Jwt: localStorage.getItem('token'),
   },
   withCredentials: true,
@@ -22,8 +22,8 @@ export async function userNameLogin({ username, password }) {
 
   if (response.ok) {
     const data = await response.json();
-
-    window.localStorage.setItem('token', data.token);
+    const token = data.token;
+    window.localStorage.setItem('token', token);
     return true;
   } else {
     const { message } = await response.json();
