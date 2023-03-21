@@ -14,6 +14,7 @@ import {
   InputRightAddon,
   HStack,
   VStack,
+  Stack,
   Accordion,
   AccordionItem,
   AccordionButton,
@@ -121,30 +122,36 @@ function WholeLectures() {
           templateAreas={`"nav search"
                   "nav main"`}
           gridTemplateRows={'100px 1fr'}
-          gridTemplateColumns={'250px 1fr'}
+          gridTemplateColumns={'220px 1fr'}
           // h="800px"
-          w="1300px"
-          pt="20"
+          w="1200px"
+          pt="120px"
           pb="10"
           px="4"
           gap="1"
           mx="auto"
         >
-          <GridItem area={'search'}>
-            <HStack justify="space-between">
-              <Box w="20%">{categoryName}</Box>
-              <InputGroup w="30%">
+          <GridItem area={'search'} w="100%">
+            <HStack justify="space-between" w="800px" mx="auto">
+              <Box w="20%" fontSize="20px" fontWeight="500" color="#958E96">
+                {categoryName ? categoryName : '전체강의'}
+              </Box>
+              <InputGroup w="40%">
                 <Input
                   className="Input"
                   variant="outline"
                   value={searchResult}
-                  placeholder={`${categoryName} 검색`}
+                  placeholder={
+                    categoryName ? `${categoryName} 검색` : '전체강의 검색'
+                  }
                   onChange={event => {
                     setSearchResult(event.target.value);
                   }}
                 />
-                <InputRightAddon>
+                <InputRightAddon px="0">
                   <Button
+                    fontSize="15px"
+                    w="100%"
                     onClick={() => {
                       handleSearch(1);
                     }}
@@ -155,7 +162,7 @@ function WholeLectures() {
               </InputGroup>
             </HStack>
           </GridItem>
-          <GridItem w="100%" pr="5" area={'nav'}>
+          <GridItem w="100%" area={'nav'}>
             <Accordion allowToggle color="#585858">
               <AccordionItem>
                 <h2>
@@ -190,7 +197,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/basic/html/?page=1');
-                    setCategoryName('HTML');
+                    setCategoryName('기초코딩 / HTML');
                   }}
                 >
                   HTML
@@ -199,7 +206,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/basic/css/?page=1');
-                    setCategoryName('CSS');
+                    setCategoryName('기초코딩 / CSS');
                   }}
                 >
                   CSS
@@ -224,7 +231,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/front/react/?page=1');
-                    setCategoryName('React');
+                    setCategoryName('프론트엔드 / React');
                   }}
                 >
                   React
@@ -233,7 +240,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/front/vue/?page=1');
-                    setCategoryName('Vue.js');
+                    setCategoryName('프론트엔드 / Vue.js');
                   }}
                 >
                   Vue.js
@@ -245,7 +252,7 @@ function WholeLectures() {
                   <AccordionButton
                     onClick={() => {
                       navigate('/lectures/backend/all/?page=1');
-                      setCategoryName('Backend');
+                      setCategoryName('벡엔드');
                     }}
                   >
                     <Box
@@ -265,7 +272,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/backend/spring/?page=1');
-                    setCategoryName('Spring');
+                    setCategoryName('벡엔드 / Spring');
                   }}
                 >
                   Spring
@@ -274,7 +281,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/backend/django/?page=1');
-                    setCategoryName('Django');
+                    setCategoryName('벡엔드 / Django');
                   }}
                 >
                   Django
@@ -298,7 +305,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/mobile/swift/?page=1');
-                    setCategoryName('Swift');
+                    setCategoryName('모바일 / Swift');
                   }}
                 >
                   Swift
@@ -307,7 +314,7 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/mobile/android/?page=1');
-                    setCategoryName('Android');
+                    setCategoryName('모바일 / Android');
                   }}
                 >
                   Android
@@ -357,23 +364,28 @@ function WholeLectures() {
               </Grid>
             )}
 
-            <VStack mt="4" spacing="2">
-              <InputGroup>
+            <VStack mt="10" w="100%">
+              <InputGroup justifyContent="center">
                 <Button
                   leftIcon={<ChevronLeftIcon />}
                   onClick={() =>
                     handlePageChange(pageNum > 1 ? pageNum - 1 : 1)
                   }
                   disabled={pageNum <= 1}
+                  mr="2"
+                  variant="ghost"
                 >
                   이전
                 </Button>
-                <HStack spacing="1">
+                <HStack spacing="2">
                   {pages.map(page => (
                     <Button
                       key={page}
                       colorScheme={
-                        page.toString() === pageNum ? 'blue' : 'gray'
+                        page.toString() === pageNum ? 'whatsapp' : 'gray'
+                      }
+                      variant={
+                        page.toString() === pageNum ? 'outline' : 'ghost'
                       }
                       onClick={() => handlePageChange(page)}
                     >
@@ -389,6 +401,8 @@ function WholeLectures() {
                     )
                   }
                   disabled={pageNum >= totalPages}
+                  ml="2"
+                  variant="ghost"
                 >
                   다음
                 </Button>
