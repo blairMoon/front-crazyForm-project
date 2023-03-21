@@ -7,6 +7,12 @@ import {
   Textarea,
   Button,
   FormControl,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from '@chakra-ui/react';
 
 import StarRating from '../../components/LectureCard/StarRating';
@@ -41,7 +47,7 @@ const ReviewForm = ({
 
   const onFormSubmit = async data => {
     try {
-      await mutate({ lectureNum: lectureNum, data: data });
+      await mutate({ lectureNum, data });
       reset();
     } catch (error) {
       console.error(error);

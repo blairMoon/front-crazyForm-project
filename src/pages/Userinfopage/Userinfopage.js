@@ -18,8 +18,8 @@ function UserInfoPage() {
     <>
       <Flex direction="column" align="center" h="100%">
         <Box mt={20} w="900px" h="100%">
-          <Tabs isFitted variant="enclosed" colorScheme={'#00c471'}>
-            <TabList borderColor={'#00c471'}>
+          <Tabs isFitted variant="enclosed" colorScheme={'#003C93'}>
+            <TabList borderColor={'#003C93'}>
               <Tab>수강중인 강좌</Tab>
               <Tab>회원정보수정</Tab>
             </TabList>
