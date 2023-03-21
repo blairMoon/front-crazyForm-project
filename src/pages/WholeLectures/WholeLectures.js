@@ -29,6 +29,7 @@ function WholeLectures() {
   const { bigCategory, smallCategory } = useParams();
   const [categoryName, setCategoryName] = useState('');
   const navigate = useNavigate();
+  const { headerSearch, setHeaderSearch } = useState('');
   //검색
   const [searchResult, setSearchResult] = useState('');
   const queryClient = useQueryClient();
@@ -86,7 +87,10 @@ function WholeLectures() {
   const handlePageChange = async newPage => {
     navigate(`/lectures/${bigCategory}/${smallCategory}?page=${newPage}`);
   };
-
+  const setHeaderSearchtoChildren = search => {
+    console.log('data', search);
+    // setHeaderSearch(search);
+  };
   const handleSearch = newPage => {
     queryClinet.resetQueries([
       'lectureSearch',
@@ -105,10 +109,14 @@ function WholeLectures() {
     }
   };
   if (data) {
+    console.log(data);
     return (
       <>
         {console.log(searchResult)}
-        <Header />
+        <Header
+          setHeaderSearchtoChildren={setHeaderSearchtoChildren}
+          data="124"
+        />
         <Grid
           templateAreas={`"nav search"
                   "nav main"`}
@@ -328,6 +336,7 @@ function WholeLectures() {
                           lectureTitle={item.lectureTitle}
                           targetAudience={item.targetAudience}
                           instructor={item.instructor.username}
+                          rating={item.rating}
                         />
                       </GridItem>
                     ))
@@ -341,6 +350,7 @@ function WholeLectures() {
                           lectureTitle={item.lectureTitle}
                           targetAudience={item.targetAudience}
                           instructor={item.instructor.username}
+                          rating={item.rating}
                         />
                       </GridItem>
                     ))}

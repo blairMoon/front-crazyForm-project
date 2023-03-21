@@ -30,7 +30,7 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 import { FaUserCheck } from 'react-icons/fa';
 
-export default function Header() {
+export default function Header(props) {
   const [searchTextHeader, setSearchTextHeader] = useState('');
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
@@ -39,6 +39,8 @@ export default function Header() {
     isLoggedInVar(false);
     navigate('/');
   };
+
+  console.log(props.setHeaderSearchtoChildren);
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -125,6 +127,10 @@ export default function Header() {
                 size="sm"
                 borderRadius="10px"
                 children={<SearchIcon color="green.500" />}
+                onClick={() => {
+                  props.setHeaderSearchtoChildren(searchTextHeader);
+                  navigate(`/lectures/all/all&page=${searchTextHeader}`);
+                }}
               ></Button>
             </InputRightAddon>
           </InputGroup>
