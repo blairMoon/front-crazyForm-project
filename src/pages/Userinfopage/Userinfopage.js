@@ -24,7 +24,9 @@ function UserInfoPage() {
               <Tab>회원정보수정</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel>{/* <MyLecture /> */}</TabPanel>
+              <TabPanel>
+                <MyLecture />
+              </TabPanel>
               <TabPanel>
                 <EditMember />
               </TabPanel>
