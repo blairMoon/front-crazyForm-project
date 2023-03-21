@@ -51,15 +51,15 @@ const DetailLecture = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading: isSubmitting } = useMutation(
-    postReview,
-    postReply,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['lectureInfo']);
-      },
-    }
-  );
+  // const { mutate, isLoading: isSubmitting } = useMutation(
+  //   postReview,
+  //   postReply,
+  //   {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries(['lectureInfo']);
+  //     },
+  //   }
+  // );
 
   const {
     register,
@@ -167,7 +167,7 @@ const DetailLecture = () => {
                 ratingScore={data.rating}
                 lectureNum={data.LectureId}
                 // onSubmit={onSubmit}
-                isSubmitting={isSubmitting}
+                // isSubmitting={isSubmitting}
               />
               <Box fontSize="18px" fontWeight="600" pt="10">
                 Reviews
@@ -189,22 +189,23 @@ const DetailLecture = () => {
                     reviewNum={review.id}
                   />
                 ))}
-              <Box
-                display="flex"
-                justifyContent="center"
-                border="1px solid #DCDCDC"
-                rounded="5"
-              >
-                {data.reviews.length > reviewsToShow && (
+              {data.reviews.length > reviewsToShow && (
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  border="1px solid #DCDCDC"
+                  rounded="5"
+                  color="#958E96"
+                >
                   <Button w="100%" variant="ghost" onClick={handleLoadMore}>
                     수강평 더보기
                   </Button>
-                )}
-              </Box>
+                </Box>
+              )}
             </Stack>
           </GridItem>
         </Grid>
-        <StartButton />
+        <StartButton lectureTitle={data.lectureTitle} />
       </>
     );
   }

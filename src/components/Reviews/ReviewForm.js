@@ -7,6 +7,12 @@ import {
   Textarea,
   Button,
   FormControl,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from '@chakra-ui/react';
 
 import StarRating from '../../components/LectureCard/StarRating';
