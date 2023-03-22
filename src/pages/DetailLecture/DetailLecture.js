@@ -93,7 +93,7 @@ const DetailLecture = () => {
   }
   if (data) {
     {
-      console.log('data:', data);
+      console.log('dataa:', data);
     }
     return (
       <>
