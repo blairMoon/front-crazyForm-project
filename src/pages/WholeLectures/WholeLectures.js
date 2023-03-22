@@ -92,6 +92,20 @@ function WholeLectures() {
     console.log('data', search);
     // setHeaderSearch(search);
   };
+  const categoriesNames = {
+    basic: '기초강의',
+    all: '전체강의',
+    frontend: '프론트엔드',
+    backend: '백엔드',
+    mobile: '모바일',
+    react: '프론트엔드/react',
+    html: '기초강의/html',
+    spring: '백엔드/spring',
+    django: '백엔드/django',
+    swift: '모바일/swift',
+    css: '기초강의/css',
+    android: '모바일/android',
+  };
   const handleSearch = newPage => {
     queryClinet.resetQueries([
       'lectureSearch',
@@ -113,11 +127,7 @@ function WholeLectures() {
     console.log(data);
     return (
       <>
-        {console.log(searchResult)}
-        <Header
-          setHeaderSearchtoChildren={setHeaderSearchtoChildren}
-          data="124"
-        />
+        <Header />
         <Grid
           templateAreas={`"nav search"
                   "nav main"`}
@@ -134,7 +144,9 @@ function WholeLectures() {
           <GridItem area={'search'} w="100%">
             <HStack justify="space-between" w="800px" mx="auto">
               <Box w="20%" fontSize="20px" fontWeight="500" color="#958E96">
-                {categoryName ? categoryName : '전체강의'}
+                {smallCategory === 'all'
+                  ? categoriesNames[bigCategory]
+                  : categoriesNames[smallCategory]}
               </Box>
               <InputGroup w="40%">
                 <Input
@@ -142,11 +154,10 @@ function WholeLectures() {
                   variant="outline"
                   value={searchResult}
                   placeholder={
-                    categoryName ? `${categoryName} 검색` : '전체강의 검색'
+                    smallCategory === 'all'
+                      ? `${categoriesNames[bigCategory]} 검색`
+                      : `${categoriesNames[smallCategory]} 검색`
                   }
-                  onChange={event => {
-                    setSearchResult(event.target.value);
-                  }}
                 />
                 <InputRightAddon px="0">
                   <Button
@@ -169,7 +180,6 @@ function WholeLectures() {
                   <AccordionButton
                     onClick={() => {
                       navigate('/lectures/all/all/?page=1');
-                      setCategoryName('전체강의');
                     }}
                   >
                     <Box as="span" flex="1" textAlign="left">
@@ -184,7 +194,6 @@ function WholeLectures() {
                   <AccordionButton
                     onClick={() => {
                       navigate('/lectures/basic/all/?page=1');
-                      setCategoryName('기초코딩');
                     }}
                   >
                     <Box as="span" flex="1" textAlign="left">
@@ -197,7 +206,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/basic/html/?page=1');
-                    setCategoryName('기초코딩 / HTML');
                   }}
                 >
                   HTML
@@ -206,7 +214,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/basic/css/?page=1');
-                    setCategoryName('기초코딩 / CSS');
                   }}
                 >
                   CSS
@@ -218,7 +225,6 @@ function WholeLectures() {
                   <AccordionButton
                     onClick={() => {
                       navigate('/lectures/frontend/all/?page=1');
-                      setCategoryName('프론트엔드');
                     }}
                   >
                     <Box as="span" flex="1" textAlign="left">
@@ -231,7 +237,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/front/react/?page=1');
-                    setCategoryName('프론트엔드 / React');
                   }}
                 >
                   React
@@ -240,7 +245,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/front/vue/?page=1');
-                    setCategoryName('프론트엔드 / Vue.js');
                   }}
                 >
                   Vue.js
@@ -252,7 +256,7 @@ function WholeLectures() {
                   <AccordionButton
                     onClick={() => {
                       navigate('/lectures/backend/all/?page=1');
-                      setCategoryName('벡엔드');
+                      setCategoryName('백엔드');
                     }}
                   >
                     <Box
@@ -272,7 +276,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/backend/spring/?page=1');
-                    setCategoryName('벡엔드 / Spring');
                   }}
                 >
                   Spring
@@ -281,7 +284,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/backend/django/?page=1');
-                    setCategoryName('벡엔드 / Django');
                   }}
                 >
                   Django
@@ -292,7 +294,6 @@ function WholeLectures() {
                   <AccordionButton
                     onClick={() => {
                       navigate('/lectures/mobile/all/?page=1');
-                      setCategoryName('모바일');
                     }}
                   >
                     <Box as="span" flex="1" textAlign="left">
@@ -305,7 +306,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/mobile/swift/?page=1');
-                    setCategoryName('모바일 / Swift');
                   }}
                 >
                   Swift
@@ -314,7 +314,6 @@ function WholeLectures() {
                   pb={4}
                   onClick={() => {
                     navigate('/lectures/mobile/android/?page=1');
-                    setCategoryName('모바일 / Android');
                   }}
                 >
                   Android
