@@ -109,31 +109,6 @@ export default function Header(props) {
           direction={'row'}
           spacing={6}
         >
-          <InputGroup display={{ base: 'none', md: 'inline-flex' }}>
-            <Input
-              className="Input"
-              type="text"
-              width="200px"
-              variant="outline"
-              defaultValue={searchTextHeader}
-              onChange={e => {
-                setSearchTextHeader(e.target.value);
-              }}
-              placeholder={`검색`}
-            />
-            <InputRightAddon>
-              <Button
-                h="1.75rem"
-                size="sm"
-                borderRadius="10px"
-                children={<SearchIcon color="green.500" />}
-                onClick={() => {
-                  props.setHeaderSearchtoChildren(searchTextHeader);
-                  navigate(`/lectures/all/all&page=${searchTextHeader}`);
-                }}
-              ></Button>
-            </InputRightAddon>
-          </InputGroup>
           {isLoggedInVar() ? (
             <>
               <Link href={'/userinfo'}>
@@ -279,14 +254,29 @@ const NAV_ITEMS = [
     href: '/lectures/all/all?page=1',
     children: [
       {
+        label: '전체강의',
+
+        href: '/lectures/all/all?page=1',
+      },
+      {
+        label: '기초코딩',
+
+        href: '/lectures/basic/all/?page=1',
+      },
+      {
         label: '프론트엔드',
-        subLabel: '리액트',
-        href: '#',
+
+        href: '/lectures/frontend/all/?page=1',
       },
       {
         label: '백엔드',
-        subLabel: '장고',
-        href: '#',
+
+        href: '/lectures/backend/all/?page=1',
+      },
+      {
+        label: '모바일',
+
+        href: '/lectures/mobile/all/?page=1',
       },
     ],
   },
