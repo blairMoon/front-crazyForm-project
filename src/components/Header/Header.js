@@ -166,16 +166,18 @@ export default function Header(props) {
               >
                 Log in
               </Button>
+
               <Button
-                as={'a'}
                 display={{ base: 'none', md: 'inline-flex' }}
                 fontSize={'sm'}
                 fontWeight={600}
                 color={'white'}
                 bg={'green.400'}
-                href={'/signup'}
                 _hover={{
                   bg: 'green.300',
+                }}
+                onClick={() => {
+                  navigate('/signup');
                 }}
               >
                 Sign Up

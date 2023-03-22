@@ -82,7 +82,7 @@ const Video = () => {
             <ReactPlayer
               className="react-player"
               url={[
-                'https://www.youtube.com/watch?v=5R4DQ6Z_KUU',
+                'https://www.youtube.com/watch?v=S_C9eOYD1I0',
                 'https://www.youtube.com/watch?v=S_C9eOYD1I0',
               ]}
               width="1280px" // 플레이어 크기 (가로)

@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Navigate,
-  Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EditMember from './EditMember/EditMember';
 import UserInfoPage from './Userinfopage/Userinfopage';
 import Home from './Home/Home';
@@ -18,23 +12,6 @@ import { isLoggedInVar } from '../apollo';
 import Layout from '../components/Layout/Layout';
 import MyLecture from './Mylecturepage/Mylecture';
 import Video from './Lectureplaypage/Lectureplaypage';
-const userLogedIn = () => {
-  return localStorage.getItem('authToken') !== null;
-};
-
-const PrivateRoute = props => {
-  return userLogedIn() ? (
-    <Route {...props} />
-  ) : (
-    <Navigate
-      to={{
-        pathname: '/login',
-        state: { from: props.path },
-      }}
-      replace
-    />
-  );
-};
 
 function Router() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -61,7 +38,7 @@ function Router() {
             </Layout>
           }
         />
-        <Route path="/login" element={userLogedIn() ? <Home /> : <Login />} />
+        <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
         <Route
           path="/signup"
           element={
