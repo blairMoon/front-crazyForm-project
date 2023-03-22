@@ -75,13 +75,13 @@ const EditMember = () => {
                   ></input>
                 </div>
 
-                <button
+                {/* <button
                   type="button"
                   className={css.button}
                   onClick={() => checkUsename(watch('username'))}
                 >
                   아이디 중복확인
-                </button>
+                </button> */}
                 {errors.username && errors.username.type === 'required' && (
                   <p className={css.p}>아이디는 필수 입력값입니다.</p>
                 )}
