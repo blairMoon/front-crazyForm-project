@@ -1,10 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Heading, VStack, Stack, Flex } from '@chakra-ui/react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import {
+  Box,
+  Heading,
+  VStack,
+  HStack,
+  Stack,
+  Flex,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
 const Video = () => {
   const [videoList, setVideoList] = useState(0);
+  const navigate = useNavigate();
   const [playedSeconds, setPlayedSeconds] = useState(0);
+  const [categoryName, setCategoryName] = useState('');
   const playerRef = useRef(null);
   const handlePlayerReady = () => {
     if (playedSeconds > 0) {
@@ -62,12 +77,12 @@ const Video = () => {
     <>
       <LectureHeader />
       <Flex direction="column" align="center" h="100%">
-        <VStack align="center">
+        <HStack align="center">
           <Box>
             <ReactPlayer
               className="react-player"
               url={[
-                'https://www.youtube.com/watch?v=5R4DQ6Z_KUU',
+                'https://www.youtube.com/watch?v=S_C9eOYD1I0',
                 'https://www.youtube.com/watch?v=S_C9eOYD1I0',
               ]}
               width="1280px" // 플레이어 크기 (가로)
@@ -92,7 +107,7 @@ const Video = () => {
               }}
             />
           </Box>
-        </VStack>
+        </HStack>
       </Flex>
     </>
   );
