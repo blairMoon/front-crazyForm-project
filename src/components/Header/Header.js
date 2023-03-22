@@ -147,9 +147,9 @@ export default function Header(props) {
                 fontSize={'sm'}
                 fontWeight={600}
                 color={'white'}
-                bg={'green.400'}
+                bg={'#003C93'}
                 _hover={{
-                  bg: 'green.300',
+                  bg: '#003C93',
                 }}
                 onClick={() => {
                   navigate('/signup');
