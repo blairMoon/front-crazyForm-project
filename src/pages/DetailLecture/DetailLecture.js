@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
@@ -37,17 +37,21 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import ModalLecture from '../../components/Button/ModalLecture';
 import StartButton from '../../components/Button/StartButton';
 // import QnaButton from '../../components/Button/QnaButton';
 import { useNavigate } from 'react-router-dom';
 
 const DetailLecture = () => {
   let { id } = useParams();
-  const { isLoading, data } = useQuery(['lectureInfo'], () =>
+
+  const [lectureData, setLectureData] = useState(null);
+  const { isLoading, error, data } = useQuery(['lectureInfo', id], () =>
     getLectureDetail(id)
   );
+
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { mutate } = useMutation(registerLecture, {
     onSuccess: () => {
@@ -63,19 +67,30 @@ const DetailLecture = () => {
 
   const reviewsToShow = 5 * (loadMoreCount + 1); // 처음 5개, 10개, 15개 이런 식으로 늘어남.
 
-  const navigate = useNavigate();
+  const lectureNum = lectureData?.LectureId;
 
-  const lectureNum = data?.LectureId;
-
-  const onRegister = () => {
+  const onRegister = async () => {
     try {
-      mutate({ lectureNum });
+      await mutate({ lectureNum });
       navigate('/userinfo');
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    if (!isLoading && !error) {
+      setLectureData(data);
+    }
+  }, [data, isLoading, error]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
   if (data) {
     {
       console.log('data:', data);
@@ -191,6 +206,7 @@ const DetailLecture = () => {
           </GridItem>
         </Grid>
         <StartButton lectureTitle={data.lectureTitle} />
+        <ModalLecture />
       </>
     );
   }
