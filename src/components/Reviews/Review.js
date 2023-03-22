@@ -100,9 +100,9 @@ const Review = ({
             bg="rgba(238,238,238,0.3)"
             rounded="5"
           >
-            <Box fontWeight="700" color="#958E96" fontSize="14">
+            {/* <Box fontWeight="700" color="#958E96" fontSize="14">
               로그인한 유저네임
-            </Box>
+            </Box> */}
             <Box maxH="100px" overflowY="auto" w="100%" h="100%">
               <Textarea
                 name="content"
