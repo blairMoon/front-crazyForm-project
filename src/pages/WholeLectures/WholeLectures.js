@@ -158,6 +158,9 @@ function WholeLectures() {
                       ? `${categoriesNames[bigCategory]} 검색`
                       : `${categoriesNames[smallCategory]} 검색`
                   }
+                  onChange={event => {
+                    setSearchResult(event.target.value);
+                  }}
                 />
                 <InputRightAddon px="0">
                   <Button
