@@ -33,7 +33,7 @@ const LoginPage = () => {
   });
 
   useEffect(() => {
-    const token = window.localStorage.getItem('token');
+    const token = Cookies.get('token');
     if (token) {
       isLoggedInVar(true);
     }
