@@ -4,6 +4,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import LectureCard from '../../components/LectureCard/LectureCard';
+import MenuBtn from '../../components/Button/MenuBtn';
 import {
   Box,
   Grid,
@@ -99,6 +100,7 @@ function WholeLectures() {
     backend: '백엔드',
     mobile: '모바일',
     react: '프론트엔드/react',
+    vue: '프론트엔드/vue.js',
     html: '기초강의/html',
     spring: '백엔드/spring',
     django: '백엔드/django',
@@ -134,7 +136,7 @@ function WholeLectures() {
           gridTemplateRows={'100px 1fr'}
           gridTemplateColumns={'220px 1fr'}
           // h="800px"
-          w="1200px"
+          w="1100px"
           pt="120px"
           pb="10"
           px="4"
@@ -177,152 +179,7 @@ function WholeLectures() {
             </HStack>
           </GridItem>
           <GridItem w="100%" area={'nav'}>
-            <Accordion allowToggle color="#585858">
-              <AccordionItem>
-                <h2>
-                  <AccordionButton
-                    onClick={() => {
-                      navigate('/lectures/all/all/?page=1');
-                    }}
-                  >
-                    <Box as="span" flex="1" textAlign="left">
-                      전체 강의
-                    </Box>
-                  </AccordionButton>
-                </h2>
-              </AccordionItem>
-
-              <AccordionItem>
-                <h2>
-                  <AccordionButton
-                    onClick={() => {
-                      navigate('/lectures/basic/all/?page=1');
-                    }}
-                  >
-                    <Box as="span" flex="1" textAlign="left">
-                      기초 코딩
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/basic/html/?page=1');
-                  }}
-                >
-                  HTML
-                </AccordionPanel>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/basic/css/?page=1');
-                  }}
-                >
-                  CSS
-                </AccordionPanel>
-              </AccordionItem>
-
-              <AccordionItem>
-                <h2>
-                  <AccordionButton
-                    onClick={() => {
-                      navigate('/lectures/frontend/all/?page=1');
-                    }}
-                  >
-                    <Box as="span" flex="1" textAlign="left">
-                      프론트엔드
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/front/react/?page=1');
-                  }}
-                >
-                  React
-                </AccordionPanel>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/front/vue/?page=1');
-                  }}
-                >
-                  Vue.js
-                </AccordionPanel>
-              </AccordionItem>
-
-              <AccordionItem>
-                <h2>
-                  <AccordionButton
-                    onClick={() => {
-                      navigate('/lectures/backend/all/?page=1');
-                      setCategoryName('백엔드');
-                    }}
-                  >
-                    <Box
-                      as="span"
-                      flex="1"
-                      textAlign="left"
-                      // onClick={() => {
-                      //   setBigCategoryChange('frontend');
-                      // }}
-                    >
-                      백엔드
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/backend/spring/?page=1');
-                  }}
-                >
-                  Spring
-                </AccordionPanel>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/backend/django/?page=1');
-                  }}
-                >
-                  Django
-                </AccordionPanel>
-              </AccordionItem>
-              <AccordionItem>
-                <h2>
-                  <AccordionButton
-                    onClick={() => {
-                      navigate('/lectures/mobile/all/?page=1');
-                    }}
-                  >
-                    <Box as="span" flex="1" textAlign="left">
-                      모바일
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/mobile/swift/?page=1');
-                  }}
-                >
-                  Swift
-                </AccordionPanel>
-                <AccordionPanel
-                  pb={4}
-                  onClick={() => {
-                    navigate('/lectures/mobile/android/?page=1');
-                  }}
-                >
-                  Android
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+            <MenuBtn />
           </GridItem>
           <GridItem area={'main'} w="800px" mx="auto">
             {data?.data?.length === 0 || undefined ? (
@@ -384,7 +241,7 @@ function WholeLectures() {
                     <Button
                       key={page}
                       colorScheme={
-                        page.toString() === pageNum ? 'whatsapp' : 'gray'
+                        page.toString() === pageNum ? 'blue' : 'gray'
                       }
                       variant={
                         page.toString() === pageNum ? 'outline' : 'ghost'

@@ -34,6 +34,7 @@ const LectureCard = ({
         direction={{ base: 'column' }}
         variant="outline"
         _hover={{ background: 'rgba(0, 0, 0, 0.4 )', zIndex: 10 }}
+        overflow="hidden"
       >
         <Box
           display="flex"
@@ -63,8 +64,8 @@ const LectureCard = ({
         <Image
           objectFit="cover"
           // maxW={{ base: '100%', sm: '100%' }}
-          minH="180px"
-          height="180px"
+          minH="160"
+          height="160"
           src={img}
           alt="Caffe Latte"
         />
@@ -76,7 +77,7 @@ const LectureCard = ({
             <Text py="2">{instructor}</Text>
 
             <HStack spacing="3px">
-              <StarRating rating={rating} />
+              <StarRating rating={5} />
             </HStack>
           </CardBody>
         </Stack>
