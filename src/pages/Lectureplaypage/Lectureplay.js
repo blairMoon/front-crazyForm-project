@@ -71,6 +71,7 @@ const Video = () => {
     getVideoList();
   }, []);
 
+
   const getVideoList = async () => {
     try {
       await fetch(`http://127.0.0.1:8000/api/v1/videos/1`).then(res =>
@@ -103,11 +104,9 @@ const Video = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
-
   return (
     <>
       <LectureHeader />
-
       <Flex justifyContent="space-between">
         <Box
           width="100%"
@@ -121,6 +120,7 @@ const Video = () => {
           <ReactPlayer
             className="react-player"
             style={{ position: 'absolute', top: 0, left: 0 }}
+           
             width="100%" // 플레이어 크기 (가로)
             height="100%" // 플레이어 크기 (세로)
             url={getVideoUrl()}
@@ -143,7 +143,6 @@ const Video = () => {
             }}
           />
         </Box>
-
         <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
           {<BsListUl size={35} style={{ color: 'black' }} />}
         </Button>
