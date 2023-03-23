@@ -38,7 +38,20 @@ function Router() {
             </Layout>
           }
         />
-        <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
+        <Route
+          path="/login"
+          element={
+            isLoggedIn ? (
+              <Layout>
+                <Home />
+              </Layout>
+            ) : (
+              <Layout>
+                <Login />
+              </Layout>
+            )
+          }
+        />
         <Route
           path="/signup"
           element={
