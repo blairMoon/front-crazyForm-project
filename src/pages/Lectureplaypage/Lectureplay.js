@@ -94,7 +94,6 @@ const Video = () => {
   const maxWidth = 1280; // 최대 너비
   const maxHeight = maxWidth * aspectRatio; // 최대 높이
 
-
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const btnRef = useRef();
 
@@ -144,7 +143,6 @@ const Video = () => {
             }}
           />
         </Box>
-      </HStack>
         <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
           {<BsListUl size={35} style={{ color: 'black' }} />}
         </Button>
@@ -167,7 +165,6 @@ const Video = () => {
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
-
     </>
   );
 };

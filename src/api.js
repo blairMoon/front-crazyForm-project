@@ -12,7 +12,7 @@ export const instance = axios.create({
 });
 
 export async function userNameLogin({ username, password }) {
-  const response = await fetch('http://127.0.0.1:8000/api/v1/users/auth/ ', {
+  const response = await fetch('http://127.0.0.1:8000/api/v1/users/jwttoken ', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
