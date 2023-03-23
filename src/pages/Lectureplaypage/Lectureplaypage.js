@@ -7,14 +7,21 @@ import {
   HStack,
   Stack,
   Flex,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  Input,
+  Button,
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
+
+import { BsListUl } from 'react-icons/bs';
+
 const Video = () => {
   const [videoList, setVideoList] = useState(0);
   const navigate = useNavigate();
@@ -73,39 +80,87 @@ const Video = () => {
   //   }
   // };
 
+  const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
+  const maxWidth = 1280; // 최대 너비
+  const maxHeight = maxWidth * aspectRatio; // 최대 높이
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const btnRef = useRef();
+
+  const handleDrawerOpen = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
+
   return (
     <>
       <LectureHeader />
-      <Flex direction="column" align="center" h="100%">
-        <HStack align="center">
-          <Box>
-            <ReactPlayer
-              className="react-player"
-              url="https://tinyurl.com/2p6w4l28"
-              width="1280px" // 플레이어 크기 (가로)
-              height="720px" // 플레이어 크기 (세로)
-              playing={false} // 자동 재생 on
-              muted={false} // 자동 재생 on
-              loop={false} // 무한 반복 여부
-              controls={true} // 플레이어 컨트롤 노출 여부
-              // ref={playerRef}
-              light={false} // 플레이어 모드
-              pip={false} // pip 모드 설정 여부
-              played={playedSeconds}
-              onProgress={handleProgress}
-              onReady={handlePlayerReady}
-              onDuration={handleDuration} //영상길이
-              config={{
-                youtube: {
-                  playerVars: {
-                    origin: window.location.origin,
-                  },
+
+      <Flex justifyContent="space-between">
+        <Box
+          width="100%"
+          maxWidth={`${maxWidth}px`}
+          position="relative"
+          paddingTop={`calc(100% * ${aspectRatio})`}
+          maxHeight={`${maxHeight}px`}
+          margin="auto"
+          overflow="hidden"
+        >
+          <ReactPlayer
+            className="react-player"
+            style={{ position: 'absolute', top: 0, left: 0 }}
+            url={[
+              'https://www.youtube.com/watch?v=S_C9eOYD1I0',
+              'https://www.youtube.com/watch?v=S_C9eOYD1I0',
+            ]}
+            width="100%" // 플레이어 크기 (가로)
+            height="100%" // 플레이어 크기 (세로)
+            playing={true} // 자동 재생 on
+            muted={true} // 자동 재생 on
+            loop={false} // 무한 반복 여부
+            controls={true} // 플레이어 컨트롤 노출 여부
+            ref={playerRef}
+            light={false} // 플레이어 모드
+            pip={true} // pip 모드 설정 여부
+            played={playedSeconds}
+            onProgress={handleProgress}
+            onReady={handlePlayerReady}
+            onDuration={handleDuration} //영상길이
+            config={{
+              youtube: {
+                playerVars: {
+                  origin: window.location.origin,
                 },
-              }}
-            />
-          </Box>
-        </HStack>
+              },
+            }}
+          />
+        </Box>
+
+        <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
+          {<BsListUl size={35} style={{ color: 'black' }} />}
+        </Button>
       </Flex>
+
+      <Drawer
+        isOpen={isDrawerOpen}
+        placement="right"
+        onClose={handleDrawerClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>목차</DrawerHeader>
+
+            <DrawerBody></DrawerBody>
+
+            <DrawerFooter></DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
     </>
   );
 };
