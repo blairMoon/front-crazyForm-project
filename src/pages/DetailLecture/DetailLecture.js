@@ -43,8 +43,8 @@ import StartButton from '../../components/Button/StartButton';
 import { useNavigate } from 'react-router-dom';
 
 const DetailLecture = () => {
-  let { id } = useParams();
-
+  const { id } = useParams();
+  const [registerLectureClick, setRegisterLectureClick] = useState(false);
   const [lectureData, setLectureData] = useState(null);
   const { isLoading, error, data } = useQuery(['lectureInfo', id], () =>
     getLectureDetail(id)
@@ -54,8 +54,10 @@ const DetailLecture = () => {
   const navigate = useNavigate();
 
   const { mutate } = useMutation(registerLecture, {
+    onMutate: d => console.log('mutate', d),
     onSuccess: () => {
       queryClient.invalidateQueries(['lectureInfo']);
+      navigate('/userinfo');
     },
   });
 
@@ -77,7 +79,10 @@ const DetailLecture = () => {
       console.error(error);
     }
   };
-
+  const onSubmit = () => {
+    console.log('onSubmit');
+    mutate(id);
+  };
   useEffect(() => {
     if (!isLoading && !error) {
       setLectureData(data);
@@ -91,124 +96,131 @@ const DetailLecture = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  if (data) {
-    {
-      console.log('data:', data);
-    }
-    return (
-      <>
-        <Grid
-          w="1300px"
-          pt="20"
-          pb="10"
-          px="4"
-          gap="1"
-          mx="auto"
-          templateAreas={`"info"
+
+  return (
+    <>
+      <Grid
+        w="1300px"
+        pt="20"
+        pb="10"
+        px="4"
+        gap="1"
+        mx="auto"
+        templateAreas={`"info"
                   "contents"
                   "reviews"`}
+      >
+        <GridItem
+          bg="gray.50"
+          h="400px"
+          area={'info'}
+          px="20"
+          py="10"
+          fontWeight="bold"
+          color="gray.600"
         >
-          <GridItem
-            bg="gray.50"
-            h="400px"
-            area={'info'}
-            px="20"
-            py="10"
-            fontWeight="bold"
-            color="gray.600"
-          >
-            <HStack h="100%">
-              <Box w="45%" borderRadius="full">
-                <Image
-                  src="https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/thumb-course-phthon-basic.jpg"
-                  alt="lecture image"
-                  borderRadius="10px"
-                  objectFit="cover"
-                />
-              </Box>
-              <Box w="10%"></Box>
-              <Box w="45%">
-                <Stack h="100%" spacing={3}>
-                  <Box>{data.categories.parent.name}</Box>
-                  <Box fontSize="24">{data.lectureTitle}</Box>
-                  <Box pb="8">
-                    <FontAwesomeIcon icon={faChalkboardTeacher} />
-                    &nbsp;{data.instructor.username}
-                  </Box>
-                  <Box>
-                    <StarRating rating={data.rating} /> ({data.rating})
-                  </Box>
-                  <Box>{data.reviews_num}개의 수강평 ∙ 4088명의 수강생</Box>
-                  <Box>
-                    <Stack direction="row" spacing={4}>
-                      <Button
-                        colorScheme="black"
-                        variant="outline"
-                        w="150px"
-                        onClick={onRegister}
-                      >
-                        <RiHomeHeartLine size={20} /> &nbsp;&nbsp;수강하기
-                      </Button>
-                      <Button colorScheme="black" variant="outline" w="150px">
-                        <BsShare /> &nbsp;&nbsp;공유하기
-                      </Button>
-                    </Stack>
-                  </Box>
-                </Stack>
-              </Box>
-            </HStack>
-          </GridItem>
-          <GridItem area={'contents'}>contents</GridItem>
-          <GridItem
-            area={'reviews'}
-            px="20"
-            py="10"
-            display="flex"
-            justifyContent="center"
-          >
-            <Stack w="800px">
-              <ReviewForm
-                reviewsNum={data.reviews_num}
-                ratingScore={data.rating}
-                lectureNum={data.LectureId}
+          <HStack h="100%">
+            <Box w="45%" borderRadius="full">
+              <Image
+                src="https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/thumb-course-phthon-basic.jpg"
+                alt="lecture image"
+                borderRadius="10px"
+                objectFit="cover"
               />
-              <Box fontSize="18px" fontWeight="600" pt="10">
-                Reviews
-              </Box>
-              <Divider borderColor="black.500" pt="3" />
-              <Box pt="3"></Box>
-              {data.reviews?.slice(0, reviewsToShow).map(review => (
-                <Review
-                  key={review.id}
-                  username={review.user.username}
-                  rating={review.rating}
-                  content={review.content}
-                  created_at={review.created_at.slice(0, 10)}
-                  reply={review.reply}
-                  lectureNum={data.LectureId}
-                  reviewNum={review.id}
-                />
-              ))}
-              {data.reviews.length > reviewsToShow && (
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  border="1px solid #DCDCDC"
-                  rounded="5"
-                  color="#958E96"
-                >
-                  <Button w="100%" variant="ghost" onClick={handleLoadMore}>
-                    수강평 더보기
-                  </Button>
+            </Box>
+            <Box w="10%"></Box>
+            <Box w="45%">
+              <Stack h="100%" spacing={3}>
+                <Box>{data.categories.parent.name}</Box>
+                <Box fontSize="24">{data.lectureTitle}</Box>
+                <Box pb="8">
+                  <FontAwesomeIcon icon={faChalkboardTeacher} />
+                  &nbsp;{data.instructor.username}
                 </Box>
-              )}
-            </Stack>
-          </GridItem>
-        </Grid>
-        <StartButton lectureTitle={data.lectureTitle} />
-        <ModalLecture />
-      </>
-    );
-  }
+                <Box>
+                  <StarRating rating={data.rating} /> ({data.rating})
+                </Box>
+                <Box>{data.reviews_num}개의 수강평 ∙ 4088명의 수강생</Box>
+                <Box>
+                  <Stack direction="row" spacing={4}>
+                    <Button
+                      colorScheme="black"
+                      variant="outline"
+                      w="150px"
+                      onClick={() => {
+                        setRegisterLectureClick(true);
+                      }}
+                    >
+                      <RiHomeHeartLine size={20} /> &nbsp;&nbsp;수강하기
+                    </Button>
+                    <Button colorScheme="black" variant="outline" w="150px">
+                      <BsShare /> &nbsp;&nbsp;공유하기
+                    </Button>
+                  </Stack>
+                </Box>
+              </Stack>
+            </Box>
+          </HStack>
+        </GridItem>
+        <GridItem area={'contents'}>contents</GridItem>
+        <GridItem
+          area={'reviews'}
+          px="20"
+          py="10"
+          display="flex"
+          justifyContent="center"
+        >
+          <Stack w="800px">
+            <ReviewForm
+              reviewsNum={data.reviews_num}
+              ratingScore={data.rating}
+              lectureNum={data.LectureId}
+            />
+            <Box fontSize="18px" fontWeight="600" pt="10">
+              Reviews
+            </Box>
+            <Divider borderColor="black.500" pt="3" />
+            <Box pt="3"></Box>
+            {data.reviews?.slice(0, reviewsToShow).map(review => (
+              <Review
+                key={review.id}
+                username={review.user.username}
+                rating={review.rating}
+                content={review.content}
+                created_at={review.created_at.slice(0, 10)}
+                reply={review.reply}
+                lectureNum={data.LectureId}
+                reviewNum={review.id}
+              />
+            ))}
+            {data.reviews.length > reviewsToShow && (
+              <Box
+                display="flex"
+                justifyContent="center"
+                border="1px solid #DCDCDC"
+                rounded="5"
+                color="#958E96"
+              >
+                <Button w="100%" variant="ghost" onClick={handleLoadMore}>
+                  수강평 더보기
+                </Button>
+              </Box>
+            )}
+          </Stack>
+        </GridItem>
+      </Grid>
+      <StartButton lectureTitle={data.lectureTitle} />
+      {registerLectureClick ? (
+        <ModalLecture
+          onSubmit={onSubmit}
+          isOpen={registerLectureClick}
+          onClose={() => setRegisterLectureClick(false)}
+        />
+      ) : (
+        ''
+      )}
+    </>
+  );
 };
+
 export default DetailLecture;

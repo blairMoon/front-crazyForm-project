@@ -7,14 +7,21 @@ import {
   HStack,
   Stack,
   Flex,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  Input,
+  Button,
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
+
+import { BsListUl } from 'react-icons/bs';
+
 const Video = () => {
   const [videoList, setVideoList] = useState(0);
   const navigate = useNavigate();
@@ -85,21 +92,36 @@ const Video = () => {
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
   const maxHeight = maxWidth * aspectRatio; // 최대 높이
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const btnRef = useRef();
+
+  const handleDrawerOpen = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
+
   return (
     <>
       <LectureHeader />
 
-      <HStack align="center">
+      <Flex justifyContent="space-between">
         <Box
           width="100%"
-          height="100%"
+          maxWidth={`${maxWidth}px`}
+          position="relative"
+          paddingTop={`calc(100% * ${aspectRatio})`}
+          maxHeight={`${maxHeight}px`}
           margin="auto"
           overflow="hidden"
-          className="player-wrapper"
         >
           <ReactPlayer
             className="react-player"
-            width="100%"
+            style={{ position: 'absolute', top: 0, left: 0 }}
+            width="100%" // 플레이어 크기 (가로)
             height="100%" // 플레이어 크기 (세로)
             url={getVideoUrl()}
             playing={true} // 자동 재생 on
@@ -121,7 +143,29 @@ const Video = () => {
             }}
           />
         </Box>
-      </HStack>
+
+        <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
+          {<BsListUl size={35} style={{ color: 'black' }} />}
+        </Button>
+      </Flex>
+
+      <Drawer
+        isOpen={isDrawerOpen}
+        placement="right"
+        onClose={handleDrawerClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>목차</DrawerHeader>
+
+            <DrawerBody></DrawerBody>
+
+            <DrawerFooter></DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
     </>
   );
 };
