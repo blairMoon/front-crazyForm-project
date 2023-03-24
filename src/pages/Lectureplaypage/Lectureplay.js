@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
-import fetchVideoList from '../../api';
+import { fetchVideoList } from '../../api';
 import { BsListUl } from 'react-icons/bs';
 
 const Video = () => {
@@ -66,7 +66,7 @@ const Video = () => {
     data: videoList,
     isLoading,
     isError,
-  } = useQuery('videoList', () => fetchVideoList);
+  } = useQuery('videoList', fetchVideoList);
 
   const getVideoUrl = () => {
     const searchParams = new URLSearchParams(location.search);
@@ -88,6 +88,7 @@ const Video = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
+
   return (
     <>
       <LectureHeader />
