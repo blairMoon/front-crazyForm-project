@@ -11,7 +11,7 @@ import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
 import Layout from '../components/Layout/Layout';
 import MyLecture from './Mylecturepage/Mylecture';
-import Video from './Lectureplaypage/Lectureplaypage';
+import Video from './Lectureplaypage/Lectureplay';
 
 function Router() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -38,7 +38,20 @@ function Router() {
             </Layout>
           }
         />
-        <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
+        <Route
+          path="/login"
+          element={
+            isLoggedIn ? (
+              <Layout>
+                <Home />
+              </Layout>
+            ) : (
+              <Layout>
+                <Login />
+              </Layout>
+            )
+          }
+        />
         <Route
           path="/signup"
           element={

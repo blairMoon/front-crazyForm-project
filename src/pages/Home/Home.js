@@ -38,7 +38,7 @@ function Home() {
     <>
       <Flex direction="column" align="center" h="100%">
         <VStack align="center" h="100%">
-          <Box w="100%" h="100%" pt={12} mt={3}>
+          <Box w="100%" h="100%" pt={12} mt={2}>
             <Carousel
               showThumbs={false}
               autoPlay={true}
@@ -83,7 +83,11 @@ function Home() {
               POPULAR CLASS
             </Heading>
             <Container as={Stack} maxW={'6xl'} py={10} mb={10}>
-              <Carousel autoplay>
+              <Carousel
+                showThumbs={false}
+                showIndicators={true}
+                showArrows={true}
+              >
                 <SimpleGrid
                   columns={{ base: 1, sm: 2, md: 4 }}
                   spacing={8}

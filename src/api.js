@@ -6,13 +6,13 @@ export const instance = axios.create({
   // baseURL: 'http://101.101.216.129:8000/api/v1/',
   headers: {
     'X-CSRFToken': localStorage.getItem('csrftoken'),
-    Jwt: localStorage.getItem('token'),
+    Jwt: Cookies.get('token'),
   },
   withCredentials: true,
 });
 
 export async function userNameLogin({ username, password }) {
-  const response = await fetch('http://127.0.0.1:8000/api/v1/users/jwttoken', {
+  const response = await fetch('http://127.0.0.1:8000/api/v1/users/jwttoken ', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function userNameLogin({ username, password }) {
   if (response.ok) {
     const data = await response.json();
     const token = data.token;
-    window.localStorage.setItem('token', token);
+    Cookies.set('token', token);
     return true;
   } else {
     const { message } = await response.json();
@@ -83,11 +83,7 @@ export const registerLecture = lectureNum => {
     .put(`users/calculated-lectures/${lectureNum}/`, '')
     .then(res => res.status);
 };
-// export const postReview = async ({ lectureNum, data }) => {
-//   try {
-//     const res = await instance.post(`reviews/${lectureNum}`, data);
-//     return res.data;
-//   } catch (error) {
-//     throw new Error(error.response.data.message);
-//   }
-// };
+
+export const fetchVideoList = ({ lectureId }) => {
+  return instance.get(`videos/${lectureId}`).then(res => res.data);
+};
