@@ -203,6 +203,7 @@ function WholeLectures() {
                           targetAudience={item.targetAudience}
                           instructor={item.instructor.username}
                           rating={item.rating}
+                          reviewsnum={item.reviews_num}
                         />
                       </GridItem>
                     ))
@@ -217,6 +218,7 @@ function WholeLectures() {
                           targetAudience={item.targetAudience}
                           instructor={item.instructor.username}
                           rating={item.rating}
+                          reviewsNum={item.reviews_num}
                         />
                       </GridItem>
                     ))}
