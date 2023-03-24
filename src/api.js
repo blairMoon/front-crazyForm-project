@@ -84,6 +84,6 @@ export const registerLecture = lectureNum => {
     .then(res => res.status);
 };
 
-export const fetchVideoList = ({ lectureId }) => {
-  return instance.get(`videos/${lectureId}`).then(res => res.data);
+export const fetchVideoList = lectureId => {
+  return instance.get(`videos/lectures/${lectureId}`).then(res => res.data);
 };

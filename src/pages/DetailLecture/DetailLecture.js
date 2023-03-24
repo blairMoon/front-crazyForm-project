@@ -137,7 +137,10 @@ const DetailLecture = () => {
                 <Box>
                   <StarRating rating={data.rating} /> ({data.rating})
                 </Box>
-                <Box>{data.reviews_num}개의 수강평 ∙ 4088명의 수강생</Box>
+                <Box>
+                  {data.reviews_num}개의 수강평 ∙ {data.total_student}명의
+                  수강생
+                </Box>
                 <Box>
                   <Stack direction="row" spacing={4}>
                     <Button

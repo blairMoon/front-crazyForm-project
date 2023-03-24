@@ -57,7 +57,9 @@ const Signup = ({ initialValues, onSubmit }) => {
       <div className={css.Container}>
         <div className={css.Wrapper}>
           <div className={css.TopBox}>
-            <h2 className={css.h2}>Crazy Form</h2>
+            <h2 className={css.h2}>
+              <img src="/images/logo.png" alt="logo" width="200" />
+            </h2>
 
             <h1 className={css.h1}>회원가입</h1>
             <form className={css.Form} onSubmit={handleSubmit(submitForm)}>
