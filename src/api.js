@@ -83,11 +83,7 @@ export const registerLecture = lectureNum => {
     .put(`users/calculated-lectures/${lectureNum}/`, '')
     .then(res => res.status);
 };
-// export const postReview = async ({ lectureNum, data }) => {
-//   try {
-//     const res = await instance.post(`reviews/${lectureNum}`, data);
-//     return res.data;
-//   } catch (error) {
-//     throw new Error(error.response.data.message);
-//   }
-// };
+
+export const fetchVideoList = ({ lectureId }) => {
+  return instance.get(`videos/${lectureId}`).then(res => res.data);
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
   Box,
   Heading,
@@ -19,11 +20,10 @@ import {
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
-
+import fetchVideoList from '../../api';
 import { BsListUl } from 'react-icons/bs';
 
 const Video = () => {
-  const [videoList, setVideoList] = useState(0);
   const navigate = useNavigate();
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [categoryName, setCategoryName] = useState('');
@@ -62,28 +62,12 @@ const Video = () => {
     }
   }, []);
 
-  const youtubeConfig = {
-    playerVars: {
-      origin: window.location.origin,
-    },
-  };
-  useEffect(() => {
-    getVideoList();
-  }, []);
+  const {
+    data: videoList,
+    isLoading,
+    isError,
+  } = useQuery('videoList', () => fetchVideoList);
 
-
-  const getVideoList = async () => {
-    try {
-      await fetch(`http://127.0.0.1:8000/api/v1/videos/1`).then(res =>
-        res.json().then(data => {
-          console.log('Video URL:', data.videoFile);
-          setVideoList(data.videoFile);
-        })
-      );
-    } catch (e) {
-      console.log('e:', e);
-    }
-  };
   const getVideoUrl = () => {
     const searchParams = new URLSearchParams(location.search);
     return (
@@ -120,7 +104,6 @@ const Video = () => {
           <ReactPlayer
             className="react-player"
             style={{ position: 'absolute', top: 0, left: 0 }}
-           
             width="100%" // 플레이어 크기 (가로)
             height="100%" // 플레이어 크기 (세로)
             url={getVideoUrl()}
