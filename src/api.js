@@ -3,23 +3,26 @@ import Cookies from 'js-cookie';
 
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
-  // baseURL: 'http://101.101.216.129:8000/api/v1/',
+  // baseURL: 'http://101.101.216.129:8001/api/v1/',
   headers: {
-    'X-CSRFToken': localStorage.getItem('csrftoken'),
+    'X-CSRFToken': Cookies.get('csrftoken'),
     Jwt: Cookies.get('token'),
   },
   withCredentials: true,
 });
 
 export async function userNameLogin({ username, password }) {
-  const response = await fetch('http://127.0.0.1:8000/api/v1/users/jwttoken ', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ username, password }),
-    credentials: 'include',
-  });
+  const response = await fetch(
+    'http://127.0.0.1:8000/api/v1/users/jwttoken  ',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+      credentials: 'include',
+    }
+  );
 
   if (response.ok) {
     const data = await response.json();
@@ -48,6 +51,9 @@ export const changeProfileUser = data => {
 
 export const getLectureInfo = () => {
   return instance.get(`users/myprofile`).then(res => res.data);
+};
+export const getLectureRate = () => {
+  return instance.get(`lectures/all/all`).then(res => res.data);
 };
 
 export const getLectureDetail = page => {

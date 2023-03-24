@@ -3,17 +3,13 @@ import Cookies from 'js-cookie';
 export function getAccessToken() {
   const token = Cookies.get('token');
   console.log('Token before removal:', token);
-  if (!token) {
-    throw new Error('No token found');
-  }
+  if (!token) throw new Error('No token found');
   return token;
 }
 
 export const removeAccessToken = () => {
-  Cookies.remove('token', {
-    path: '/',
-    sameSite: 'Lax',
-  });
+  Cookies.remove('token');
+  Cookies.remove('sessionid');
 };
 
 export const removeSessionId = () => {
@@ -23,26 +19,29 @@ export const removeSessionId = () => {
     sameSite: 'Lax',
   });
 };
-
-export const logout = async () => {
-  try {
-    const response = await fetch('https://your-domain.com/api/logout', {
-      method: 'POST',
-      headers: {
-        'X-CSRFToken': localStorage.getItem('csrftoken'),
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    });
-
-    if (response.ok) {
-      removeAccessToken();
-      removeSessionId();
-      console.log('Logout successful');
-    } else {
-      console.error('Logout failed:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Logout error:', error);
-  }
+export const logout = () => {
+  Cookies.remove('sessionid');
+  Cookies.remove('token');
 };
+// export const logout = async () => {
+//   try {
+//     const response = await fetch(
+//       'http://127.0.0.1:8000/api/v1/users/jwttoken',
+//       {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${getAccessToken()}`,
+//         },
+//       }
+//     );
+
+//     if (response.ok) {
+//       removeAccessToken();
+//     } else {
+//       throw new Error(`Logout failed: ${response.statusText}`);
+//     }
+//   } catch (error) {
+//     console.error('Logout error:', error);
+//   }
+// };

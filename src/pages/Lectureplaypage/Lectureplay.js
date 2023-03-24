@@ -23,7 +23,7 @@ import LectureHeader from '../../components/LectureHeader/LectureHeader';
 import { BsListUl } from 'react-icons/bs';
 
 const Video = () => {
-  const [videoList, setVideoList] = useState(0);
+  const [videoList, setVideoList] = useState('');
   const navigate = useNavigate();
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [categoryName, setCategoryName] = useState('');
@@ -70,7 +70,6 @@ const Video = () => {
   useEffect(() => {
     getVideoList();
   }, []);
-
 
   const getVideoList = async () => {
     try {
@@ -120,10 +119,9 @@ const Video = () => {
           <ReactPlayer
             className="react-player"
             style={{ position: 'absolute', top: 0, left: 0 }}
-           
             width="100%" // 플레이어 크기 (가로)
             height="100%" // 플레이어 크기 (세로)
-            url={getVideoUrl()}
+            url={videoList}
             playing={true} // 자동 재생 on
             muted={true} // 자동 재생 on
             loop={false} // 무한 반복 여부
