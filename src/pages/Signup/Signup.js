@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ initialValues, onSubmit }) => {
   const navigate = useNavigate();
+  const [idCheck, setIdCheck] = useState('');
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -31,7 +32,7 @@ const Signup = ({ initialValues, onSubmit }) => {
     return instance
       .get(`users/@${id}`)
       .then(res => res.data)
-      .then(res => alert(res));
+      .then(res => setIdCheck(res));
   };
 
   const {
