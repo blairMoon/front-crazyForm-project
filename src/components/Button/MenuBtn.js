@@ -6,7 +6,8 @@ import { RiHomeHeartLine } from 'react-icons/ri';
 import { TiThSmall } from 'react-icons/ti';
 import { SiHtml5, SiCss3, SiReact, SiSpring, SiDjango } from 'react-icons/si';
 import { FaVuejs } from 'react-icons/fa';
-import { DiSwift, DiAndroid } from 'react-icons/di';
+import { DiAndroid } from 'react-icons/di';
+import { GrSwift } from 'react-icons/gr';
 const MenuBtn = () => {
   const { bigCategory, smallCategory } = useParams();
 
@@ -78,7 +79,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           borderRadius={
             bigCategory === 'basic' && smallCategory === 'html' ? 'lg' : null
@@ -88,7 +89,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'basic' && smallCategory === 'html'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
           onClick={() => {
@@ -106,7 +107,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/basic/css/?page=1');
@@ -119,7 +120,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'basic' && smallCategory === 'css'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >
@@ -163,7 +164,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/frontend/react/?page=1');
@@ -180,7 +181,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'frontend' && smallCategory === 'react'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >
@@ -196,7 +197,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/frontend/vue/?page=1');
@@ -211,7 +212,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'frontend' && smallCategory === 'vue'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >
@@ -256,7 +257,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/backend/spring/?page=1');
@@ -273,7 +274,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'backend' && smallCategory === 'spring'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >
@@ -289,7 +290,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/backend/django/?page=1');
@@ -306,7 +307,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'backend' && smallCategory === 'django'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >
@@ -349,7 +350,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/mobile/swift/?page=1');
@@ -364,12 +365,12 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'mobile' && smallCategory === 'swift'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >
           {' '}
-          <DiSwift />
+          <GrSwift />
           <Box>Swift</Box>
         </HStack>
         <HStack
@@ -380,7 +381,7 @@ const MenuBtn = () => {
           _hover={{
             borderRadius: 'lg',
             color: 'white',
-            bg: '#003C93',
+            bg: '#769dd6',
           }}
           onClick={() => {
             navigate('/lectures/mobile/android/?page=1');
@@ -397,7 +398,7 @@ const MenuBtn = () => {
           }
           bg={
             bigCategory === 'mobile' && smallCategory === 'android'
-              ? '#003C93'
+              ? '#769dd6'
               : null
           }
         >

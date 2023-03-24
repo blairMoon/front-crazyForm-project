@@ -101,7 +101,7 @@ function Router() {
             </Layout>
           }
         /> */}
-        <Route path="/lectureplay" element={<Video />} />
+        <Route path="/lectureplay/:id/:video" element={<Video />} />
       </Routes>
     </BrowserRouter>
   );
