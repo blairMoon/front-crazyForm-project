@@ -67,11 +67,7 @@ const Video = () => {
     data: videoList,
     isLoading,
     isError,
-<<<<<<< HEAD
-  } = useQuery('videoList', fetchVideoList);
-=======
   } = useQuery(['videoList', id], () => fetchVideoList(id));
->>>>>>> 423eb3c082755dc9ab7427d6775ec9a65cf03562
 
   const getVideoUrl = () => {
     const searchParams = new URLSearchParams(location.search);
@@ -93,42 +89,6 @@ const Video = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
-<<<<<<< HEAD
-
-  return (
-    <>
-      <LectureHeader />
-      <Flex justifyContent="space-between">
-        <Box
-          width="100%"
-          maxWidth={`${maxWidth}px`}
-          position="relative"
-          paddingTop={`calc(100% * ${aspectRatio})`}
-          maxHeight={`${maxHeight}px`}
-          margin="auto"
-          overflow="hidden"
-        >
-          <ReactPlayer
-            className="react-player"
-            style={{ position: 'absolute', top: 0, left: 0 }}
-            width="100%" // 플레이어 크기 (가로)
-            height="100%" // 플레이어 크기 (세로)
-            url={getVideoUrl()}
-            playing={true} // 자동 재생 on
-            muted={true} // 자동 재생 on
-            loop={false} // 무한 반복 여부
-            controls={true} // 플레이어 컨트롤 노출 여부
-            light={false} // 플레이어 모드
-            pip={true} // pip 모드 설정 여부
-            played={playedSeconds}
-            onProgress={handleProgress}
-            onReady={handlePlayerReady}
-            onDuration={handleDuration} //영상길이
-            config={{
-              youtube: {
-                playerVars: {
-                  origin: window.location.origin,
-=======
   if (videoList) {
     console.log('videoList', videoList);
     return (
@@ -165,7 +125,6 @@ const Video = () => {
                   playerVars: {
                     origin: window.location.origin,
                   },
->>>>>>> 423eb3c082755dc9ab7427d6775ec9a65cf03562
                 },
               }}
             />
