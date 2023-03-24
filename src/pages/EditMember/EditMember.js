@@ -179,7 +179,6 @@ const EditMember = () => {
                       {...register('gender', { required: true })}
                     />
                     <label
-                      className={css.genderlabel}
                       className={
                         data.gender === 'female' ? css.genderlabel : css.none
                       }
