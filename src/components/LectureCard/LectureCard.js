@@ -25,6 +25,7 @@ const LectureCard = ({
   targetAudience,
   thumbnail,
   rating,
+  reviewsNum,
 }) => {
   return (
     <Link to={`/lectures/${lectureNumber}`}>
@@ -77,7 +78,10 @@ const LectureCard = ({
             <Text py="2">{instructor}</Text>
 
             <HStack spacing="3px">
-              <StarRating rating={5} />
+              <StarRating rating={rating} />
+              <Text fontSize="12" fontWeight="600">
+                ({reviewsNum})
+              </Text>
             </HStack>
           </CardBody>
         </Stack>

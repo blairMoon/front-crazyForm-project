@@ -1,28 +1,22 @@
 import Cookies from 'js-cookie';
 
 export function getAccessToken() {
-  const token = Cookies.get('token');
-  console.log('Token before removal:', token);
-  if (!token) throw new Error('No token found');
-  return token;
+  const access = Cookies.get('access');
+  console.log('Token before removal:', access);
+  if (!access) throw new Error('No token found');
+  return access;
+}
+export function getRefreshToken() {
+  const refresh = Cookies.get('refresh');
+  if (!refresh) throw new Error('No refresh token found');
+  return refresh;
 }
 
 export const removeAccessToken = () => {
-  Cookies.remove('token');
-  Cookies.remove('sessionid');
+  Cookies.remove('access');
+  Cookies.remove('refresh');
 };
 
-export const removeSessionId = () => {
-  Cookies.remove('sessionid', {
-    path: '/',
-    domain: '127.0.0.1',
-    sameSite: 'Lax',
-  });
-};
-export const logout = () => {
-  Cookies.remove('sessionid');
-  Cookies.remove('token');
-};
 // export const logout = async () => {
 //   try {
 //     const response = await fetch(

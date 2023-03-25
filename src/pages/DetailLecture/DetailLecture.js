@@ -8,9 +8,6 @@ import {
   registerLecture,
 } from '../../api';
 
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-
 import StarRating from '../../components/LectureCard/StarRating';
 import Review from '../../components/Reviews/Review';
 import ReviewForm from '../../components/Reviews/ReviewForm';
@@ -37,7 +34,7 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ModalLecture from '../../components/Button/ModalLecture';
+import ModalLecture from '../../components/Modal/ModalLecture';
 import StartButton from '../../components/Button/StartButton';
 // import QnaButton from '../../components/Button/QnaButton';
 import { useNavigate } from 'react-router-dom';
@@ -71,14 +68,14 @@ const DetailLecture = () => {
 
   const lectureNum = lectureData?.LectureId;
 
-  const onRegister = async () => {
-    try {
-      await mutate({ lectureNum });
-      navigate('/userinfo');
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const onRegister = async () => {
+  //   try {
+  //     await mutate({ lectureNum });
+  //     navigate('/userinfo');
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const onSubmit = () => {
     console.log('onSubmit');
     mutate(id);
@@ -140,7 +137,10 @@ const DetailLecture = () => {
                 <Box>
                   <StarRating rating={data.rating} /> ({data.rating})
                 </Box>
-                <Box>{data.reviews_num}개의 수강평 ∙ 4088명의 수강생</Box>
+                <Box>
+                  {data.reviews_num}개의 수강평 ∙ {data.total_student}명의
+                  수강생
+                </Box>
                 <Box>
                   <Stack direction="row" spacing={4}>
                     <Button

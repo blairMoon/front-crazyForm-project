@@ -11,7 +11,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import EditMember from '../EditMember/EditMember';
-import MyLecture from '../Mylecturepage/Mylecture';
+import MyLecture from '../../components/Mylecturepage/Mylecture';
 // import WholeLectures from '../WholeLectures/WholeLectures';
 function UserInfoPage() {
   return (

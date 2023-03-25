@@ -1,19 +1,23 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
   // baseURL: 'http://101.101.216.129:8001/api/v1/',
+
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-    Jwt: Cookies.get('token'),
+    // Jwt: Cookies.get('access'),
+    Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
 });
 
 export async function userNameLogin({ username, password }) {
   const response = await fetch(
-    'http://127.0.0.1:8000/api/v1/users/jwttoken  ',
+    'http://127.0.0.1:8000/api/v1/users/jwt-token-auth/  ',
     {
       method: 'POST',
       headers: {
@@ -26,13 +30,38 @@ export async function userNameLogin({ username, password }) {
 
   if (response.ok) {
     const data = await response.json();
-    const token = data.token;
-    Cookies.set('token', token);
+    const refresh = data.refresh;
+    const access = data.access;
+
+    Cookies.set('access', access);
+    Cookies.set('refresh', refresh);
+
     return true;
   } else {
     const { message } = await response.json();
     throw new Error(message);
   }
+}
+export async function postRefreshToken(refresh, access) {
+  try {
+    const response = await axios.post(
+      'http://127.0.0.1:8000/api/v1/users/jwt-token-auth/refresh/',
+      {
+        refresh,
+        access,
+      }
+    );
+    return response.data.access;
+  } catch (error) {
+    console.error('Error refreshing token:', error);
+    return null;
+  }
+}
+export function isTokenExpired(access) {
+  if (!access) return true;
+  const decodedToken = jwtDecode(access);
+  const currentTime = new Date().getTime() / 1000;
+  return decodedToken.exp < currentTime;
 }
 
 export const signUpUser = data => {
@@ -89,11 +118,7 @@ export const registerLecture = lectureNum => {
     .put(`users/calculated-lectures/${lectureNum}/`, '')
     .then(res => res.status);
 };
-// export const postReview = async ({ lectureNum, data }) => {
-//   try {
-//     const res = await instance.post(`reviews/${lectureNum}`, data);
-//     return res.data;
-//   } catch (error) {
-//     throw new Error(error.response.data.message);
-//   }
-// };
+
+export const fetchVideoList = lectureId => {
+  return instance.get(`videos/lectures/${lectureId}`).then(res => res.data);
+};

@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ initialValues, onSubmit }) => {
   const navigate = useNavigate();
+  const [idCheck, setIdCheck] = useState('');
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -31,7 +32,7 @@ const Signup = ({ initialValues, onSubmit }) => {
     return instance
       .get(`users/@${id}`)
       .then(res => res.data)
-      .then(res => alert(res));
+      .then(res => setIdCheck(res));
   };
 
   const {
@@ -56,7 +57,9 @@ const Signup = ({ initialValues, onSubmit }) => {
       <div className={css.Container}>
         <div className={css.Wrapper}>
           <div className={css.TopBox}>
-            <h2 className={css.h2}>백관열의 개발상담소</h2>
+            <h2 className={css.h2}>
+              <img src="/images/logo.png" alt="logo" width="200" />
+            </h2>
 
             <h1 className={css.h1}>회원가입</h1>
             <form className={css.Form} onSubmit={handleSubmit(submitForm)}>

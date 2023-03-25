@@ -5,8 +5,9 @@ import css from './Login.module.scss';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { isLoggedInVar } from '../../apollo';
-import { getAccessToken } from '../../Token';
+import { getAccessToken, getRefreshToken } from '../../Token';
 import { userNameLogin } from '../../api';
+import { postRefreshToken } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 
 import Cookies from 'js-cookie';
@@ -22,6 +23,7 @@ const LoginPage = () => {
 
       isLoggedInVar(true);
       navigate('/');
+      window.location.reload();
     },
     onError: e => {
       console.log(e);
@@ -29,6 +31,7 @@ const LoginPage = () => {
     },
     headers: isLoggedInVar() && {
       Authorization: `Bearer ${getAccessToken()}`,
+      'X-Refresh-Token': getRefreshToken(),
     },
   });
 

@@ -93,6 +93,7 @@ export default function Header(props) {
               color={useColorModeValue('gray.800', 'white')}
             >
               Kwanyeol and the kids.
+              {/* <img src="/images/logo.png" alt="logo" width="30" /> */}
             </Text>
           </Link>
 

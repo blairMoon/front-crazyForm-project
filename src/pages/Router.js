@@ -10,7 +10,7 @@ import DetailLecture from './DetailLecture/DetailLecture';
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
 import Layout from '../components/Layout/Layout';
-import MyLecture from './Mylecturepage/Mylecture';
+import MyLecture from '../components/Mylecturepage/Mylecture';
 import Video from './Lectureplaypage/Lectureplay';
 
 function Router() {
@@ -93,15 +93,15 @@ function Router() {
             </Layout>
           }
         />
-        <Route
+        {/* <Route
           path="/mylecture"
           element={
             <Layout>
               <MyLecture />
             </Layout>
           }
-        />
-        <Route path="/lectureplay" element={<Video />} />
+        /> */}
+        <Route path="/lectureplay/:id/:video" element={<Video />} />
       </Routes>
     </BrowserRouter>
   );
