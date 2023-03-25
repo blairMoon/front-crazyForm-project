@@ -22,6 +22,9 @@ import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
 import { fetchVideoList } from '../../api';
 import { BsListUl } from 'react-icons/bs';
+import LectureCard from '../../components/LectureCard/LectureCard';
+
+import VideoList from '../../components/VideoList/VideoList';
 
 const Video = () => {
   const navigate = useNavigate();
@@ -64,15 +67,13 @@ const Video = () => {
       }
     }
   }, []);
-  const { lectureId, videoId } = useParams();
-  console.log(videoId);
+  const { lectureId, num } = useParams();
 
-  console.log(id);
   const {
     data: videoList,
     isLoading,
     isError,
-  } = useQuery(['videoList', id], () => fetchVideoList(id));
+  } = useQuery(['videoList', lectureId, num], fetchVideoList);
 
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
@@ -108,7 +109,7 @@ const Video = () => {
               style={{ position: 'absolute', top: 0, left: 0 }}
               width="100%" // 플레이어 크기 (가로)
               height="100%" // 플레이어 크기 (세로)
-              url={videoList[0].videoFile}
+              url={videoList.url.videoFile}
               playing={true} // 자동 재생 on
               muted={true} // 자동 재생 on
               loop={false} // 무한 반복 여부
@@ -144,22 +145,24 @@ const Video = () => {
               <DrawerCloseButton />
               <DrawerHeader>
                 <Box fontSize="24">목차</Box>
-                <Box>강의 제목</Box>
+                <Box>{videoList.url.calculatedLecture.lectureTitle}</Box>
                 <Box fontSize="14">진도율 : 3강/18강 (16.67%)</Box>
                 <Box fontSize="14">시간 : 18분/2시간 37분</Box>
                 <Box>프로그레스바~~</Box>
               </DrawerHeader>
 
-              <DrawerBody width="100%">
-                <Box width="100%" bg="gray.100">
-                  Chapter
-                </Box>
-                <Box>1</Box>
-                <Box>2</Box>
-                <Box>3</Box>
-                <Box>4</Box>
-                <Box>5</Box>
-                <Box>6</Box>
+              <DrawerBody width="100%" fontWeight="600">
+                <Stack spacing={3}>
+                  {videoList.list?.map((video, index) => (
+                    <VideoList
+                      key={video.id}
+                      videoId={video.id}
+                      videoTitle={video.title}
+                      videoLength={video.videoLength}
+                      lectureId={lectureId}
+                    />
+                  ))}
+                </Stack>
               </DrawerBody>
 
               <DrawerFooter></DrawerFooter>
