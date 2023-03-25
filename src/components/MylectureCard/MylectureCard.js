@@ -74,7 +74,7 @@ const MylectureCard = ({
                 onClick={e => {
                   // e.preventDefault();
 
-                  navigate('/lectureplay');
+                  navigate(`/lectureplay/${lectureNumber}/1`);
                 }}
               >
                 <BsPlayCircle size={30} />

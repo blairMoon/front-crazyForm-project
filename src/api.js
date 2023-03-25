@@ -118,7 +118,21 @@ export const registerLecture = lectureNum => {
     .put(`users/calculated-lectures/${lectureNum}/`, '')
     .then(res => res.status);
 };
-
-export const fetchVideoList = lectureId => {
-  return instance.get(`videos/lectures/${lectureId}`).then(res => res.data);
+export const fetchVideoList = async ({ queryKey }) => {
+  const [, lectureId, num] = queryKey;
+  return await instance
+    .get(`videos/lectures/${lectureId}/${num}`)
+    .then(res => res.data);
 };
+
+export const savePlayedSeconds = ({ lectureId, num, lastPlayed }) => {
+  return instance
+    .put(`watchedlectures/${lectureId}/${num}`, { lastPlayed })
+    .then(res => res.data);
+};
+
+// export const postReply = ({ lectureNum, reviewNum, data }) => {
+//   return instance
+//     .post(`reviews/${lectureNum}/${reviewNum}`, data)
+//     .then(res => res.data);
+// };

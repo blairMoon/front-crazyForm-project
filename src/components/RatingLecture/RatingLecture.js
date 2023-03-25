@@ -1,9 +1,9 @@
 import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import LectureCard from '../../components/LectureCard/LectureCard';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import MylectureCard from '../MylectureCard/MylectureCard';
 import { Box, Grid, GridItem } from '@chakra-ui/react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureInfo } from '../../api';
@@ -25,7 +25,7 @@ function MyLecture() {
             >
               {data.calculatedLecture?.map(item => (
                 <GridItem key={item.lecture.LectureId} mx="auto">
-                  <LectureCard
+                  <MylectureCard
                     lectureNumber={item.lecture.LectureId}
                     key={item.id}
                     img={item.lecture.thumbnail}
