@@ -67,12 +67,12 @@ const Video = () => {
   const { lectureId, videoId } = useParams();
   console.log(videoId);
 
-  console.log(id);
+  console.log(lectureId);
   const {
     data: videoList,
     isLoading,
     isError,
-  } = useQuery(['videoList', id], () => fetchVideoList(id));
+  } = useQuery(['videoList', lectureId, videoId], () => fetchVideoList);
 
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
@@ -89,6 +89,7 @@ const Video = () => {
     setIsDrawerOpen(false);
   };
   if (videoList) {
+    console.log(videoList);
     console.log('videoList', videoList);
     return (
       <>

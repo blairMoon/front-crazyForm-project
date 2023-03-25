@@ -84,8 +84,9 @@ export const registerLecture = lectureNum => {
     .then(res => res.status);
 };
 
-export const fetchVideoList = ({ lectureId, video }) => {
-  return instance
-    .get(`videos/lectures/${lectureId}/${video}`)
+export const fetchVideoList = async ({ queryKey }) => {
+  const [, lectureId, videoId] = queryKey;
+  return await instance
+    .get(`videos/lectures/${lectureId}/${videoId}`)
     .then(res => res.data);
 };
