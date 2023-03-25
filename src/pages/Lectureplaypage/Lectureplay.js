@@ -3,9 +3,6 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
   Box,
-  Heading,
-  VStack,
-  HStack,
   Stack,
   Flex,
   Drawer,
@@ -15,58 +12,63 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-  Input,
   Button,
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
-import { fetchVideoList } from '../../api';
+import { fetchVideoList, savePlayedSeconds } from '../../api';
 import { BsListUl } from 'react-icons/bs';
-import LectureCard from '../../components/LectureCard/LectureCard';
 
 import VideoList from '../../components/VideoList/VideoList';
 
 const Video = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const pageNum = params.get('page');
   const [playedSeconds, setPlayedSeconds] = useState(0);
-  const [categoryName, setCategoryName] = useState('');
+
   const playerRef = useRef(null);
-  console.log(params);
-  // const handlePlayerReady = () => {
-  //   if (playedSeconds > 0) {
-  //     playerRef.current?.parseFloseekTo(at(playedSeconds), 'seconds');
-  //   }
-  // };
+
   const handleDuration = duration => {
-    console.log(duration); // logs the video duration in seconds
+    console.log('duration', duration); // logs the video duration in seconds
   };
 
   const handleProgress = state => {
-    const now = new Date().getTime();
-    const data = {
-      playedSeconds: state.playedSeconds,
-      lastPlayed: now,
-    };
-    localStorage.setItem('videoData', JSON.stringify(data));
     setPlayedSeconds(state.playedSeconds);
   };
-  useEffect(() => {
-    const savedData = localStorage.getItem('videoData');
-    if (savedData) {
-      const { playedSeconds, lastPlayed } = JSON.parse(savedData);
-      const now = new Date().getTime();
-      console.log('time', new Date().getTime());
-      const timeDiff = now - lastPlayed;
-      if (timeDiff < 86400000) {
-        // 24 hours in milliseconds
-        setPlayedSeconds(parseFloat(playedSeconds));
-        playerRef.current?.seekTo(parseFloat(playedSeconds), 'seconds');
-      }
-    }
-  }, []);
+
+  // useEffect(() => {
+  //   const fetchPlayedSeconds = async () => {
+  //     const fetchedPlayedSeconds = await getPlayedSeconds();
+  //     setPlayedSeconds(parseFloat(fetchedPlayedSeconds));
+  //     playerRef.current?.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
+  //   };
+
+  //   fetchPlayedSeconds();
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchPlayedSeconds = async () => {
+  //     try {
+  //       const videoItem = videoList.list?.find(
+  //         video => video.id.toString() === num
+  //       );
+  //       const fetchedPlayedSeconds = videoItem?.lastPlayed;
+
+  //       if (fetchedPlayedSeconds) {
+  //         setPlayedSeconds(parseFloat(fetchedPlayedSeconds));
+  //         playerRef.current?.seekTo(
+  //           parseFloat(fetchedPlayedSeconds),
+  //           'seconds'
+  //         );
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching played seconds:', error);
+  //     }
+  //   };
+
+  //   if (videoList) {
+  //     fetchPlayedSeconds();
+  //   }
+  // }, [videoList, num]);
+
   const { lectureId, num } = useParams();
   const {
     data: videoList,
@@ -88,17 +90,24 @@ const Video = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
-  const handlePause = state => {
-    const data = {
-      playedSeconds: state.playedSeconds,
-      lastPlayed: new Date().getTime(),
-    };
-    localStorage.setItem('videoData', JSON.stringify(data));
-    console.log(JSON.stringify(data));
+
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(savePlayedSeconds, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['videoList']);
+    },
+  });
+
+  const handleSaveAndClose = async () => {
+    // await savePlayedSeconds(playedSeconds);
+    try {
+      await mutate({ lectureId, num, lastPlayed: playedSeconds });
+    } catch (error) {
+      console.error(error);
+    }
+    console.log('Current played seconds:', playedSeconds);
   };
   if (videoList) {
-    console.log(videoList);
-    console.log('videoList', videoList);
     return (
       <>
         <LectureHeader />
@@ -124,8 +133,8 @@ const Video = () => {
               controls={true} // 플레이어 컨트롤 노출 여부
               light={false} // 플레이어 모드
               pip={true} // pip 모드 설정 여부
-              played={playedSeconds}
-              // onProgress={handleProgress}
+              played={playedSeconds.toString()}
+              onProgress={handleProgress}
               // onPause={handlePause}
               // onReady={handlePlayerReady}
               onDuration={handleDuration} //영상길이
@@ -138,7 +147,7 @@ const Video = () => {
               }}
             />
           </Box>
-          <Button onClick={handlePause}>저장 후 닫기</Button>
+          <Button onClick={handleSaveAndClose}>저장 후 닫기</Button>
           <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
             {<BsListUl size={35} style={{ color: 'black' }} />}
           </Button>

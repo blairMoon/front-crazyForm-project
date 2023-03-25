@@ -89,3 +89,15 @@ export const fetchVideoList = async ({ queryKey }) => {
     .get(`videos/lectures/${lectureId}/${num}`)
     .then(res => res.data);
 };
+
+export const savePlayedSeconds = ({ lectureId, num, lastPlayed }) => {
+  return instance
+    .put(`watchedlectures/${lectureId}/${num}`, { lastPlayed })
+    .then(res => res.data);
+};
+
+// export const postReply = ({ lectureNum, reviewNum, data }) => {
+//   return instance
+//     .post(`reviews/${lectureNum}/${reviewNum}`, data)
+//     .then(res => res.data);
+// };
