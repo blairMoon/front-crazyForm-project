@@ -64,15 +64,15 @@ const Video = () => {
       }
     }
   }, []);
-  const { lectureId, videoId } = useParams();
-  console.log(videoId);
+  const { lectureId, num } = useParams();
+  console.log(num);
 
   console.log(lectureId);
   const {
     data: videoList,
     isLoading,
     isError,
-  } = useQuery(['videoList', lectureId, videoId], () => fetchVideoList);
+  } = useQuery(['videoList', lectureId, num], fetchVideoList);
 
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
@@ -87,6 +87,14 @@ const Video = () => {
 
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
+  };
+  const handlePause = state => {
+    const data = {
+      playedSeconds: state.playedSeconds,
+      lastPlayed: new Date().getTime(),
+    };
+    localStorage.setItem('videoData', JSON.stringify(data));
+    console.log(JSON.stringify(data));
   };
   if (videoList) {
     console.log(videoList);
@@ -109,7 +117,7 @@ const Video = () => {
               style={{ position: 'absolute', top: 0, left: 0 }}
               width="100%" // 플레이어 크기 (가로)
               height="100%" // 플레이어 크기 (세로)
-              url={videoList[0].videoFile}
+              url={videoList.url.videoFile}
               playing={true} // 자동 재생 on
               muted={true} // 자동 재생 on
               loop={false} // 무한 반복 여부
@@ -117,7 +125,8 @@ const Video = () => {
               light={false} // 플레이어 모드
               pip={true} // pip 모드 설정 여부
               played={playedSeconds}
-              onProgress={handleProgress}
+              // onProgress={handleProgress}
+              // onPause={handlePause}
               // onReady={handlePlayerReady}
               onDuration={handleDuration} //영상길이
               config={{
@@ -129,6 +138,7 @@ const Video = () => {
               }}
             />
           </Box>
+          <Button onClick={handlePause}>저장 후 닫기</Button>
           <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
             {<BsListUl size={35} style={{ color: 'black' }} />}
           </Button>
@@ -145,7 +155,7 @@ const Video = () => {
               <DrawerCloseButton />
               <DrawerHeader>
                 <Box fontSize="24">목차</Box>
-                <Box>강의 제목</Box>
+                <Box>{videoList}</Box>
                 <Box fontSize="14">진도율 : 3강/18강 (16.67%)</Box>
                 <Box fontSize="14">시간 : 18분/2시간 37분</Box>
                 <Box>프로그레스바~~</Box>
