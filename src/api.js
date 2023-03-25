@@ -83,10 +83,17 @@ export const registerLecture = lectureNum => {
     .put(`users/calculated-lectures/${lectureNum}/`, '')
     .then(res => res.status);
 };
+<<<<<<< HEAD
 
 export const fetchVideoList = async ({ queryKey }) => {
   const [, lectureId, videoId] = queryKey;
   return await instance
     .get(`videos/lectures/${lectureId}/${videoId}`)
+=======
+export const fetchVideoList = async ({ queryKey }) => {
+  const [, lectureId, num] = queryKey;
+  return await instance
+    .get(`videos/lectures/${lectureId}/${num}`)
+>>>>>>> 28502bd468da7e6e4e4e6ae26b06260a2fb19ee3
     .then(res => res.data);
 };

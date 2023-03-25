@@ -22,6 +22,9 @@ import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
 import { fetchVideoList } from '../../api';
 import { BsListUl } from 'react-icons/bs';
+import LectureCard from '../../components/LectureCard/LectureCard';
+
+import VideoList from '../../components/VideoList/VideoList';
 
 const Video = () => {
   const navigate = useNavigate();
@@ -65,9 +68,6 @@ const Video = () => {
     }
   }, []);
   const { lectureId, num } = useParams();
-  console.log(num);
-
-  console.log(lectureId);
   const {
     data: videoList,
     isLoading,
@@ -155,22 +155,24 @@ const Video = () => {
               <DrawerCloseButton />
               <DrawerHeader>
                 <Box fontSize="24">목차</Box>
-                <Box>{videoList}</Box>
+                <Box>{videoList.url.calculatedLecture.lectureTitle}</Box>
                 <Box fontSize="14">진도율 : 3강/18강 (16.67%)</Box>
                 <Box fontSize="14">시간 : 18분/2시간 37분</Box>
                 <Box>프로그레스바~~</Box>
               </DrawerHeader>
 
-              <DrawerBody width="100%">
-                <Box width="100%" bg="gray.100">
-                  Chapter
-                </Box>
-                <Box>1</Box>
-                <Box>2</Box>
-                <Box>3</Box>
-                <Box>4</Box>
-                <Box>5</Box>
-                <Box>6</Box>
+              <DrawerBody width="100%" fontWeight="600">
+                <Stack spacing={3}>
+                  {videoList.list?.map((video, index) => (
+                    <VideoList
+                      key={video.id}
+                      videoId={video.id}
+                      videoTitle={video.title}
+                      videoLength={video.videoLength}
+                      lectureId={lectureId}
+                    />
+                  ))}
+                </Stack>
               </DrawerBody>
 
               <DrawerFooter></DrawerFooter>
