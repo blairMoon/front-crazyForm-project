@@ -83,9 +83,9 @@ export const registerLecture = lectureNum => {
     .put(`users/calculated-lectures/${lectureNum}/`, '')
     .then(res => res.status);
 };
-
-export const fetchVideoList = ({ lectureId, video }) => {
-  return instance
-    .get(`videos/lectures/${lectureId}/${video}`)
+export const fetchVideoList = async ({ queryKey }) => {
+  const [, lectureId, num] = queryKey;
+  return await instance
+    .get(`videos/lectures/${lectureId}/${num}`)
     .then(res => res.data);
 };
