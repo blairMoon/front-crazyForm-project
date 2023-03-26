@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
@@ -16,7 +22,11 @@ import {
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
-import { fetchVideoList, savePlayedSeconds } from '../../api';
+import {
+  fetchVideoList,
+  savePlayedSeconds,
+  watchedlectures80,
+} from '../../api';
 import { BsListUl } from 'react-icons/bs';
 
 import VideoList from '../../components/VideoList/VideoList';
@@ -26,6 +36,7 @@ const Video = () => {
   const [playing, setPlaying] = useState(false);
   const [loaded, setLoaded] = useState(false); // 비디오가 로드되었는지 확인하기 위한 state
   const [played80, setPlayed80] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const playerRef = useRef(null);
 
@@ -44,20 +55,34 @@ const Video = () => {
       queryClient.invalidateQueries(['videoList', lectureId, num]);
     },
   });
-
+  // const watchedlectures80Mutation = useMemo(() => {
+  //   const mutation = useMutation(watchedlectures80);
+  //   return async ({ lectureId, num, is_completed }) => {
+  //     if (isCompleted) {
+  //       await mutation.mutateAsync({ lectureId, num, is_completed });
+  //     }
+  //   };
+  // }, [isCompleted]);
+  const watchedlectures80Mutation = useCallback(
+    useMutation(watchedlectures80),
+    []
+  );
   const handleDuration = duration => {
     console.log('영상길이', duration); // logs the video duration in seconds
   };
 
   const handleProgress = state => {
-    if (played80) {
-      return;
-    }
-
     setPlayedSeconds(state.playedSeconds);
     const duration = playerRef.current?.getDuration();
-    if (duration && state.playedSeconds >= duration * 0.8) {
+    if (duration && state.playedSeconds >= duration * 0.8 && !isCompleted) {
+      setIsCompleted(true);
       setPlayed80(true);
+      watchedlectures80Mutation().mutate({
+        lectureId,
+        num,
+        is_completed: true,
+      });
+      return;
     }
   };
 
@@ -100,6 +125,12 @@ const Video = () => {
       setLoaded(true); // 비디오가 로드되었음을 알림
     }
   };
+
+  useEffect(() => {
+    if (isCompleted) {
+      watchedlectures80Mutation.mutate({ lectureId, num, is_completed: true });
+    }
+  }, [isCompleted, watchedlectures80Mutation, lectureId, num]);
 
   const handleError = e => {
     console.error('비디오 에러:', e);

@@ -8,7 +8,7 @@ import { FaHtml5, FaReact, FaMobile } from 'react-icons/fa';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureRate } from '../../api';
 import { SiSpring } from 'react-icons/si';
-import MylectureCard from '../../components/MylectureCard/MylectureCard';
+import LectureCard from '../../components/LectureCard/LectureCard';
 import StarRating from '../../components/LectureCard/StarRating';
 import {
   Flex,
@@ -97,7 +97,7 @@ function Home() {
                   <Flex display="flex" justifyContent="space-between">
                     {data.data?.slice(0, 4).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
-                        <MylectureCard
+                        <LectureCard
                           lectureNumber={item.LectureId}
                           key={item.id}
                           img={item.thumbnail}
@@ -112,7 +112,7 @@ function Home() {
                   <Flex display="flex" justifyContent="space-between">
                     {data.data?.slice(4, 8).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
-                        <MylectureCard
+                        <LectureCard
                           lectureNumber={item.LectureId}
                           key={item.id}
                           img={item.thumbnail}
