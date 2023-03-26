@@ -7,6 +7,7 @@ import { BsCheckCircleFill, BsFillPlayCircleFill } from 'react-icons/bs';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const VideoList = ({
+  index,
   videoId,
   videoTitle,
   videoLength,
@@ -14,10 +15,11 @@ const VideoList = ({
 
   numColor,
   buttonColor,
+  num,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const num = location.pathname.split('/').pop();
+  // const num = location.pathname.split('/').pop();
 
   return (
     <>
@@ -27,7 +29,7 @@ const VideoList = ({
         bg={numColor}
         _hover={{ cursor: 'pointer', background: '#dfe8f5' }}
         onClick={() => {
-          navigate(`/lectureplay/${lectureId}/${videoId}`);
+          navigate(`/lectureplay/${lectureId}/${index}`);
         }}
       >
         <Box p="1">

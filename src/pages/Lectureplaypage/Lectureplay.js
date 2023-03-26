@@ -77,7 +77,7 @@ const Video = () => {
     if (duration && state.playedSeconds >= duration * 0.8 && !isCompleted) {
       setIsCompleted(true);
       setPlayed80(true);
-      watchedlectures80Mutation().mutate({
+      watchedlectures80Mutation.mutate({
         lectureId,
         num,
         is_completed: true,
@@ -214,11 +214,13 @@ const Video = () => {
                 <Stack spacing={3}>
                   {videoList.list?.map((video, index) => (
                     <VideoList
+                      index={index + 1}
                       key={video.id}
                       videoId={video.id}
                       videoTitle={video.title}
                       videoLength={video.videoLength}
                       lectureId={lectureId}
+                      num={num}
                       numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
                       buttonColor={
                         index + 1 == num && played80 ? 'pink' : 'yellow'
