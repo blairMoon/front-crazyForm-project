@@ -13,7 +13,6 @@ export const instance = axios.create({
   },
   withCredentials: true,
 });
-
 instance.interceptors.response.use(
   response => {
     return response;
@@ -106,7 +105,7 @@ export async function postRefreshToken(refresh, access) {
 // }
 
 export const signUpUser = data => {
-  return instance.post('users/', data).then(res => res.data);
+  return instanceNotLogin.post('users/', data).then(res => res.data);
 };
 
 export const getMyProfile = () => {
@@ -123,24 +122,24 @@ export const getLectureInfo = () => {
   return instance.get(`users/myprofile`).then(res => res.data);
 };
 export const getLectureRate = () => {
-  return instance.get(`lectures/mainpage`).then(res => res.data);
+  return instance.get(`lectures/all/all`).then(res => res.data);
 };
 
 export const getLectureDetail = page => {
-  return instance.get(`lectures/${page}`).then(res => res.data);
+  return instanceNotLogin.get(`lectures/${page}`).then(res => res.data);
 };
 
 export const getLectureAndCategoryAndSearch = async ({ queryKey }) => {
   const [, bigCategory, smallCategory, page, searchName] = queryKey;
 
   if (searchName) {
-    return await instance
+    return await instanceNotLogin
       .get(
         `lectures/${bigCategory}/${smallCategory}/?page=${page}&search=${searchName}`
       )
       .then(res => res.data);
   } else {
-    return await instance
+    return await instanceNotLogin
       .get(`lectures/${bigCategory}/${smallCategory}/?page=${page}`)
       .then(res => res.data);
   }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
   getLectureDetail,
@@ -7,11 +8,11 @@ import {
   postReply,
   registerLecture,
 } from '../../api';
-
+import ModalConfirm from '../../components/Modal/ModalConfirm';
 import StarRating from '../../components/LectureCard/StarRating';
 import Review from '../../components/Reviews/Review';
 import ReviewForm from '../../components/Reviews/ReviewForm';
-
+import { getAccessToken } from '../../Token';
 import {
   faChalkboardTeacher,
   faShare,
@@ -42,6 +43,7 @@ import { useNavigate } from 'react-router-dom';
 const DetailLecture = () => {
   const { id } = useParams();
   const [registerLectureClick, setRegisterLectureClick] = useState(false);
+  const [loginCheck, setLoginCheck] = useState(true);
   const [lectureData, setLectureData] = useState(null);
   const { isLoading, error, data } = useQuery(['lectureInfo', id], () =>
     getLectureDetail(id)
@@ -66,8 +68,6 @@ const DetailLecture = () => {
 
   const reviewsToShow = 5 * (loadMoreCount + 1); // 처음 5개, 10개, 15개 이런 식으로 늘어남.
 
-  const lectureNum = lectureData?.LectureId;
-
   // const onRegister = async () => {
   //   try {
   //     await mutate({ lectureNum });
@@ -76,6 +76,17 @@ const DetailLecture = () => {
   //     console.error(error);
   //   }
   // };
+  const handleRegisterClick = () => {
+    try {
+      const token = Cookies.get('access');
+
+      if (!token) throw new Error('No token found');
+      // use the access token here
+      setRegisterLectureClick(true);
+    } catch (error) {
+      setLoginCheck(false);
+    }
+  };
   const onSubmit = () => {
     console.log('onSubmit');
     mutate(id);
@@ -147,9 +158,7 @@ const DetailLecture = () => {
                       colorScheme="black"
                       variant="outline"
                       w="150px"
-                      onClick={() => {
-                        setRegisterLectureClick(true);
-                      }}
+                      onClick={handleRegisterClick}
                     >
                       <RiHomeHeartLine size={20} /> &nbsp;&nbsp;수강하기
                     </Button>
@@ -210,14 +219,18 @@ const DetailLecture = () => {
         </GridItem>
       </Grid>
       <StartButton lectureTitle={data.lectureTitle} />
-      {registerLectureClick ? (
+      {registerLectureClick && loginCheck ? (
         <ModalLecture
           onSubmit={onSubmit}
-          isOpen={registerLectureClick}
+          isOpen={registerLectureClick && loginCheck}
           onClose={() => setRegisterLectureClick(false)}
         />
       ) : (
-        ''
+        <ModalConfirm
+          onSubmit={onSubmit}
+          onClose={() => setRegisterLectureClick(false)}
+          isOpen={!loginCheck}
+        />
       )}
     </>
   );

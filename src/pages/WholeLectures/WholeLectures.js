@@ -26,7 +26,7 @@ import {
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureAndCategoryAndSearch } from '../../api';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-
+import { getAccessToken } from '../../Token';
 function WholeLectures() {
   const { bigCategory, smallCategory } = useParams();
   const [categoryName, setCategoryName] = useState('');
