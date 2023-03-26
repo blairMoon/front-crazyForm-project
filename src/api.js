@@ -9,7 +9,7 @@ export const instance = axios.create({
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
     // Jwt: Cookies.get('access'),
-    Authorization: 'Bearer ' + Cookies.get('access'),
+    // Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
 });

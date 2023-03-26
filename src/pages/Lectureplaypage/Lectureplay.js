@@ -23,8 +23,24 @@ import VideoList from '../../components/VideoList/VideoList';
 
 const Video = () => {
   const [playedSeconds, setPlayedSeconds] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [loaded, setLoaded] = useState(false); // 비디오가 로드되었는지 확인하기 위한 state
 
   const playerRef = useRef(null);
+
+  const { lectureId, num } = useParams();
+  const {
+    data: videoList,
+    isLoading,
+    isError,
+  } = useQuery(['videoList', lectureId, num], fetchVideoList);
+
+  const queryClient = useQueryClient();
+  const savePlayedSecondsMutation = useMutation(savePlayedSeconds, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['videoList', lectureId, num]);
+    },
+  });
 
   const handleDuration = duration => {
     console.log('duration', duration); // logs the video duration in seconds
@@ -34,47 +50,16 @@ const Video = () => {
     setPlayedSeconds(state.playedSeconds);
   };
 
-  // useEffect(() => {
-  //   const fetchPlayedSeconds = async () => {
-  //     const fetchedPlayedSeconds = await getPlayedSeconds();
-  //     setPlayedSeconds(parseFloat(fetchedPlayedSeconds));
-  //     playerRef.current?.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
-  //   };
-
-  //   fetchPlayedSeconds();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchPlayedSeconds = async () => {
-  //     try {
-  //       const videoItem = videoList.list?.find(
-  //         video => video.id.toString() === num
-  //       );
-  //       const fetchedPlayedSeconds = videoItem?.lastPlayed;
-
-  //       if (fetchedPlayedSeconds) {
-  //         setPlayedSeconds(parseFloat(fetchedPlayedSeconds));
-  //         playerRef.current?.seekTo(
-  //           parseFloat(fetchedPlayedSeconds),
-  //           'seconds'
-  //         );
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching played seconds:', error);
-  //     }
-  //   };
-
-  //   if (videoList) {
-  //     fetchPlayedSeconds();
-  //   }
-  // }, [videoList, num]);
-
-  const { lectureId, num } = useParams();
-  const {
-    data: videoList,
-    isLoading,
-    isError,
-  } = useQuery(['videoList', lectureId, num], fetchVideoList);
+  useEffect(() => {
+    const fetchedPlayedSeconds = videoList?.lastPlayed;
+    if (fetchedPlayedSeconds) {
+      setPlayedSeconds(parseFloat(fetchedPlayedSeconds));
+      playerRef.current?.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
+    } else {
+      setPlayedSeconds(0);
+      playerRef.current?.seekTo(0, 'seconds');
+    }
+  }, [videoList]);
 
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
@@ -83,30 +68,33 @@ const Video = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const btnRef = useRef();
 
-  const handleDrawerOpen = () => {
-    setIsDrawerOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setIsDrawerOpen(false);
-  };
-
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation(savePlayedSeconds, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['videoList']);
-    },
-  });
-
   const handleSaveAndClose = async () => {
-    // await savePlayedSeconds(playedSeconds);
     try {
-      await mutate({ lectureId, num, lastPlayed: playedSeconds });
+      await savePlayedSecondsMutation.mutateAsync({
+        lectureId,
+        num,
+        lastPlayed: playedSeconds,
+      });
     } catch (error) {
       console.error(error);
     }
     console.log('Current played seconds:', playedSeconds);
   };
+
+  const handlePlayerReady = () => {
+    const fetchedPlayedSeconds = videoList?.lastPlayed;
+    if (fetchedPlayedSeconds && !loaded) {
+      playerRef.current.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
+      setPlaying(true); // 재생 시작
+      setLoaded(true); // 비디오가 로드되었음을 알림
+    }
+  };
+
+  const handleError = e => {
+    console.error('비디오 에러:', e);
+  };
+
+  // console.log(videoList?.lastPlayed);
   if (videoList) {
     return (
       <>
@@ -127,17 +115,23 @@ const Video = () => {
               width="100%" // 플레이어 크기 (가로)
               height="100%" // 플레이어 크기 (세로)
               url={videoList.url.videoFile}
-              playing={true} // 자동 재생 on
+              playing={playing} // 변경된 부분
               muted={true} // 자동 재생 on
               loop={false} // 무한 반복 여부
               controls={true} // 플레이어 컨트롤 노출 여부
               light={false} // 플레이어 모드
               pip={true} // pip 모드 설정 여부
-              played={playedSeconds.toString()}
+              played={[
+                videoList?.lastPlayed || 0, // 서버에서 받아온 playedSeconds 또는 0
+                undefined, // 영상의 끝까지 재생
+              ]}
               onProgress={handleProgress}
               // onPause={handlePause}
               // onReady={handlePlayerReady}
               onDuration={handleDuration} //영상길이
+              ref={playerRef}
+              onReady={handlePlayerReady}
+              onError={handleError}
               config={{
                 youtube: {
                   playerVars: {
@@ -148,7 +142,11 @@ const Video = () => {
             />
           </Box>
           <Button onClick={handleSaveAndClose}>저장 후 닫기</Button>
-          <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
+          <Button
+            ref={btnRef}
+            colorScheme="ghost"
+            onClick={() => setIsDrawerOpen(true)}
+          >
             {<BsListUl size={35} style={{ color: 'black' }} />}
           </Button>
         </Flex>
@@ -156,7 +154,7 @@ const Video = () => {
         <Drawer
           isOpen={isDrawerOpen}
           placement="right"
-          onClose={handleDrawerClose}
+          onClose={() => setIsDrawerOpen(false)}
           finalFocusRef={btnRef}
         >
           <DrawerOverlay>
