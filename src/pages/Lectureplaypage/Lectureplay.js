@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
@@ -25,6 +25,7 @@ const Video = () => {
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [loaded, setLoaded] = useState(false); // 비디오가 로드되었는지 확인하기 위한 state
+  const [played80, setPlayed80] = useState(false);
 
   const playerRef = useRef(null);
 
@@ -34,7 +35,9 @@ const Video = () => {
     isLoading,
     isError,
   } = useQuery(['videoList', lectureId, num], fetchVideoList);
-
+  // useEffect(() => {
+  //   handleProgress();
+  // }, [buttonColor]);
   const queryClient = useQueryClient();
   const savePlayedSecondsMutation = useMutation(savePlayedSeconds, {
     onSuccess: () => {
@@ -43,11 +46,19 @@ const Video = () => {
   });
 
   const handleDuration = duration => {
-    console.log('duration', duration); // logs the video duration in seconds
+    console.log('영상길이', duration); // logs the video duration in seconds
   };
 
   const handleProgress = state => {
+    if (played80) {
+      return;
+    }
+
     setPlayedSeconds(state.playedSeconds);
+    const duration = playerRef.current?.getDuration();
+    if (duration && state.playedSeconds >= duration * 0.8) {
+      setPlayed80(true);
+    }
   };
 
   useEffect(() => {
@@ -178,6 +189,9 @@ const Video = () => {
                       videoLength={video.videoLength}
                       lectureId={lectureId}
                       numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
+                      buttonColor={
+                        index + 1 == num && played80 ? 'pink' : 'yellow'
+                      }
                     />
                   ))}
                 </Stack>

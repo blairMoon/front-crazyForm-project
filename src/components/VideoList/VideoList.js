@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Box, HStack } from '@chakra-ui/react';
+import { Box, HStack, Button } from '@chakra-ui/react';
 
 import { BsCheckCircleFill, BsFillPlayCircleFill } from 'react-icons/bs';
 
@@ -13,10 +13,14 @@ const VideoList = ({
   lectureId,
   watchVideo,
   numColor,
+  buttonColor,
+  played80,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const num = location.pathname.split('/').pop();
+  const [color, setColor] = useState('');
+
   // console.log(num);
   useEffect(() => {
     setBackgroundColor(num === videoId ? 'pink' : 'white');
@@ -29,7 +33,9 @@ const VideoList = ({
   //   console.log(num);
   //   console.log(videoId);
   // }, [num, videoId]);
-  console.log(videoId);
+  useEffect(() => {
+    setColor(buttonColor);
+  }, [buttonColor]);
   return (
     <>
       {/* <HStack p="2" bg="#dfe8f5" borderRadius="lg">
@@ -61,7 +67,7 @@ const VideoList = ({
         <Box p="1">
           <BsCheckCircleFill
             size={30}
-            style={{ color: watchVideo ? 'pink' : '#bdbdbf' }}
+            color={buttonColor} // played80 값에 따라 색상 변경
           />
         </Box>
         <Box>
@@ -69,6 +75,12 @@ const VideoList = ({
           <Box display="flex" alignItems="center" fontSize="14">
             <BsFillPlayCircleFill style={{ color: '#969696' }} />
             <Box pl="1">{videoLength}초</Box>
+            {/* <Button
+              colorScheme={
+                buttonColor && numColor === '#dfe8f5' ? buttonColor : 'blue'
+              }
+              size="sm"
+            ></Button> */}
           </Box>
         </Box>
       </HStack>

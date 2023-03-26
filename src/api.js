@@ -8,19 +8,16 @@ export const instance = axios.create({
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-    // Jwt: Cookies.get('access'),
-    // Authorization: 'Bearer ' + Cookies.get('access'),
+
+    Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
 });
 export const instanceNotLogin = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
-  // baseURL: 'http://101.101.216.129:8001/api/v1/',
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-    // // Jwt: Cookies.get('access'),
-    // Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
 });
