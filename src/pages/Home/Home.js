@@ -8,6 +8,7 @@ import { FaHtml5, FaReact, FaMobile } from 'react-icons/fa';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureRate } from '../../api';
 import { SiSpring } from 'react-icons/si';
+import MylectureCard from '../../components/MylectureCard/MylectureCard';
 import StarRating from '../../components/LectureCard/StarRating';
 import {
   Flex,
@@ -96,134 +97,30 @@ function Home() {
                   <Flex display="flex" justifyContent="space-between">
                     {data.data?.slice(0, 4).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
-                        <Card
-                          width={'250px'}
-                          height={'280px'}
-                          direction={{ base: 'column' }}
-                          variant="outline"
-                          _hover={{
-                            background: 'rgba(0, 0, 0, 0.4 )',
-                            zIndex: 10,
-                          }}
-                          overflow="hidden"
-                          key={item.LectureId}
-                        >
-                          <Box
-                            display="flex"
-                            flexDirection="column"
-                            position="absolute"
-                            zIndex={10}
-                            width={'250px'}
-                            height={'280px'}
-                            cursor="pointer"
-                            justifyContent="space-between"
-                            opacity="0"
-                            _hover={{
-                              opacity: '1',
-                              background: 'rgba(0, 0, 0, 0.7)',
-                              zIndex: 10,
-                            }}
-                            mr={4}
-                            padding="15px"
-                          >
-                            <Stack>
-                              <Heading size="md" color="white" pb="10px">
-                                {item.lectureTitle}
-                              </Heading>
-                              <Text color="white">
-                                {item.lectureDescription}
-                              </Text>
-                            </Stack>
-                            <Text color="red">{item.targetAudience}</Text>
-                          </Box>
-                          <Image
-                            objectFit="cover"
-                            // maxW={{ base: '100%', sm: '100%' }}
-                            minH="160"
-                            height="160"
-                            src={item.thumbnail}
-                            alt="Caffe Latte"
-                          />
-                          <HStack>
-                            <CardBody>
-                              <Heading size="md" fontSize="17px">
-                                {item.lectureTitle}
-                              </Heading>
-                              <Text py="2">{item.instructor.username}</Text>
-
-                              <HStack spacing="3px">
-                                <StarRating rating={5} />
-                              </HStack>
-                            </CardBody>
-                          </HStack>
-                        </Card>
+                        <MylectureCard
+                          lectureNumber={item.LectureId}
+                          key={item.id}
+                          img={item.thumbnail}
+                          lectureDescription={item.lectureDescription}
+                          lectureTitle={item.lectureTitle}
+                          targetAudience={item.targetAudience}
+                          instructor={item.instructor.username}
+                        />
                       </HStack>
                     ))}
                   </Flex>
                   <Flex display="flex" justifyContent="space-between">
                     {data.data?.slice(4, 8).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
-                        <Card
-                          width={'250px'}
-                          height={'280px'}
-                          direction={{ base: 'column' }}
-                          variant="outline"
-                          _hover={{
-                            background: 'rgba(0, 0, 0, 0.4 )',
-                            zIndex: 10,
-                          }}
-                          overflow="hidden"
-                          key={item.LectureId}
-                        >
-                          <Box
-                            display="flex"
-                            flexDirection="column"
-                            position="absolute"
-                            zIndex={10}
-                            width={'250px'}
-                            height={'280px'}
-                            cursor="pointer"
-                            justifyContent="space-between"
-                            opacity="0"
-                            _hover={{
-                              opacity: '1',
-                              background: 'rgba(0, 0, 0, 0.7)',
-                              zIndex: 10,
-                            }}
-                            mr={4}
-                            padding="15px"
-                          >
-                            <Stack>
-                              <Heading size="md" color="white" pb="10px">
-                                {item.lectureTitle}
-                              </Heading>
-                              <Text color="white">
-                                {item.lectureDescription}
-                              </Text>
-                            </Stack>
-                            <Text color="red">{item.targetAudience}</Text>
-                          </Box>
-                          <Image
-                            objectFit="cover"
-                            // maxW={{ base: '100%', sm: '100%' }}
-                            minH="160"
-                            height="160"
-                            src={item.thumbnail}
-                            alt="Caffe Latte"
-                          />
-                          <HStack>
-                            <CardBody>
-                              <Heading size="md" fontSize="17px">
-                                {item.lectureTitle}
-                              </Heading>
-                              <Text py="2">{item.instructor.username}</Text>
-
-                              <HStack spacing="3px">
-                                <StarRating rating={5} />
-                              </HStack>
-                            </CardBody>
-                          </HStack>
-                        </Card>
+                        <MylectureCard
+                          lectureNumber={item.LectureId}
+                          key={item.id}
+                          img={item.thumbnail}
+                          lectureDescription={item.lectureDescription}
+                          lectureTitle={item.lectureTitle}
+                          targetAudience={item.targetAudience}
+                          instructor={item.instructor.username}
+                        />
                       </HStack>
                     ))}
                   </Flex>
