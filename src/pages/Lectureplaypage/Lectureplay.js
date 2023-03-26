@@ -27,21 +27,15 @@ import LectureCard from '../../components/LectureCard/LectureCard';
 import VideoList from '../../components/VideoList/VideoList';
 
 const Video = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const pageNum = params.get('page');
-  const [playedSeconds, setPlayedSeconds] = useState(0);
-  const [categoryName, setCategoryName] = useState('');
+  const [showListVideo, setShowListVideo] = useState(false);
+  const [playedSeconds, setPlayedSeconds, duration] = useState(0);
+
   const playerRef = useRef(null);
-  console.log(params);
-  // const handlePlayerReady = () => {
-  //   if (playedSeconds > 0) {
-  //     playerRef.current?.parseFloseekTo(at(playedSeconds), 'seconds');
-  //   }
-  // };
+
   const handleDuration = duration => {
-    console.log(duration); // logs the video duration in seconds
+    console.log('duration', duration); // logs the video duration in seconds
   };
 
   const handleProgress = state => {
@@ -51,7 +45,12 @@ const Video = () => {
       lastPlayed: now,
     };
     localStorage.setItem('videoData', JSON.stringify(data));
-    setPlayedSeconds(state.playedSeconds);
+    console.log(playedSeconds);
+    if (playedSeconds > state.duration * 0.8) {
+      setShowListVideo(true);
+      console.log('hello');
+    }
+    // setPlayedSeconds(state.playedSeconds);
   };
   useEffect(() => {
     const savedData = localStorage.getItem('videoData');
@@ -62,11 +61,11 @@ const Video = () => {
       const timeDiff = now - lastPlayed;
       if (timeDiff < 86400000) {
         // 24 hours in milliseconds
-        setPlayedSeconds(parseFloat(playedSeconds));
-        playerRef.current?.seekTo(parseFloat(playedSeconds), 'seconds');
+        setPlayedSeconds(parseFloat(playedSeconds) || 0);
+        playerRef.current?.seekTo(parseFloat(playedSeconds) || 0, 'seconds');
       }
     }
-  }, []);
+  }, [playedSeconds]);
   const { lectureId, num } = useParams();
   const {
     data: videoList,
@@ -88,14 +87,7 @@ const Video = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
-  const handlePause = state => {
-    const data = {
-      playedSeconds: state.playedSeconds,
-      lastPlayed: new Date().getTime(),
-    };
-    localStorage.setItem('videoData', JSON.stringify(data));
-    console.log(JSON.stringify(data));
-  };
+
   if (videoList) {
     console.log(videoList);
     console.log('videoList', videoList);
@@ -124,8 +116,8 @@ const Video = () => {
               controls={true} // 플레이어 컨트롤 노출 여부
               light={false} // 플레이어 모드
               pip={true} // pip 모드 설정 여부
-              played={playedSeconds}
-              // onProgress={handleProgress}
+              played={playedSeconds.toString()}
+              onProgress={handleProgress}
               // onPause={handlePause}
               // onReady={handlePlayerReady}
               onDuration={handleDuration} //영상길이
@@ -138,7 +130,8 @@ const Video = () => {
               }}
             />
           </Box>
-          <Button onClick={handlePause}>저장 후 닫기</Button>
+
+          {/* <Button onClick={handleDuration}>저장 후 닫기</Button> */}
           <Button ref={btnRef} colorScheme="ghost" onClick={handleDrawerOpen}>
             {<BsListUl size={35} style={{ color: 'black' }} />}
           </Button>
@@ -165,11 +158,13 @@ const Video = () => {
                 <Stack spacing={3}>
                   {videoList.list?.map((video, index) => (
                     <VideoList
+                      watchVideo={index + 1 === num ? showListVideo : false}
                       key={video.id}
                       videoId={video.id}
                       videoTitle={video.title}
                       videoLength={video.videoLength}
                       lectureId={lectureId}
+                      numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
                     />
                   ))}
                 </Stack>
