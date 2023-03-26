@@ -81,7 +81,7 @@ function Home() {
           </VStack>
 
           <Flex>
-            <Box w="100%" h="500px" textAlign="center">
+            <Box w="100%" h="550px" textAlign="center">
               <Heading size="lg" mb="4" mt="7">
                 POPULAR CLASS
               </Heading>
@@ -94,8 +94,8 @@ function Home() {
                   // interval={5000}
                   // infiniteLoop={true}
                 >
-                  <Flex display="flex" justifyContent="space-between">
-                    {data.data?.slice(0, 4).map(item => (
+                  <Flex display="flex" justifyContent="space-between" mb={3}>
+                    {data?.slice(0, 4).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
                         <MylectureCard
                           lectureNumber={item.LectureId}
@@ -110,7 +110,7 @@ function Home() {
                     ))}
                   </Flex>
                   <Flex display="flex" justifyContent="space-between">
-                    {data.data?.slice(4, 8).map(item => (
+                    {data?.slice(4, 8).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
                         <MylectureCard
                           lectureNumber={item.LectureId}
@@ -222,11 +222,17 @@ function Home() {
 
             <Container as={Stack} maxW={'6xl'} py={10}>
               <Stack direction={'row'} justify={'center'} spacing={10} mb={10}>
-                <Text fontSize="3xl">우리</Text>
-                <Text fontSize="3xl">금쪽이가</Text>
-                <Text fontSize="3xl">달라졌어요</Text>
                 <Text fontSize="3xl" fontWeight={'bold'}>
-                  오즈코딩스쿨편
+                  기초코딩
+                </Text>
+                <Text fontSize="3xl" fontWeight={'bold'}>
+                  프론트엔드
+                </Text>
+                <Text fontSize="3xl" fontWeight={'bold'}>
+                  백엔드
+                </Text>
+                <Text fontSize="3xl" fontWeight={'bold'}>
+                  모바일
                 </Text>
               </Stack>
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
