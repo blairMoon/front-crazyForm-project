@@ -1,48 +1,41 @@
 import Cookies from 'js-cookie';
 
 export function getAccessToken() {
-  const token = Cookies.get('token');
-  console.log('Token before removal:', token);
-  if (!token) {
-    throw new Error('No token found');
-  }
-  return token;
+  const access = Cookies.get('access');
+  console.log('Token before removal:', access);
+  if (!access) throw new Error('No token found');
+  return access;
+}
+export function getRefreshToken() {
+  const refresh = Cookies.get('refresh');
+  if (!refresh) throw new Error('No refresh token found');
+  return refresh;
 }
 
 export const removeAccessToken = () => {
-  Cookies.remove('token', {
-    path: '/',
-    sameSite: 'Lax',
-  });
+  Cookies.remove('access');
+  Cookies.remove('refresh');
 };
 
-export const removeSessionId = () => {
-  Cookies.remove('sessionid', {
-    path: '/',
-    domain: '127.0.0.1',
-    sameSite: 'Lax',
-  });
-};
+// export const logout = async () => {
+//   try {
+//     const response = await fetch(
+//       'http://127.0.0.1:8000/api/v1/users/jwttoken',
+//       {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${getAccessToken()}`,
+//         },
+//       }
+//     );
 
-export const logout = async () => {
-  try {
-    const response = await fetch('https://your-domain.com/api/logout', {
-      method: 'POST',
-      headers: {
-        'X-CSRFToken': localStorage.getItem('csrftoken'),
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    });
-
-    if (response.ok) {
-      removeAccessToken();
-      removeSessionId();
-      console.log('Logout successful');
-    } else {
-      console.error('Logout failed:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Logout error:', error);
-  }
-};
+//     if (response.ok) {
+//       removeAccessToken();
+//     } else {
+//       throw new Error(`Logout failed: ${response.statusText}`);
+//     }
+//   } catch (error) {
+//     console.error('Logout error:', error);
+//   }
+// };

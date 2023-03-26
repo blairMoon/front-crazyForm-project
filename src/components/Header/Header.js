@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { isLoggedInVar } from '../../apollo';
-import { logout } from '../../Token';
+import { removeAccessToken } from '../../Token';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -35,7 +35,7 @@ export default function Header(props) {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
   const handleLogout = () => {
-    logout();
+    removeAccessToken();
     isLoggedInVar(false);
     navigate('/');
   };
