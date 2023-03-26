@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
@@ -14,6 +13,47 @@ export const instance = axios.create({
   },
   withCredentials: true,
 });
+instance.interceptors.response.use(
+  response => {
+    return response;
+  },
+  async error => {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshToken = Cookies.get('refresh');
+        const accessToken = Cookies.get('access');
+
+        const newAccessToken = await postRefreshToken(
+          refreshToken,
+          accessToken
+        );
+
+        if (newAccessToken) {
+          Cookies.set('access', newAccessToken);
+
+          // Update the Authorization header with the new access token
+          instance.defaults.headers['Authorization'] =
+            'Bearer ' + newAccessToken;
+          originalRequest.headers['Authorization'] = 'Bearer ' + newAccessToken;
+
+          return instance(originalRequest);
+        } else {
+          useNavigate('http://127.0.0.1:8000/api/v1/users/jwt-token-auth/');
+          return Promise.reject(error);
+        }
+      } catch (refreshError) {
+        useNavigate('http://127.0.0.1:8000/api/v1/users/jwt-token-auth/');
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export async function userNameLogin({ username, password }) {
   const response = await fetch(
@@ -57,12 +97,12 @@ export async function postRefreshToken(refresh, access) {
     return null;
   }
 }
-export function isTokenExpired(access) {
-  if (!access) return true;
-  const decodedToken = jwtDecode(access);
-  const currentTime = new Date().getTime() / 1000;
-  return decodedToken.exp < currentTime;
-}
+// export function isTokenExpired(access) {
+//   if (!access) return true;
+//   const decodedToken = jwtDecode(access);
+//   const currentTime = new Date().getTime() / 1000;
+//   return decodedToken.exp < currentTime;
+// }
 
 export const signUpUser = data => {
   return instance.post('users/', data).then(res => res.data);
