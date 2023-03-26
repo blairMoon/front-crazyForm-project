@@ -174,7 +174,6 @@ const Video = () => {
                 <Stack spacing={3}>
                   {videoList.list?.map((video, index) => (
                     <VideoList
-                      watchVideo={index + 1 === num ? showListVideo : false}
                       key={video.id}
                       videoId={video.id}
                       videoTitle={video.title}
