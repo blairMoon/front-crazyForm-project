@@ -7,6 +7,7 @@ import { BsCheckCircleFill, BsFillPlayCircleFill } from 'react-icons/bs';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const VideoList = ({
+  index,
   videoId,
   videoTitle,
   videoLength,
@@ -14,7 +15,6 @@ const VideoList = ({
   num,
   numColor,
   buttonColor,
-  index,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
