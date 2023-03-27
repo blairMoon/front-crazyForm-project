@@ -6,7 +6,7 @@ import css from '../Signup/Signup.module.scss';
 
 import { isLoggedInVar } from '../../apollo';
 
-import { signUpUser, instance } from '../../api';
+import { signUpUser, instance, instanceNotLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const Signup = ({ initialValues, onSubmit }) => {
   });
 
   const checkUsename = id => {
-    return instance
+    return instanceNotLogin
       .get(`users/@${id}`)
       .then(res => res.data)
       .then(res => setIdCheck(res));
