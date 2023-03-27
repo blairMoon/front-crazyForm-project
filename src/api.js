@@ -183,8 +183,13 @@ export const savePlayedSeconds = ({ lectureId, num, lastPlayed }) => {
     .then(res => res.data);
 };
 
-export const watchedlectures80 = ({ lectureId, num, is_completed }) => {
+export const watchedlectures80 = ({
+  lectureId,
+  num,
+  is_completed,
+  lastPlayed,
+}) => {
   return instance
-    .put(`watchedlectures/${lectureId}/${num}`, { is_completed })
+    .put(`watchedlectures/${lectureId}/${num}`, { is_completed, lastPlayed })
     .then(res => res.data);
 };

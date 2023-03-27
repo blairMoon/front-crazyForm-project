@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Box, HStack, Button } from '@chakra-ui/react';
 
 import { BsCheckCircleFill, BsFillPlayCircleFill } from 'react-icons/bs';
 
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const VideoList = ({
   videoId,
   videoTitle,
   videoLength,
   lectureId,
-
+  num,
   numColor,
   buttonColor,
+  index,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  // const num = location.pathname.split('/').pop();
 
   return (
     <>
@@ -26,7 +28,7 @@ const VideoList = ({
         bg={numColor}
         _hover={{ cursor: 'pointer', background: '#dfe8f5' }}
         onClick={() => {
-          navigate(`/lectureplay/${lectureId}/${videoId}`);
+          navigate(`/lectureplay/${lectureId}/${index}`);
         }}
       >
         <Box p="1">

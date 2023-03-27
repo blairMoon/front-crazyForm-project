@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
@@ -49,17 +55,18 @@ const Video = () => {
       queryClient.invalidateQueries(['videoList', lectureId, num]);
     },
   });
-  const watchedlectures80Mutation = useMutation(watchedlectures80, {
-    onSuccess: () => {
-      setIsCompleted(false);
-      queryClient.invalidateQueries(['videoList', lectureId, num]);
-    },
-  });
-  useEffect(() => {
-    if (isCompleted) {
-      watchedlectures80Mutation.mutate({ lectureId, num, is_completed: true });
-    }
-  }, [isCompleted, watchedlectures80Mutation, lectureId, num]);
+  // const watchedlectures80Mutation = useMemo(() => {
+  //   const mutation = useMutation(watchedlectures80);
+  //   return async ({ lectureId, num, is_completed }) => {
+  //     if (isCompleted) {
+  //       await mutation.mutateAsync({ lectureId, num, is_completed });
+  //     }
+  //   };
+  // }, [isCompleted]);
+  const watchedlectures80Mutation = useCallback(
+    useMutation(watchedlectures80),
+    []
+  );
   const handleDuration = duration => {
     console.log('영상길이', duration); // logs the video duration in seconds
   };
@@ -67,9 +74,16 @@ const Video = () => {
   const handleProgress = state => {
     setPlayedSeconds(state.playedSeconds);
     const duration = playerRef.current?.getDuration();
-    const isPlayed80 = state.playedSeconds >= duration * 0.8 || isCompleted;
-    if (isPlayed80 && !isCompleted) {
+    if (duration && state.playedSeconds >= duration * 0.8 && !isCompleted) {
       setIsCompleted(true);
+      setPlayed80(true);
+      watchedlectures80Mutation.mutate({
+        lectureId,
+        num,
+        is_completed: true,
+        lastPlayed: playedSeconds, //여기에 넣으면 되지않을까?
+      });
+      return;
     }
   };
 
@@ -108,10 +122,21 @@ const Video = () => {
     const fetchedPlayedSeconds = videoList?.lastPlayed;
     if (fetchedPlayedSeconds && !loaded) {
       playerRef.current.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
-      setPlaying(true); // 재생 시작
       setLoaded(true); // 비디오가 로드되었음을 알림
     }
+    setPlaying(true); // 재생 시작
   };
+
+  useEffect(() => {
+    if (isCompleted) {
+      watchedlectures80Mutation.mutate({
+        lectureId,
+        num,
+        is_completed: true,
+        lastPlayed: playedSeconds,
+      });
+    }
+  }, [isCompleted, watchedlectures80Mutation, lectureId, num]);
 
   const handleError = e => {
     console.error('비디오 에러:', e);
@@ -195,6 +220,7 @@ const Video = () => {
                 <Stack spacing={3}>
                   {videoList.list?.map((video, index) => (
                     <VideoList
+                      index={index + 1}
                       key={video.id}
                       videoId={video.id}
                       videoTitle={video.title}
