@@ -14,7 +14,7 @@ export const instance = axios.create({
   withCredentials: true,
 });
 export const instanceNotLogin = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/v1/',
+  baseURL: 'http://115.85.182.132:8000/',
   // baseURL: 'http://115.85.182.132:8000/api/v1/',
 
   headers: {
@@ -51,11 +51,13 @@ instance.interceptors.response.use(
 
           return instance(originalRequest);
         } else {
-          useNavigate('http://127.0.0.1:8000/api/v1/users/jwt-token-auth/');
+          useNavigate(
+            'http://115.85.182.132:8000/api/v1/users/jwt-token-auth/'
+          );
           return Promise.reject(error);
         }
       } catch (refreshError) {
-        useNavigate('http://127.0.0.1:8000/api/v1/users/jwt-token-auth/');
+        useNavigate('http://115.85.182.132:8000/api/v1/users/jwt-token-auth/');
         return Promise.reject(refreshError);
       }
     }
@@ -66,7 +68,7 @@ instance.interceptors.response.use(
 
 export async function userNameLogin({ username, password }) {
   const response = await fetch(
-    'http://127.0.0.1:8000/api/v1/users/jwt-token-auth/  ',
+    'http://115.85.182.132:8000/api/v1/users/jwt-token-auth/  ',
     {
       method: 'POST',
       headers: {
@@ -94,7 +96,7 @@ export async function userNameLogin({ username, password }) {
 export async function postRefreshToken(refresh, access) {
   try {
     const response = await axios.post(
-      'http://127.0.0.1:8000/api/v1/users/jwt-token-auth/refresh/',
+      'http://115.85.182.132:8000/api/v1/users/jwt-token-auth/refresh/',
       {
         refresh,
         access,
