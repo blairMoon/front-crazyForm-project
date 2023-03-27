@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
-  // baseURL: 'http://101.101.216.129:8000/api/v1/',
+  // baseURL: 'http://115.85.182.132:8000/api/v1/',
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
@@ -15,7 +15,7 @@ export const instance = axios.create({
 });
 export const instanceNotLogin = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
-  // baseURL: 'http://101.101.216.129:8000/api/v1/',
+  // baseURL: 'http://115.85.182.132:8000/api/v1/',
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),

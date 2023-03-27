@@ -146,6 +146,11 @@ const Video = () => {
     console.error('비디오 에러:', e);
   };
 
+  const resetCompleted = () => {
+    setIsCompleted(false);
+    setPlayed80(false);
+  };
+
   // console.log(videoList?.lastPlayed);
   if (videoList) {
     return (
@@ -227,15 +232,14 @@ const Video = () => {
                       <VideoList
                         index={index + 1}
                         key={video.id}
-                        videoId={video.id}
                         videoTitle={video.title}
                         videoLength={video.videoLength}
                         lectureId={lectureId}
                         numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
                         buttonColor={
-                          video.is_completed && !isLoading
+                          video.is_completed
                             ? 'pink' //true인 경우: 버튼 색상을 pink로 변경, false인 경우에는 다음 아래의 조건을 확인
-                            : index + 1 == num && played80 && !isLoading
+                            : index + 1 == num && played80
                             ? 'pink'
                             : 'yellow'
                         }
