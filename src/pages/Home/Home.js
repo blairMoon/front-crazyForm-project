@@ -48,7 +48,7 @@ function Home() {
                 showThumbs={false}
                 autoPlay={true}
                 infiniteLoop={true}
-                interval={3500}
+                interval={4000}
                 style={{ height: '100%' }}
               >
                 <Box>
@@ -90,8 +90,11 @@ function Home() {
               <Container as={Stack} maxW={'6xl'} py={10} mb={10}>
                 <Carousel
                   showThumbs={false}
-                  showIndicators={true}
+                  showIndicators={false}
                   showArrows={true}
+                  autoPlay={true}
+                  infiniteLoop={true}
+                  interval={4000}
                   // autoPlay={true}
                   // interval={5000}
                   // infiniteLoop={true}

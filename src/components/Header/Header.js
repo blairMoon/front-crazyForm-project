@@ -93,8 +93,8 @@ export default function Header(props) {
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}
             >
-              Kwanyeol and the kids.
-              {/* <img src="/images/logo.png" alt="logo" width="30" /> */}
+              {/* Kwanyeol and the kids. */}
+              <img src="/images/logo2.png" alt="logo" width="160" />
             </Text>
           </Link>
 
@@ -148,6 +148,14 @@ export default function Header(props) {
                 fontWeight={400}
                 variant={'link'}
                 href={'/login'}
+                textDecor="none"
+                paddingTop={2.3}
+                paddingBottom={2.3}
+                paddingLeft={3}
+                paddingRight={3}
+                _hover={{
+                  textDecor: 'none',
+                }}
               >
                 Log in
               </Button>
@@ -181,7 +189,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={10}>
+    <Stack direction={'row'} spacing={10} mt={4}>
       {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -189,10 +197,10 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 href={navItem.href}
-                fontSize={14}
+                fontSize={16}
                 // fontWeight={500}
                 color={linkColor}
-                fontWeight={700}
+                fontWeight={600}
                 _hover={{
                   textDecoration: 'none',
                   color: 'rgb(0 60 147)',

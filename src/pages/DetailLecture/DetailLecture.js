@@ -33,6 +33,7 @@ import {
   Textarea,
   FormControl,
   Divider,
+  Flex,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ModalLecture from '../../components/Modal/ModalLecture';
@@ -130,7 +131,7 @@ const DetailLecture = () => {
           <HStack h="100%">
             <Box w="45%" borderRadius="full">
               <Image
-                src="https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/thumb-course-phthon-basic.jpg"
+                src={data.lecture_data.thumbnail}
                 alt="lecture image"
                 borderRadius="10px"
                 objectFit="cover"
@@ -172,7 +173,13 @@ const DetailLecture = () => {
             </Box>
           </HStack>
         </GridItem>
-        <GridItem area={'contents'}>contents</GridItem>
+        <GridItem area={'contents'} bg="gray">
+          <Flex direction="column" align="center" h="100%">
+            <VStack align="center" h="100%">
+              <Box w="100%" h="100%" pt={12} mt={2}></Box>
+            </VStack>
+          </Flex>
+        </GridItem>
         <GridItem
           area={'reviews'}
           px="20"
