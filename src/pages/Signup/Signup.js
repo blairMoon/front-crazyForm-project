@@ -6,13 +6,14 @@ import css from '../Signup/Signup.module.scss';
 
 import { isLoggedInVar } from '../../apollo';
 
-import { signUpUser, instance, instanceNotLogin } from '../../api';
+import { signUpUser, instanceNotLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ initialValues, onSubmit }) => {
   const navigate = useNavigate();
   const [idCheck, setIdCheck] = useState('');
+  const [idChecked, setIdChecked] = useState(false);
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -32,7 +33,20 @@ const Signup = ({ initialValues, onSubmit }) => {
     return instanceNotLogin
       .get(`users/@${id}`)
       .then(res => res.data)
-      .then(res => setIdCheck(res));
+      .then(res => {
+        alert(res);
+        setIdChecked(true);
+      })
+      .catch(err => {
+        if (err.response.status === 404) {
+          setIdChecked(true);
+        } else {
+          setIdChecked(false);
+        }
+      })
+      .finally(() => {
+        trigger('username');
+      });
   };
 
   const {
@@ -40,6 +54,7 @@ const Signup = ({ initialValues, onSubmit }) => {
     register,
     handleSubmit,
     watch,
+    trigger,
 
     formState: { errors },
   } = useForm({
@@ -47,7 +62,11 @@ const Signup = ({ initialValues, onSubmit }) => {
   });
 
   const submitForm = data => {
-    mutation.mutate(data);
+    if (idChecked) {
+      mutation.mutate(data);
+    } else {
+      alert('아이디 중복확인을 해주세용.');
+    }
   };
   const password = useRef();
   password.current = watch('password');
@@ -73,6 +92,9 @@ const Signup = ({ initialValues, onSubmit }) => {
                   {...register('username', {
                     required: true,
                     pattern: /^[a-z0-9]{5,20}$/,
+                    validate: {
+                      unique: () => idChecked,
+                    },
                   })}
                 />
 
@@ -93,6 +115,11 @@ const Signup = ({ initialValues, onSubmit }) => {
                   아이디는 소문자와 숫자로만 이루어져야 합니다.
                 </p>
               )}
+              {!idChecked &&
+                errors.username &&
+                errors.username.type === 'unique' && (
+                  <p className={css.errors}>아이디 중복확인해주세요.</p>
+                )}
               <label className={css.label}>비밀번호</label>
               <input
                 placeholder="비밀번호를 입력해주세용"

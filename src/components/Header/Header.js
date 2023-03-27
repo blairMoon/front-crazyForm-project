@@ -20,6 +20,7 @@ import {
   Input,
   InputGroup,
   InputRightAddon,
+  background,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -28,7 +29,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { SearchIcon } from '@chakra-ui/icons';
-import { FaUserCheck } from 'react-icons/fa';
+import { HiOutlineUserCircle } from 'react-icons/hi';
 
 export default function Header(props) {
   const [searchTextHeader, setSearchTextHeader] = useState('');
@@ -112,7 +113,11 @@ export default function Header(props) {
             <>
               <Link href={'/userinfo'}>
                 <Box mt={2}>
-                  <FaUserCheck size="25" />
+                  <HiOutlineUserCircle
+                    size="28"
+                    color="rgb(0 60 147)"
+                    _hover={{ color: 'rgb(117 157 214)' }}
+                  />
                 </Box>
               </Link>
               <Button
@@ -122,9 +127,15 @@ export default function Header(props) {
                 variant={'link'}
                 onClick={handleLogout}
                 cursor={'pointer'}
-                marginTop={2}
+                // marginTop={2}
+                paddingTop={2.3}
+                paddingBottom={2.3}
+                paddingLeft={3}
+                paddingRight={3}
                 href={'/'}
-                pr={2}
+                margin={0}
+                // pr={2}
+                _hover={{ background: 'rgb(0 60 147)', color: 'white' }}
               >
                 Log out
               </Button>
@@ -170,7 +181,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack direction={'row'} spacing={10}>
       {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -178,12 +189,14 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 href={navItem.href}
-                fontSize={'sm'}
-                fontWeight={500}
+                fontSize={14}
+                // fontWeight={500}
                 color={linkColor}
+                fontWeight={700}
                 _hover={{
                   textDecoration: 'none',
-                  color: linkHoverColor,
+                  color: 'rgb(0 60 147)',
+                  fontWeight: '800',
                 }}
               >
                 {navItem.label}
@@ -197,7 +210,7 @@ const DesktopNav = () => {
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={'xl'}
-                minW={'sm'}
+                minW={'5'}
               >
                 <Stack>
                   {navItem.children.map(child => (
@@ -219,20 +232,31 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       href={href}
       role={'group'}
       display={'block'}
-      p={2}
+      p={3}
       rounded={'md'}
-      _hover={{ bg: useColorModeValue('gray.50', 'gray.900') }}
+      _hover={{
+        bg: useColorModeValue('gray.50', 'gray.900'),
+        color: 'rgb(0 60 147)',
+        fontWeight: '700',
+      }}
     >
-      <Stack direction={'row'} align={'center'}>
+      <Stack
+        direction={'row'}
+        align={'center'}
+        _hover={{ fontWeight: '700', fontSize: '17' }}
+      >
         <Box>
           <Text
+            padding={0}
+            fontSize={15}
             transition={'all .3s ease'}
             _groupHover={{ color: 'black.400' }}
-            fontWeight={500}
+            fontWeight={600}
+            _hover={{ fontWeight: 700 }}
           >
             {label}
           </Text>
-          <Text fontSize={'sm'}>{subLabel}</Text>
+          <Text fontSize={15}>{subLabel}</Text>
         </Box>
         <Flex
           transition={'all .3s ease'}
@@ -285,48 +309,48 @@ const NAV_ITEMS = [
   {
     label: '소개',
     href: '/lectures',
-    children: [
-      {
-        label: '금쪽같은 내새끼',
-        subLabel: 'abcdefg',
-        href: '#',
-      },
-      {
-        label: '관열이와 아이들',
-        subLabel: 'ㄱㄴㄷㄹㅁㅂㅅ',
-        href: '#',
-      },
-    ],
+    // children: [
+    //   {
+    //     label: '금쪽같은 내새끼',
+    //     subLabel: 'abcdefg',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: '관열이와 아이들',
+    //     subLabel: 'ㄱㄴㄷㄹㅁㅂㅅ',
+    //     href: '#',
+    //   },
+    // ],
   },
   {
     label: '로드맵',
     href: '/lectures',
-    children: [
-      {
-        label: '금쪽같은 내새끼',
-        subLabel: 'abcdefg',
-        href: '#',
-      },
-      {
-        label: '관열이와 아이들',
-        subLabel: 'ㄱㄴㄷㄹㅁㅂㅅ',
-        href: '#',
-      },
-    ],
+    // children: [
+    //   {
+    //     label: '금쪽같은 내새끼',
+    //     subLabel: 'abcdefg',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: '관열이와 아이들',
+    //     subLabel: 'ㄱㄴㄷㄹㅁㅂㅅ',
+    //     href: '#',
+    //   },
+    // ],
   },
   {
     label: '커뮤니티',
-    children: [
-      {
-        label: '금쪽같은 내새끼',
-        subLabel: 'abcdefg',
-        href: '#',
-      },
-      {
-        label: '관열이와 아이들',
-        subLabel: 'ㄱㄴㄷㄹㅁㅂㅅ',
-        href: '#',
-      },
-    ],
+    // children: [
+    //   {
+    //     label: '금쪽같은 내새끼',
+    //     subLabel: 'abcdefg',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: '관열이와 아이들',
+    //     subLabel: 'ㄱㄴㄷㄹㅁㅂㅅ',
+    //     href: '#',
+    //   },
+    // ],
   },
 ];

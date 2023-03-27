@@ -5,23 +5,20 @@ import { useNavigate } from 'react-router-dom';
 
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
-  // baseURL: 'http://101.101.216.129:8001/api/v1/',
+  // baseURL: 'http://115.85.182.132:8000/api/v1/',
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-    // Jwt: Cookies.get('access'),
     Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
 });
 export const instanceNotLogin = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
-  // baseURL: 'http://101.101.216.129:8001/api/v1/',
+  // baseURL: 'http://115.85.182.132:8000/api/v1/',
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-    // // Jwt: Cookies.get('access'),
-    // Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
 });
@@ -109,12 +106,6 @@ export async function postRefreshToken(refresh, access) {
     return null;
   }
 }
-// export function isTokenExpired(access) {
-//   if (!access) return true;
-//   const decodedToken = jwtDecode(access);
-//   const currentTime = new Date().getTime() / 1000;
-//   return decodedToken.exp < currentTime;
-// }
 
 export const signUpUser = data => {
   return instanceNotLogin.post('users/', data).then(res => res.data);
@@ -133,8 +124,11 @@ export const changeProfileUser = data => {
 export const getLectureInfo = () => {
   return instance.get(`users/myprofile`).then(res => res.data);
 };
+export const getBestReviews = () => {
+  return instance.get(`reviews/1`).then(res => res.data);
+};
 export const getLectureRate = () => {
-  return instanceNotLogin.get(`lectures/all/all`).then(res => res.data);
+  return instanceNotLogin.get(`lectures/mainpage`).then(res => res.data);
 };
 
 export const getLectureDetail = page => {
