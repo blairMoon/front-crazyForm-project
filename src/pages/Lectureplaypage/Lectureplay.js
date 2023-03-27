@@ -81,6 +81,7 @@ const Video = () => {
         lectureId,
         num,
         is_completed: true,
+        lastPlayed: playedSeconds, //여기에 넣으면 되지않을까?
       });
       return;
     }
@@ -121,14 +122,19 @@ const Video = () => {
     const fetchedPlayedSeconds = videoList?.lastPlayed;
     if (fetchedPlayedSeconds && !loaded) {
       playerRef.current.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
-      setPlaying(true); // 재생 시작
       setLoaded(true); // 비디오가 로드되었음을 알림
     }
+    setPlaying(true); // 재생 시작
   };
 
   useEffect(() => {
     if (isCompleted) {
-      watchedlectures80Mutation.mutate({ lectureId, num, is_completed: true });
+      watchedlectures80Mutation.mutate({
+        lectureId,
+        num,
+        is_completed: true,
+        lastPlayed: playedSeconds,
+      });
     }
   }, [isCompleted, watchedlectures80Mutation, lectureId, num]);
 

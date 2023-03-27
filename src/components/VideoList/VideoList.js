@@ -12,10 +12,9 @@ const VideoList = ({
   videoTitle,
   videoLength,
   lectureId,
-
+  num,
   numColor,
   buttonColor,
-  num,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
