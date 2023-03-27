@@ -9,6 +9,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLectureRate } from '../../api';
 import { SiSpring } from 'react-icons/si';
 import LectureCard from '../../components/LectureCard/LectureCard';
+import ReviewCard from '../../components/BestReviews/BestReviews';
 import StarRating from '../../components/LectureCard/StarRating';
 import {
   Flex,
@@ -35,8 +36,9 @@ function Home() {
     );
   };
   const { isLoading, data } = useQuery(['lectureInfo'], () => getLectureRate());
+
   if (data) {
-    console.log(data);
+    // console.log(data);
     return (
       <>
         <Flex direction="column" align="center" h="100%">
@@ -81,7 +83,7 @@ function Home() {
           </VStack>
 
           <Flex>
-            <Box w="100%" h="500px" textAlign="center">
+            <Box w="100%" h="550px" textAlign="center">
               <Heading size="lg" mb="4" mt="7">
                 POPULAR CLASS
               </Heading>
@@ -94,12 +96,12 @@ function Home() {
                   // interval={5000}
                   // infiniteLoop={true}
                 >
-                  <Flex display="flex" justifyContent="space-between">
-                    {data.data?.slice(0, 4).map(item => (
+                  <Flex display="flex" justifyContent="space-between" mb={3}>
+                    {data?.carousel.slice(0, 4).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
                         <LectureCard
                           lectureNumber={item.LectureId}
-                          key={item.id}
+                          key={item.LectureId}
                           img={item.thumbnail}
                           lectureDescription={item.lectureDescription}
                           lectureTitle={item.lectureTitle}
@@ -110,11 +112,11 @@ function Home() {
                     ))}
                   </Flex>
                   <Flex display="flex" justifyContent="space-between">
-                    {data.data?.slice(4, 8).map(item => (
+                    {data?.carousel.slice(4, 8).map(item => (
                       <HStack align={'center'} mb={10} spacing={8}>
                         <LectureCard
                           lectureNumber={item.LectureId}
-                          key={item.id}
+                          key={item.LectureId}
                           img={item.thumbnail}
                           lectureDescription={item.lectureDescription}
                           lectureTitle={item.lectureTitle}
@@ -215,58 +217,32 @@ function Home() {
               </SimpleGrid>
             </Container>
           </Box>
-          <Box bg="gray.100" w="100%" h="500px" textAlign="center">
+          <Box bg="white" w="100%" h="800px" textAlign="center">
             <Heading size="lg" mb="4" mt="10">
               수강후기
             </Heading>
 
             <Container as={Stack} maxW={'6xl'} py={10}>
               <Stack direction={'row'} justify={'center'} spacing={10} mb={10}>
-                <Text fontSize="3xl">우리</Text>
-                <Text fontSize="3xl">금쪽이가</Text>
-                <Text fontSize="3xl">달라졌어요</Text>
                 <Text fontSize="3xl" fontWeight={'bold'}>
-                  오즈코딩스쿨편
+                  😊베스트 수강평😊
                 </Text>
               </Stack>
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-                <Stack align={'center'}>
-                  <Card
-                    width={'500px'}
-                    height={'200px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                    borderRadius={20}
-                  >
-                    <Stack>
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          후기1
-                        </Heading>
-                        <Text py="2">람람이</Text>
-                      </CardBody>
+                {data?.review.map(item => {
+                  console.log({ item: item });
+                  return (
+                    <Stack align="center">
+                      <ReviewCard
+                        key={item.id}
+                        id={item.id}
+                        user={item.user.username}
+                        contents={item.content}
+                        rating={item.rating}
+                      />
                     </Stack>
-                  </Card>
-                </Stack>
-
-                <Stack align={'center'}>
-                  <Card
-                    width={'500px'}
-                    height={'200px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                    borderRadius={20}
-                  >
-                    <Stack>
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          후기2
-                        </Heading>
-                        <Text py="2">람람이</Text>
-                      </CardBody>
-                    </Stack>
-                  </Card>
-                </Stack>
+                  );
+                })}
               </SimpleGrid>
             </Container>
           </Box>
