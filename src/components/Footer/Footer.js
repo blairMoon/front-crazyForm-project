@@ -51,38 +51,251 @@ export default function LargeWithLogoCentered() {
           textAlign="center"
         >
           <Stack align={'center'}>
-            <ListHeader>강의</ListHeader>
-            <Link href={'#'}>관열이와 아이들</Link>
+            <Link
+              p={2}
+              fontSize={18}
+              href="/lectures/all/all?page=1"
+              // fontWeight={500}
+              color="black"
+              fontWeight={600}
+              _hover={{
+                textDecoration: 'none',
+                color: 'rgb(0 60 147)',
+                fontWeight: '800',
+              }}
+            >
+              강의
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'/lectures/all/all?page=1'}
+            >
+              전체강의
+            </Link>
             <Stack direction={'row'} align={'center'} spacing={2}>
-              <Link href={'#'}>관열이와 아이들</Link>
+              <Link
+                _hover={{
+                  color: '#0249AF',
+                  fontWeight: '600',
+                }}
+                href={'#'}
+              >
+                기초코딩
+              </Link>
             </Stack>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              프론트엔드
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              백엔드
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              프론트엔드
+            </Link>
           </Stack>
           <Stack align={'center'}>
-            <ListHeader>소개</ListHeader>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
+            <Link
+              p={2}
+              fontSize={18}
+              // fontWeight={500}
+              color="black"
+              fontWeight={600}
+              _hover={{
+                textDecoration: 'none',
+                color: 'rgb(0 60 147)',
+                fontWeight: '800',
+              }}
+            >
+              소개
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              백관열
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              오수빈
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              김수람
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              윤수민
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              김남욱
+            </Link>
           </Stack>
           <Stack align={'center'}>
-            <ListHeader>로드맵</ListHeader>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
+            <Link
+              p={2}
+              fontSize={18}
+              // fontWeight={500}
+              color="black"
+              fontWeight={600}
+              _hover={{
+                textDecoration: 'none',
+                color: 'rgb(0 60 147)',
+                fontWeight: '800',
+              }}
+            >
+              로드맵
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
           </Stack>
           <Stack align={'center'}>
-            <ListHeader>커뮤니티</ListHeader>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
-            <Link href={'#'}>관열이와 아이들</Link>
+            <Link
+              p={2}
+              fontSize={18}
+              // fontWeight={500}
+              color="black"
+              fontWeight={600}
+              _hover={{
+                textDecoration: 'none',
+                color: 'rgb(0 60 147)',
+                fontWeight: '800',
+              }}
+            >
+              커뮤니티
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
+            <Link
+              _hover={{
+                color: '#0249AF',
+                fontWeight: '600',
+              }}
+              href={'#'}
+            >
+              관열이와 아이들
+            </Link>
           </Stack>
         </SimpleGrid>
       </Container>
@@ -104,10 +317,10 @@ export default function LargeWithLogoCentered() {
             ml: 8,
           }}
         >
-          <Text>Kwanyeol and the kids.</Text>
+          <img src="/images/logo2.png" alt="logo" width="120" />
         </Flex>
         <Text pt={6} fontSize={'sm'} textAlign={'center'}>
-          © 2022 Chakra Templates. All rights reserved
+          © 2023 CrazyLab. All rights reserved
         </Text>
       </Box>
     </Box>
