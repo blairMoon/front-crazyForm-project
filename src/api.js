@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { is } from 'immutable';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,7 +9,6 @@ export const instance = axios.create({
 
   headers: {
     'X-CSRFToken': Cookies.get('csrftoken'),
-
     Authorization: 'Bearer ' + Cookies.get('access'),
   },
   withCredentials: true,
@@ -177,8 +177,13 @@ export const savePlayedSeconds = ({ lectureId, num, lastPlayed }) => {
     .then(res => res.data);
 };
 
-// export const postReply = ({ lectureNum, reviewNum, data }) => {
-//   return instance
-//     .post(`reviews/${lectureNum}/${reviewNum}`, data)
-//     .then(res => res.data);
-// };
+export const watchedlectures80 = ({
+  lectureId,
+  num,
+  is_completed,
+  lastPlayed,
+}) => {
+  return instance
+    .put(`watchedlectures/${lectureId}/${num}`, { is_completed, lastPlayed })
+    .then(res => res.data);
+};
