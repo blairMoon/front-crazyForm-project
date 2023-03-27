@@ -35,7 +35,7 @@ const Signup = ({ initialValues, onSubmit }) => {
       .then(res => res.data)
       .then(res => {
         alert(res);
-        setIdChecked(false);
+        setIdChecked(true);
       })
       .catch(err => {
         if (err.response.status === 404) {
