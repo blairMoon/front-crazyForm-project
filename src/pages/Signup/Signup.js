@@ -35,14 +35,12 @@ const Signup = ({ initialValues, onSubmit }) => {
       .then(res => res.data)
       .then(res => {
         alert(res);
-        setIdChecked(false);
+        setIdChecked(true);
       })
       .catch(err => {
         if (err.response.status === 404) {
-          alert('This ID is available!');
           setIdChecked(true);
         } else {
-          alert('An error occurred. Please try again.');
           setIdChecked(false);
         }
       })
@@ -117,9 +115,9 @@ const Signup = ({ initialValues, onSubmit }) => {
                   아이디는 소문자와 숫자로만 이루어져야 합니다.
                 </p>
               )}
-              {errors.username &&
-                errors.username.type === 'unique' &&
-                !idChecked && (
+              {!idChecked &&
+                errors.username &&
+                errors.username.type === 'unique' && (
                   <p className={css.errors}>아이디 중복확인해주세요.</p>
                 )}
               <label className={css.label}>비밀번호</label>

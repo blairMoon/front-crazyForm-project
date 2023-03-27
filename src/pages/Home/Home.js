@@ -48,7 +48,7 @@ function Home() {
                 showThumbs={false}
                 autoPlay={true}
                 infiniteLoop={true}
-                interval={5000}
+                interval={3500}
                 style={{ height: '100%' }}
               >
                 <Box>
@@ -98,30 +98,34 @@ function Home() {
                 >
                   <Flex display="flex" justifyContent="space-between" mb={3}>
                     {data?.carousel.slice(0, 4).map(item => (
-                      <HStack align={'center'} mb={10} spacing={8}>
+                      <HStack textAlign={'left'} mb={10} spacing={8}>
                         <LectureCard
                           lectureNumber={item.LectureId}
-                          key={item.LectureId}
+                          key={item.id}
                           img={item.thumbnail}
                           lectureDescription={item.lectureDescription}
                           lectureTitle={item.lectureTitle}
                           targetAudience={item.targetAudience}
                           instructor={item.instructor.username}
+                          rating={item.rating}
+                          reviewsNum={item.reviews_num}
                         />
                       </HStack>
                     ))}
                   </Flex>
                   <Flex display="flex" justifyContent="space-between">
                     {data?.carousel.slice(4, 8).map(item => (
-                      <HStack align={'center'} mb={10} spacing={8}>
+                      <HStack textAlign={'left'} mb={10} spacing={8}>
                         <LectureCard
                           lectureNumber={item.LectureId}
-                          key={item.LectureId}
+                          key={item.id}
                           img={item.thumbnail}
                           lectureDescription={item.lectureDescription}
                           lectureTitle={item.lectureTitle}
                           targetAudience={item.targetAudience}
                           instructor={item.instructor.username}
+                          rating={item.rating}
+                          reviewsNum={item.reviews_num}
                         />
                       </HStack>
                     ))}
@@ -222,7 +226,7 @@ function Home() {
               수강후기
             </Heading>
 
-            <Container as={Stack} maxW={'6xl'} py={10}>
+            <Container as={Stack} maxW={'6xl'} py={5}>
               <Stack direction={'row'} justify={'center'} spacing={10} mb={10}>
                 <Text fontSize="3xl" fontWeight={'bold'}>
                   😊베스트 수강평😊
