@@ -238,6 +238,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         bg: useColorModeValue('gray.50', 'gray.900'),
         color: 'rgb(0 60 147)',
         fontWeight: '700',
+        fontSize: '20',
       }}
     >
       <Stack
@@ -251,7 +252,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             fontSize={15}
             transition={'all .3s ease'}
             _groupHover={{ color: 'black.400' }}
-            fontWeight={600}
+            fontWeight={700}
             _hover={{ fontWeight: 700 }}
           >
             {label}

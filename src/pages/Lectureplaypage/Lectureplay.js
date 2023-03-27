@@ -19,6 +19,7 @@ import {
   DrawerBody,
   DrawerFooter,
   Button,
+  Progress,
 } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import LectureHeader from '../../components/LectureHeader/LectureHeader';
@@ -97,7 +98,10 @@ const Video = () => {
       playerRef.current?.seekTo(0, 'seconds');
     }
   }, [videoList]);
-
+  const resetCompleted = () => {
+    setIsCompleted(false);
+    setPlayed80(false);
+  };
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
   const maxHeight = maxWidth * aspectRatio; // 최대 높이
@@ -213,25 +217,31 @@ const Video = () => {
                 <Box>{videoList.url.calculatedLecture.lectureTitle}</Box>
                 <Box fontSize="14">진도율 : 3강/18강 (16.67%)</Box>
                 <Box fontSize="14">시간 : 18분/2시간 37분</Box>
-                <Box>프로그레스바~~</Box>
+                <Progress value={20} size="xs" colorScheme="pink" />
               </DrawerHeader>
 
               <DrawerBody width="100%" fontWeight="600">
                 <Stack spacing={3}>
-                  {videoList.list?.map((video, index) => (
-                    <VideoList
-                      index={index + 1}
-                      key={video.id}
-                      videoId={video.id}
-                      videoTitle={video.title}
-                      videoLength={video.videoLength}
-                      lectureId={lectureId}
-                      numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
-                      buttonColor={
-                        index + 1 == num && played80 ? 'pink' : 'yellow'
-                      }
-                    />
-                  ))}
+                  {!isLoading &&
+                    videoList.list?.map((video, index) => (
+                      <VideoList
+                        index={index + 1}
+                        key={video.id}
+                        videoId={video.id}
+                        videoTitle={video.title}
+                        videoLength={video.videoLength}
+                        lectureId={lectureId}
+                        numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
+                        buttonColor={
+                          video.is_completed && !isLoading
+                            ? 'pink' //true인 경우: 버튼 색상을 pink로 변경, false인 경우에는 다음 아래의 조건을 확인
+                            : index + 1 == num && played80 && !isLoading
+                            ? 'pink'
+                            : 'yellow'
+                        }
+                        resetCompleted={resetCompleted}
+                      />
+                    ))}
                 </Stack>
               </DrawerBody>
 

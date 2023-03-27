@@ -39,10 +39,10 @@ const Signup = ({ initialValues, onSubmit }) => {
       })
       .catch(err => {
         if (err.response.status === 404) {
-          alert('This ID is available!');
+          alert('사용가능한 아이디 입니다.');
           setIdChecked(true);
         } else {
-          alert('An error occurred. Please try again.');
+          alert('중복된 아이디입니다.');
           setIdChecked(false);
         }
       })

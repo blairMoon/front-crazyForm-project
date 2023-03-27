@@ -15,6 +15,7 @@ const VideoList = ({
   numColor,
   buttonColor,
   index,
+  resetCompleted,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,6 +30,7 @@ const VideoList = ({
         _hover={{ cursor: 'pointer', background: '#dfe8f5' }}
         onClick={() => {
           navigate(`/lectureplay/${lectureId}/${index}`);
+          resetCompleted();
         }}
       >
         <Box p="1">
