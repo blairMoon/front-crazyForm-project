@@ -38,7 +38,6 @@ export default function Header(props) {
   const handleLogout = () => {
     removeAccessToken();
     isLoggedInVar(false);
-    navigate('/');
   };
 
   useEffect(() => {

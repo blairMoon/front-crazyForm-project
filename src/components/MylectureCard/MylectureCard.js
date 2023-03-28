@@ -81,8 +81,6 @@ const MylectureCard = ({
               </Button>
             </Text>
           </HStack>
-
-          <Progress value={20} size="xs" colorScheme="pink" />
         </CardBody>
       </Stack>
     </Card>
