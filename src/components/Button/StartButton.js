@@ -34,7 +34,17 @@ const StartButton = ({ lectureTitle }) => {
           <Button h="100%" colorScheme="gray" px="5" mr="3">
             <BsShare size={30} style={{ color: 'gray' }} />
           </Button>
-          <Button h="100%" colorScheme="whatsapp" fontSize="24px" px="20">
+          <Button
+            h="100%"
+            bg="#003C93"
+            color="white"
+            _hover={{ bg: '#012a66' }}
+            _active={{ bg: '#012a66' }}
+            borderRadius="lg"
+            boxShadow="lg"
+            fontSize="24px"
+            px="20"
+          >
             강의 수강 신청하기
           </Button>
         </Box>

@@ -121,13 +121,13 @@ const DetailLecture = () => {
                   "reviews"`}
       >
         <GridItem
-          bg="gray.50"
+          bg="#f0f5fc"
+          borderRadius="3xl"
           h="400px"
           area={'info'}
           px="20"
           py="10"
           fontWeight="bold"
-          color="gray.600"
         >
           <HStack h="100%">
             <Box w="45%" borderRadius="full">
@@ -174,7 +174,7 @@ const DetailLecture = () => {
             </Box>
           </HStack>
         </GridItem>
-        <GridItem area={'contents'} bg="gray">
+        <GridItem area={'contents'}>
           <Flex direction="column" align="center" h="100%">
             <VStack align="center" h="100%">
               <Box w="100%" h="100%" pt={12} mt={2}></Box>

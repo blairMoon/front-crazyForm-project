@@ -25,6 +25,7 @@ const VideoList = ({
   return (
     <>
       <HStack
+        boxShadow="base"
         p="2"
         borderRadius="lg"
         bg={numColor}
@@ -44,7 +45,7 @@ const VideoList = ({
           <Box fontSize="14">{videoTitle}</Box>
           <Box display="flex" alignItems="center" fontSize="12">
             <BsFillPlayCircleFill style={{ color: '#969696' }} />
-            <Box pl="1">{videoLength}초</Box>
+            <Box pl="1">{displayTime}</Box>
           </Box>
         </Box>
       </HStack>
