@@ -319,8 +319,15 @@ export default function LargeWithLogoCentered() {
         >
           <img src="/images/logo2.png" alt="logo" width="120" />
         </Flex>
-        <Text pt={6} fontSize={'sm'} textAlign={'center'}>
+        <Text pt={3} fontSize={'sm'} textAlign={'center'}>
           © 2023 CrazyLab. All rights reserved
+        </Text>
+        <Text fontSize={'sm'} textAlign={'center'}>
+          이메일 contact@CrazyForm.co.kr | 주소 서울특별시 서초구 강남대로99길
+          45 엠빌딩 5층{' '}
+        </Text>
+        <Text fontSize={'sm'} textAlign={'center'}>
+          사업자등록번호 540-86-960307 | 대표 : 백관열 | 상호명 : Form Is Crazy
         </Text>
       </Box>
     </Box>
