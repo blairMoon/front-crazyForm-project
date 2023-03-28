@@ -121,9 +121,10 @@ export default function Header(props) {
                 </Box>
               </Link>
               <Button
+                color={'rgb(74 84 105)'}
                 as={'a'}
                 fontSize={'sm'}
-                fontWeight={400}
+                fontWeight={700}
                 variant={'link'}
                 onClick={handleLogout}
                 cursor={'pointer'}
@@ -137,7 +138,7 @@ export default function Header(props) {
                 // pr={2}
                 _hover={{ background: 'rgb(0 60 147)', color: 'white' }}
               >
-                Log out
+                로그아웃
               </Button>
             </>
           ) : (
@@ -145,11 +146,12 @@ export default function Header(props) {
               <Button
                 as={'a'}
                 fontSize={'sm'}
-                fontWeight={400}
                 variant={'link'}
                 href={'/login'}
+                fontWeight={600}
+                noOutline
               >
-                Log in
+                로그인
               </Button>
 
               <Button
@@ -165,7 +167,7 @@ export default function Header(props) {
                   navigate('/signup');
                 }}
               >
-                Sign Up
+                회원가입
               </Button>
             </>
           )}
@@ -196,7 +198,7 @@ const DesktopNav = () => {
                 _hover={{
                   textDecoration: 'none',
                   color: 'rgb(0 60 147)',
-                  fontWeight: '800',
+                  fontWeight: '700',
                 }}
               >
                 {navItem.label}

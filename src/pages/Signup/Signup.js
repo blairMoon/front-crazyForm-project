@@ -9,11 +9,16 @@ import { isLoggedInVar } from '../../apollo';
 import { signUpUser, instanceNotLogin } from '../../api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import ModalBasic from '../../components/Modal/ModalBasic';
 
 const Signup = ({ initialValues, onSubmit }) => {
   const navigate = useNavigate();
   const [idCheck, setIdCheck] = useState('');
-  const [idChecked, setIdChecked] = useState(false);
+  const [idChecked, setIdChecked] = useState(null);
+  const [idCheckedGood, setIdCheckedGood] = useState(null);
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [showModal, setShowModal] = useState(false); // 추가된 코드
+  const [modalContent, setModalContent] = useState(''); // 추가된 코드
   const mutation = useMutation(signUpUser, {
     onMutate: data => {
       console.log('mutation start...');
@@ -21,8 +26,9 @@ const Signup = ({ initialValues, onSubmit }) => {
     },
     onSuccess: () => {
       console.log('API CALL success...');
-      alert('회원가입에 성공하셨습니다');
-      setTimeout(() => navigate('/login'), 1000);
+      setShowModal(true); // 추가된 코드
+      setModalContent('회원가입에 성공하셨습니당당><><'); // 추가된 코드
+      setSignUpSuccess(true);
     },
     onError: () => {
       console.log('API CALL error...');
@@ -30,19 +36,22 @@ const Signup = ({ initialValues, onSubmit }) => {
   });
 
   const checkUsename = id => {
+    setIdChecked(null);
+    setIdCheck(id);
     return instanceNotLogin
       .get(`users/@${id}`)
       .then(res => res.data)
       .then(res => {
-        alert(res);
-        setIdChecked(false);
+        if (res == '중복된 아이디 입니다.') {
+          setIdChecked(true);
+          setIdCheckedGood(false);
+        } else {
+          setIdChecked(true);
+          setIdCheckedGood(true);
+        }
       })
       .catch(err => {
         if (err.response.status === 404) {
-          alert('사용가능한 아이디 입니다.');
-          setIdChecked(true);
-        } else {
-          alert('중복된 아이디입니다');
           setIdChecked(false);
         }
       })
@@ -280,6 +289,36 @@ const Signup = ({ initialValues, onSubmit }) => {
             </form>
           </div>
         </div>
+        {signUpSuccess && (
+          <ModalBasic
+            isOpen={true}
+            successContent={'회원가입에 성공하셨습니당당><><'}
+          />
+        )}
+        {idChecked !== null && (
+          <>
+            {idChecked && idCheckedGood ? (
+              <ModalBasic
+                isOpen={true}
+                successContent={'사용가능한 아이디에용!'}
+              />
+            ) : (
+              idChecked &&
+              !idCheckedGood && (
+                <ModalBasic
+                  isOpen={true}
+                  successContent={'이미 있는 아이디에용!'}
+                />
+              )
+            )}
+            {!idChecked && (
+              <ModalBasic
+                isOpen={true}
+                successContent={'아이디를 입력해주세용!'}
+              />
+            )}
+          </>
+        )}
       </div>
     </>
   );

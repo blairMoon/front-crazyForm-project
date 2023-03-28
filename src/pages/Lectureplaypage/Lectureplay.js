@@ -98,10 +98,7 @@ const Video = () => {
       playerRef.current?.seekTo(0, 'seconds');
     }
   }, [videoList]);
-  const resetCompleted = () => {
-    setIsCompleted(false);
-    setPlayed80(false);
-  };
+
   const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
   const maxWidth = 1280; // 최대 너비
   const maxHeight = maxWidth * aspectRatio; // 최대 높이
