@@ -29,10 +29,17 @@ const MylectureCard = ({
   rating,
 }) => {
   const navigate = useNavigate();
+  const MAX_LENGTH = 20;
+  let text = lectureTitle;
+
+  if (text.length > MAX_LENGTH) {
+    text = text.slice(0, MAX_LENGTH) + '...';
+  }
+
   return (
     <Card
-      width={'250px'}
-      height={'350px'}
+      width={'240px'}
+      height={'310px'}
       direction={{ base: 'column' }}
       variant="outline"
       // _hover={{ background: 'rgba(0, 0, 0, 0.4 )', zIndex: 10 }}
@@ -59,18 +66,20 @@ const MylectureCard = ({
               navigate(`/lectures/${lectureNumber}`);
             }}
           >
-            <Heading size="md" fontSize="17px">
-              {lectureTitle}
+            <Heading size="md" fontSize="17px" h="45">
+              {text}
             </Heading>
             <Text py="2">{instructor}</Text>
           </Box>
-          <HStack spacing="3px">
+          <HStack justify="space-between">
             <StarRating rating={5} />
 
             <Text>
               <Button
+                px="1"
                 index={100}
                 type="button"
+                bg="ghost"
                 onClick={e => {
                   // e.preventDefault();
 

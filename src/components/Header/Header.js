@@ -35,6 +35,7 @@ export default function Header(props) {
   const [searchTextHeader, setSearchTextHeader] = useState('');
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
+
   const handleLogout = () => {
     removeAccessToken();
     isLoggedInVar(false);
@@ -111,7 +112,7 @@ export default function Header(props) {
           {isLoggedInVar() ? (
             <>
               <Link href={'/userinfo'}>
-                <Box mt={2}>
+                <Box mt={1}>
                   <HiOutlineUserCircle
                     size="28"
                     color="rgb(0 60 147)"
@@ -145,7 +146,7 @@ export default function Header(props) {
               <Button
                 as={'a'}
                 fontSize={'sm'}
-                fontWeight={450}
+                fontWeight={550}
                 variant={'link'}
                 href={'/login'}
                 textDecor="none"
@@ -156,7 +157,7 @@ export default function Header(props) {
                 _hover={{
                   textDecoration: 'none',
                   color: 'rgb(0 60 147)',
-                  fontWeight: '600',
+                  fontWeight: '650',
                 }}
               >
                 로그인

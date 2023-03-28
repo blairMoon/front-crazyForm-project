@@ -27,11 +27,25 @@ const LectureCard = ({
   rating,
   reviewsNum,
 }) => {
+  const MAX_LENGTH = 100;
+  let text = lectureDescription;
+
+  if (text.length > MAX_LENGTH) {
+    text = text.slice(0, MAX_LENGTH) + '...';
+  }
+
+  const MAX_LENGTH2 = 20;
+  let textTitle = lectureTitle;
+
+  if (textTitle.length > MAX_LENGTH2) {
+    textTitle = textTitle.slice(0, MAX_LENGTH2) + '...';
+  }
+
   return (
     <Link to={`/lectures/${lectureNumber}`}>
       <Card
         width={'250px'}
-        height={'280px'}
+        height={'300px'}
         direction={{ base: 'column' }}
         variant="outline"
         _hover={{ background: 'rgba(0, 0, 0, 0.4 )', zIndex: 10 }}
@@ -43,7 +57,7 @@ const LectureCard = ({
           position="absolute"
           zIndex={10}
           width={'250px'}
-          height={'280px'}
+          height={'300px'}
           cursor="pointer"
           justifyContent="space-between"
           opacity="0"
@@ -56,9 +70,18 @@ const LectureCard = ({
         >
           <Stack>
             <Heading size="md" color="white" pb="10px">
-              {lectureTitle}
+              {textTitle}
             </Heading>
-            <Text color="white">{lectureDescription}</Text>
+            <Text
+              fontSize="14px"
+              color="white"
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {text}
+            </Text>
           </Stack>
           <Text color="red">{targetAudience}</Text>
         </Box>
@@ -72,8 +95,8 @@ const LectureCard = ({
         />
         <Stack>
           <CardBody>
-            <Heading size="md" fontSize="17px">
-              {lectureTitle}
+            <Heading size="md" fontSize="17px" h="45">
+              {textTitle}
             </Heading>
             <Text py="2">{instructor}</Text>
 

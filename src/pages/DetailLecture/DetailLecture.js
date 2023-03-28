@@ -19,6 +19,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { BsShare } from 'react-icons/bs';
 import { RiHomeHeartLine } from 'react-icons/ri';
+import { BsFillPlayCircleFill } from 'react-icons/bs';
 
 import {
   Grid,
@@ -34,12 +35,15 @@ import {
   FormControl,
   Divider,
   Flex,
+  Text,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ModalLecture from '../../components/Modal/ModalLecture';
 import StartButton from '../../components/Button/StartButton';
 // import QnaButton from '../../components/Button/QnaButton';
 import { useNavigate } from 'react-router-dom';
+
+import VideoList from '../../components/List/VideoList';
 
 const DetailLecture = () => {
   const { id } = useParams();
@@ -172,7 +176,8 @@ const DetailLecture = () => {
                       w="150px"
                       onClick={handleRegisterClick}
                     >
-                      <RiHomeHeartLine size={20} /> &nbsp;&nbsp;수강하기
+                      <RiHomeHeartLine size={20} /> &nbsp;&nbsp;
+                      {data.is_enrolled ? '수강중' : '수강하기'}
                     </Button>
                     <Button colorScheme="black" variant="outline" w="150px">
                       <BsShare /> &nbsp;&nbsp;공유하기
@@ -183,17 +188,49 @@ const DetailLecture = () => {
             </Box>
           </HStack>
         </GridItem>
-        <GridItem area={'contents'}>
-          <Flex direction="column" align="center" h="100%">
-            <VStack align="center" h="100%">
-              <Box w="100%" h="100%" pt={12} mt={2}></Box>
-            </VStack>
-          </Flex>
+        <GridItem
+          area={'contents'}
+          display="flex"
+          justifyContent="center"
+          py="10"
+        >
+          <Stack w="800px">
+            <Box fontSize="22" paddingTop="10">
+              <Text as="span" fontWeight="bold">
+                {data.lecture_data.targetAudience}
+              </Text>
+              를 위해 준비한
+              <br />
+              <Text as="span" fontWeight="bold">
+                [{data.lecture_data.categories.parent.name} /{' '}
+                {data.lecture_data.categories.name}]
+              </Text>{' '}
+              강의입니다.
+            </Box>
+            <Box fontSize="22" fontWeight="bold" py="3">
+              강의소개
+            </Box>
+            <Box>{data.lecture_data.lectureDescription}</Box>
+            <Divider p="5" />
+            <Box fontSize="22" fontWeight="bold" py="10">
+              목 차{' '}
+              <Box as="span" fontSize="16" fontWeight="600" color="#A6A6A6">
+                총 {data.video_data.length}개
+              </Box>
+            </Box>
+            {data.video_data?.map((video, index) => (
+              <VideoList
+                key={video.id}
+                videoTitle={video.title}
+                videoLength={video.videoLength}
+              />
+            ))}
+            <Divider p="5" />
+          </Stack>
         </GridItem>
         <GridItem
           area={'reviews'}
-          px="20"
-          py="10"
+          py="3"
           display="flex"
           justifyContent="center"
         >
@@ -236,7 +273,10 @@ const DetailLecture = () => {
           </Stack>
         </GridItem>
       </Grid>
-      <StartButton lectureTitle={data.lecture_data.lectureTitle} />
+      <StartButton
+        lectureTitle={data.lecture_data.lectureTitle}
+        is_enrolled={data.is_enrolled}
+      />
       {registerLectureClick && loginCheck ? (
         <ModalLecture
           onSubmit={onSubmit}
