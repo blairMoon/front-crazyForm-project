@@ -17,6 +17,11 @@ const VideoList = ({
 }) => {
   const navigate = useNavigate();
 
+  const minutes = Math.floor(videoLength / 60); // 분
+  const seconds = videoLength % 60; // 초
+
+  const displayTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; // 1:05와 같은 형태로 표시
+
   return (
     <>
       <HStack
@@ -29,15 +34,15 @@ const VideoList = ({
           resetCompleted();
         }}
       >
-        <Box p="1">
+        <Box paddingLeft="1">
           <BsCheckCircleFill
             size={30}
             color={buttonColor} // played80 값에 따라 색상 변경
           />
         </Box>
         <Box>
-          <Box>{videoTitle}</Box>
-          <Box display="flex" alignItems="center" fontSize="14">
+          <Box fontSize="14">{videoTitle}</Box>
+          <Box display="flex" alignItems="center" fontSize="12">
             <BsFillPlayCircleFill style={{ color: '#969696' }} />
             <Box pl="1">{videoLength}초</Box>
           </Box>
