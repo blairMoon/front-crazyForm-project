@@ -23,6 +23,7 @@ const ReviewCard = ({ user, lectureNum, rating, id, contents }) => {
           borderColor={'#003C93'}
           variant="outline"
           borderRadius={20}
+          borderWidth={2}
         >
           <Stack>
             <CardBody>

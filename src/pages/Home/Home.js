@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './Home.module.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Carousel } from 'react-responsive-carousel';
@@ -47,6 +48,7 @@ function Home() {
             <Box w="100%" h="100%" pt={14} mt={3}>
               <Carousel
                 showThumbs={false}
+                showArrows={false}
                 autoPlay={true}
                 infiniteLoop={true}
                 interval={4000}
@@ -54,29 +56,29 @@ function Home() {
               >
                 <Box>
                   <Image
-                    src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-4502.jpg?w=1060&t=st=1678866285~exp=1678866885~hmac=0917b38dfe1c84eefb8c9be6eeb723b39619c4cdb06affcde4b083d1307b1944"
+                    src="https://img.freepik.com/free-vector/test-case-typographic-header-application-website-code-test-process-it-specialist-searching-bugs-idea-computer-technology-digital-analysis-vector-flat-illustration_613284-736.jpg?w=1480&t=st=1679998760~exp=1679999360~hmac=df86d576ca28e1c28be7b1d4616ad27707057c3c9ff5df406c4958e2f8a0ca68"
                     alt="Carousel slide 1"
                     objectFit="cover"
                     width="100%"
-                    height="500px"
+                    height="600px"
                   />
                 </Box>
                 <Box>
                   <Image
-                    src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-4502.jpg?w=1060&t=st=1678866285~exp=1678866885~hmac=0917b38dfe1c84eefb8c9be6eeb723b39619c4cdb06affcde4b083d1307b1944"
+                    src="https://img.freepik.com/free-vector/data-centers-are-data-centers-serve-applications-supporting-business-information-cloud-computing-technology-business-analysis-analytics-research-strategy-statistic-planning-marketing_1150-55220.jpg?w=1380&t=st=1679998201~exp=1679998801~hmac=5c8feb7ff31566d566add49102ab0e7b9c262d974699e6d80bda862c3f4dd23d"
                     alt="Carousel slide 2"
                     objectFit="cover"
                     width="100%"
-                    height="500px"
+                    height="600px"
                   />
                 </Box>
                 <Box>
                   <Image
-                    src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-4502.jpg?w=1060&t=st=1678866285~exp=1678866885~hmac=0917b38dfe1c84eefb8c9be6eeb723b39619c4cdb06affcde4b083d1307b1944"
+                    src="https://img.freepik.com/free-vector/hand-drawn-web-developers_23-2148819604.jpg?w=1060&t=st=1679998690~exp=1679999290~hmac=63fad55e0a707e4ba84bf042a3c235d996824c277eccb16fd819a611b7c382df"
                     alt="Carousel slide 3"
                     objectFit="cover"
                     width="100%"
-                    height="500px"
+                    height="600px"
                   />
                 </Box>
               </Carousel>
@@ -84,15 +86,15 @@ function Home() {
           </VStack>
 
           <Flex>
-            <Box w="100%" h="550px" textAlign="center">
-              <Heading size="lg" mb="4" mt="7">
+            <Box w="100%" h="480px" textAlign="center">
+              <Heading size="lg" mt={10}>
                 POPULAR CLASS
               </Heading>
               <Container as={Stack} maxW={'6xl'} py={10} mb={10}>
                 <Carousel
                   showThumbs={false}
                   showIndicators={false}
-                  showArrows={true}
+                  showArrows={false}
                   autoPlay={true}
                   infiniteLoop={true}
                   interval={4000}
@@ -139,15 +141,20 @@ function Home() {
             </Box>
           </Flex>
 
-          <Box bg="gray.100" w="100%" h="500px" textAlign="center">
-            <Heading size="lg" mb="4" mt="10">
+          <Box bg="white" w="100%" h="450px" textAlign="center">
+            <Heading size="lg" mb={9}>
               수강항목
             </Heading>
 
             <Container as={Stack} maxW={'6xl'} py={10}>
               <SimpleGrid columns={{ base: 1, md: 4 }} spacing={8}>
                 <Stack align={'center'}>
-                  <Link href="/lectures/basic/all/?page=1">
+                  <Link
+                    href="/lectures/basic/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -155,9 +162,11 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
+                      borderWidth={4}
                     >
                       <Stack mt={5}>
-                        <FaHtml5 size="160" />
+                        <FaHtml5 size="155" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             기초코딩
@@ -168,7 +177,12 @@ function Home() {
                   </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Link href="/lectures/frontend/all/?page=1">
+                  <Link
+                    href="/lectures/frontend/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -176,9 +190,11 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
+                      borderWidth={4}
                     >
                       <Stack mt={7}>
-                        <FaReact size="150" />
+                        <FaReact size="150" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             프론트엔드
@@ -189,7 +205,12 @@ function Home() {
                   </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Link href="/lectures/backend/all/?page=1">
+                  <Link
+                    href="/lectures/backend/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -197,9 +218,11 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
+                      borderWidth={4}
                     >
                       <Stack mt={10}>
-                        <SiSpring size="140" />
+                        <SiSpring size="140" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             백엔드
@@ -210,7 +233,12 @@ function Home() {
                   </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Link href="/lectures/mobile/all/?page=1">
+                  <Link
+                    href="/lectures/mobile/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -218,9 +246,11 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
+                      borderWidth={4}
                     >
                       <Stack mt={9}>
-                        <FaMobile size="150" />
+                        <FaMobile size="150" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             모바일
@@ -234,7 +264,7 @@ function Home() {
             </Container>
           </Box>
           <Box bg="white" w="100%" h="800px" textAlign="center">
-            <Heading size="lg" mb="4" mt="10">
+            <Heading size="lg" mt={10} mb={4}>
               수강후기
             </Heading>
 
