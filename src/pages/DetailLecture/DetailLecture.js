@@ -33,6 +33,7 @@ import {
   Textarea,
   FormControl,
   Divider,
+  Flex,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ModalLecture from '../../components/Modal/ModalLecture';
@@ -130,7 +131,7 @@ const DetailLecture = () => {
           <HStack h="100%">
             <Box w="45%" borderRadius="full">
               <Image
-                src="https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/thumb-course-phthon-basic.jpg"
+                src={data.lecture_data.thumbnail}
                 alt="lecture image"
                 borderRadius="10px"
                 objectFit="cover"
@@ -139,18 +140,19 @@ const DetailLecture = () => {
             <Box w="10%"></Box>
             <Box w="45%">
               <Stack h="100%" spacing={3}>
-                <Box>{data.categories.parent.name}</Box>
-                <Box fontSize="24">{data.lectureTitle}</Box>
+                <Box>{data.lecture_data.categories.parent.name}</Box>
+                <Box fontSize="24">{data.lecture_data.lectureTitle}</Box>
                 <Box pb="8">
                   <FontAwesomeIcon icon={faChalkboardTeacher} />
-                  &nbsp;{data.instructor.username}
+                  &nbsp;{data.lecture_data.instructor.username}
                 </Box>
                 <Box>
-                  <StarRating rating={data.rating} /> ({data.rating})
+                  <StarRating rating={data.lecture_data.rating} /> (
+                  {data.lecture_data.rating})
                 </Box>
                 <Box>
-                  {data.reviews_num}개의 수강평 ∙ {data.total_student}명의
-                  수강생
+                  {data.lecture_data.reviews_num}개의 수강평 ∙{' '}
+                  {data.lecture_data.total_student}명의 수강생
                 </Box>
                 <Box>
                   <Stack direction="row" spacing={4}>
@@ -171,7 +173,13 @@ const DetailLecture = () => {
             </Box>
           </HStack>
         </GridItem>
-        <GridItem area={'contents'}>contents</GridItem>
+        <GridItem area={'contents'} bg="gray">
+          <Flex direction="column" align="center" h="100%">
+            <VStack align="center" h="100%">
+              <Box w="100%" h="100%" pt={12} mt={2}></Box>
+            </VStack>
+          </Flex>
+        </GridItem>
         <GridItem
           area={'reviews'}
           px="20"
@@ -181,16 +189,16 @@ const DetailLecture = () => {
         >
           <Stack w="800px">
             <ReviewForm
-              reviewsNum={data.reviews_num}
-              ratingScore={data.rating}
-              lectureNum={data.LectureId}
+              reviewsNum={data.lecture_data.reviews_num}
+              ratingScore={data.lecture_data.rating}
+              lectureNum={data.lecture_data.LectureId}
             />
             <Box fontSize="18px" fontWeight="600" pt="10">
               Reviews
             </Box>
             <Divider borderColor="black.500" pt="3" />
             <Box pt="3"></Box>
-            {data.reviews?.slice(0, reviewsToShow).map(review => (
+            {data.lecture_data.reviews?.slice(0, reviewsToShow).map(review => (
               <Review
                 key={review.id}
                 username={review.user.username}
@@ -198,11 +206,11 @@ const DetailLecture = () => {
                 content={review.content}
                 created_at={review.created_at.slice(0, 10)}
                 reply={review.reply}
-                lectureNum={data.LectureId}
+                lectureNum={data.lecture_data.LectureId}
                 reviewNum={review.id}
               />
             ))}
-            {data.reviews.length > reviewsToShow && (
+            {data.lecture_data.reviews.length > reviewsToShow && (
               <Box
                 display="flex"
                 justifyContent="center"
@@ -218,7 +226,7 @@ const DetailLecture = () => {
           </Stack>
         </GridItem>
       </Grid>
-      <StartButton lectureTitle={data.lectureTitle} />
+      <StartButton lectureTitle={data.lecture_data.lectureTitle} />
       {registerLectureClick && loginCheck ? (
         <ModalLecture
           onSubmit={onSubmit}

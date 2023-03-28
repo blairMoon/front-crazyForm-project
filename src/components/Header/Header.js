@@ -93,8 +93,8 @@ export default function Header(props) {
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}
             >
-              Kwanyeol and the kids.
-              {/* <img src="/images/logo.png" alt="logo" width="30" /> */}
+              {/* Kwanyeol and the kids. */}
+              <img src="/images/logo2.png" alt="logo" width="160" />
             </Text>
           </Link>
 
@@ -116,7 +116,7 @@ export default function Header(props) {
                   <HiOutlineUserCircle
                     size="28"
                     color="rgb(0 60 147)"
-                    _hover={{ color: 'rgb(117 157 214)' }}
+                    // _hover={{ color: 'rgb(117 157 214)' }}
                   />
                 </Box>
               </Link>
@@ -148,8 +148,19 @@ export default function Header(props) {
                 fontSize={'sm'}
                 variant={'link'}
                 href={'/login'}
+<<<<<<< HEAD
                 fontWeight={600}
                 noOutline
+=======
+                textDecor="none"
+                paddingTop={2.3}
+                paddingBottom={2.3}
+                paddingLeft={3}
+                paddingRight={3}
+                _hover={{
+                  textDecor: 'none',
+                }}
+>>>>>>> ca195b006ff25f220d2204ca12fd5091bf02ca95
               >
                 로그인
               </Button>
@@ -183,7 +194,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={10}>
+    <Stack direction={'row'} spacing={10} mt={4}>
       {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -191,10 +202,10 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 href={navItem.href}
-                fontSize={14}
+                fontSize={16}
                 // fontWeight={500}
                 color={linkColor}
-                fontWeight={700}
+                fontWeight={600}
                 _hover={{
                   textDecoration: 'none',
                   color: 'rgb(0 60 147)',
