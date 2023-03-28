@@ -102,15 +102,9 @@ const Video = () => {
     }
   }, [videoList]);
 
-<<<<<<< HEAD
-  const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
-  const maxWidth = 1280; // 최대 너비
-  const maxHeight = maxWidth * aspectRatio; // 최대 높이
-=======
   const aspectRatio = 9 / 16;
   const maxWidth = 1280;
   const maxHeight = maxWidth * aspectRatio;
->>>>>>> ca195b006ff25f220d2204ca12fd5091bf02ca95
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const btnRef = useRef();
