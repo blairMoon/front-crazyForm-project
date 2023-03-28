@@ -56,7 +56,7 @@ export default function LargeWithLogoCentered() {
               fontSize={18}
               href="/lectures/all/all?page=1"
               // fontWeight={500}
-              color="black"
+              color="gray.600"
               fontWeight={600}
               _hover={{
                 textDecoration: 'none',
@@ -119,7 +119,7 @@ export default function LargeWithLogoCentered() {
               p={2}
               fontSize={18}
               // fontWeight={500}
-              color="black"
+              color="gray.600"
               fontWeight={600}
               _hover={{
                 textDecoration: 'none',
@@ -180,7 +180,7 @@ export default function LargeWithLogoCentered() {
               p={2}
               fontSize={18}
               // fontWeight={500}
-              color="black"
+              color="gray.600"
               fontWeight={600}
               _hover={{
                 textDecoration: 'none',
@@ -241,7 +241,7 @@ export default function LargeWithLogoCentered() {
               p={2}
               fontSize={18}
               // fontWeight={500}
-              color="black"
+              color="gray.600"
               fontWeight={600}
               _hover={{
                 textDecoration: 'none',

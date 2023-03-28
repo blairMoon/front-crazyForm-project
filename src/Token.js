@@ -3,8 +3,7 @@ import Cookies from 'js-cookie';
 export function getAccessToken() {
   const access = Cookies.get('access');
   console.log('Token before removal:', access);
-  if (!access) throw new Error('No token found');
-  return access;
+  return access || undefined;
 }
 export function getRefreshToken() {
   const refresh = Cookies.get('refresh');
