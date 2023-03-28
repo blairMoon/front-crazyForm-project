@@ -32,44 +32,47 @@ import { BsListUl } from 'react-icons/bs';
 
 import VideoList from '../../components/VideoList/VideoList';
 
+import { Spinner } from '@chakra-ui/react';
+
 const Video = () => {
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [loaded, setLoaded] = useState(false); // 비디오가 로드되었는지 확인하기 위한 state
+  const [loaded, setLoaded] = useState(false);
   const [played80, setPlayed80] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+
+  const navigate = useNavigate();
 
   const playerRef = useRef(null);
 
   const { lectureId, num } = useParams();
+  const queryKey = ['videoList', lectureId, num];
   const {
     data: videoList,
     isLoading,
     isError,
-  } = useQuery(['videoList', lectureId, num], fetchVideoList);
-  // useEffect(() => {
-  //   handleProgress();
-  // }, [buttonColor]);
+  } = useQuery(queryKey, fetchVideoList, {
+    staleTime: 5000,
+    cacheTime: 0,
+    refetchOnMount: true,
+  }); // 로딩때 전 내용이 보이고 끔뻑이던 문제 해결
   const queryClient = useQueryClient();
   const savePlayedSecondsMutation = useMutation(savePlayedSeconds, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['videoList', lectureId, num]);
+      queryClient.invalidateQueries(queryKey);
     },
   });
-  // const watchedlectures80Mutation = useMemo(() => {
-  //   const mutation = useMutation(watchedlectures80);
-  //   return async ({ lectureId, num, is_completed }) => {
-  //     if (isCompleted) {
-  //       await mutation.mutateAsync({ lectureId, num, is_completed });
-  //     }
-  //   };
-  // }, [isCompleted]);
   const watchedlectures80Mutation = useCallback(
-    useMutation(watchedlectures80),
+    useMutation(watchedlectures80, {
+      onSuccess: () => {
+        queryClient.invalidateQueries(queryKey);
+      },
+    }),
     []
   );
+
   const handleDuration = duration => {
-    console.log('영상길이', duration); // logs the video duration in seconds
+    // console.log('영상길이', duration);
   };
 
   const handleProgress = state => {
@@ -82,7 +85,7 @@ const Video = () => {
         lectureId,
         num,
         is_completed: true,
-        lastPlayed: playedSeconds, //여기에 넣으면 되지않을까?
+        lastPlayed: playedSeconds,
       });
       return;
     }
@@ -99,9 +102,9 @@ const Video = () => {
     }
   }, [videoList]);
 
-  const aspectRatio = 9 / 16; // 비디오 비율 (9:16)
-  const maxWidth = 1280; // 최대 너비
-  const maxHeight = maxWidth * aspectRatio; // 최대 높이
+  const aspectRatio = 9 / 16;
+  const maxWidth = 1280;
+  const maxHeight = maxWidth * aspectRatio;
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const btnRef = useRef();
@@ -113,19 +116,20 @@ const Video = () => {
         num,
         lastPlayed: playedSeconds,
       });
+      navigate('/userinfo');
     } catch (error) {
       console.error(error);
     }
-    console.log('Current played seconds:', playedSeconds);
+    // console.log('Current played seconds:', playedSeconds);
   };
 
   const handlePlayerReady = () => {
     const fetchedPlayedSeconds = videoList?.lastPlayed;
     if (fetchedPlayedSeconds && !loaded) {
       playerRef.current.seekTo(parseFloat(fetchedPlayedSeconds), 'seconds');
-      setLoaded(true); // 비디오가 로드되었음을 알림
+      setLoaded(true);
     }
-    setPlaying(true); // 재생 시작
+    setPlaying(true);
   };
 
   useEffect(() => {
@@ -148,7 +152,14 @@ const Video = () => {
     setPlayed80(false);
   };
 
-  // console.log(videoList?.lastPlayed);
+  const completedCount = useMemo(() => {
+    return videoList?.list.filter(item => item.is_completed).length || 0;
+  }, [videoList]);
+
+  const progressPercent = useMemo(() => {
+    return Math.round((completedCount / videoList?.list.length) * 100);
+  }, [completedCount, videoList]);
+
   if (videoList) {
     return (
       <>
@@ -166,23 +177,18 @@ const Video = () => {
             <ReactPlayer
               className="react-player"
               style={{ position: 'absolute', top: 0, left: 0 }}
-              width="100%" // 플레이어 크기 (가로)
-              height="100%" // 플레이어 크기 (세로)
+              width="100%"
+              height="100%"
               url={videoList.url.videoFile}
-              playing={playing} // 변경된 부분
-              muted={true} // 자동 재생 on
-              loop={false} // 무한 반복 여부
-              controls={true} // 플레이어 컨트롤 노출 여부
-              light={false} // 플레이어 모드
-              pip={true} // pip 모드 설정 여부
-              played={[
-                videoList?.lastPlayed || 0, // 서버에서 받아온 playedSeconds 또는 0
-                undefined, // 영상의 끝까지 재생
-              ]}
+              playing={playing}
+              muted={true}
+              loop={false}
+              controls={true}
+              light={false}
+              pip={true}
+              played={[videoList?.lastPlayed || 0, undefined]}
               onProgress={handleProgress}
-              // onPause={handlePause}
-              // onReady={handlePlayerReady}
-              onDuration={handleDuration} //영상길이
+              onDuration={handleDuration}
               ref={playerRef}
               onReady={handlePlayerReady}
               onError={handleError}
@@ -216,15 +222,38 @@ const Video = () => {
               <DrawerCloseButton />
               <DrawerHeader>
                 <Box fontSize="24">목차</Box>
-                <Box>{videoList.url.calculatedLecture.lectureTitle}</Box>
-                <Box fontSize="14">진도율 : 3강/18강 (16.67%)</Box>
-                <Box fontSize="14">시간 : 18분/2시간 37분</Box>
-                <Progress value={20} size="xs" colorScheme="pink" />
+                <Box px="1" py="2">
+                  <Box>{videoList.url.calculatedLecture.lectureTitle}</Box>
+                  <Box fontSize="14" color="#525252" paddingTop="2">
+                    수강 기한 : 무제한
+                  </Box>
+                  <Box fontSize="14" color="#525252" paddingBottom="5">
+                    진도율 : {completedCount}강/{videoList.list.length}강 (
+                    {progressPercent}%)
+                  </Box>
+                </Box>
+                <Box px="1">
+                  <Progress
+                    value={progressPercent}
+                    size="xs"
+                    rounded="lg"
+                    bg="#dedede"
+                    sx={{
+                      '& div': {
+                        backgroundColor: '#003C93',
+                      },
+                    }}
+                  />
+                </Box>
               </DrawerHeader>
 
               <DrawerBody width="100%" fontWeight="600">
                 <Stack spacing={3}>
-                  {!isLoading &&
+                  {isLoading ? (
+                    <Flex justifyContent="center">
+                      <Spinner />
+                    </Flex>
+                  ) : (
                     videoList.list?.map((video, index) => (
                       <VideoList
                         index={index + 1}
@@ -235,14 +264,15 @@ const Video = () => {
                         numColor={index + 1 == num ? '#dfe8f5' : '#f2f3f5'}
                         buttonColor={
                           video.is_completed
-                            ? 'pink' //true인 경우: 버튼 색상을 pink로 변경, false인 경우에는 다음 아래의 조건을 확인
+                            ? '#003C93' //true인 경우: 버튼 색상을 pink로 변경, false인 경우에는 다음 아래의 조건을 확인
                             : index + 1 == num && played80
-                            ? 'pink'
-                            : 'yellow'
+                            ? '#003C93'
+                            : '#b8b8b8'
                         }
                         resetCompleted={resetCompleted}
                       />
-                    ))}
+                    ))
+                  )}
                 </Stack>
               </DrawerBody>
 

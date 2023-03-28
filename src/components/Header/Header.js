@@ -116,7 +116,7 @@ export default function Header(props) {
                   <HiOutlineUserCircle
                     size="28"
                     color="rgb(0 60 147)"
-                    _hover={{ color: 'rgb(117 157 214)' }}
+                    // _hover={{ color: 'rgb(117 157 214)' }}
                   />
                 </Box>
               </Link>
