@@ -5,7 +5,7 @@ import { BsShare } from 'react-icons/bs';
 
 import { HStack, Box, Flex, Button } from '@chakra-ui/react';
 
-const StartButton = ({ lectureTitle }) => {
+const StartButton = ({ lectureTitle, is_enrolled }) => {
   return (
     <HStack
       position="fixed"
@@ -45,7 +45,7 @@ const StartButton = ({ lectureTitle }) => {
             fontSize="24px"
             px="20"
           >
-            강의 수강 신청하기
+            {is_enrolled ? '수강중' : '수강하기'}
           </Button>
         </Box>
       </Box>
