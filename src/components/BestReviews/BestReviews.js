@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 
 import StarRating from '../LectureCard/StarRating';
 
-// import { Link } from 'react-router-dom';
 const ReviewCard = ({ user, lectureNum, rating, id, contents }) => {
   return (
     <Link to={`reviews/${lectureNum}`}>
