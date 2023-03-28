@@ -145,7 +145,7 @@ function WholeLectures() {
         >
           <GridItem area={'search'} w="100%">
             <HStack justify="space-between" w="800px" mx="auto">
-              <Box w="20%" fontSize="18px" fontWeight="600" color="#958E96">
+              <Box w="20%" fontSize="18px" fontWeight="600">
                 {smallCategory === 'all'
                   ? categoriesNames[bigCategory]
                   : categoriesNames[smallCategory]}
