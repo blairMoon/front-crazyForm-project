@@ -18,7 +18,7 @@ function MyLecture() {
     return (
       <>
         <Grid>
-          <GridItem w="800px" mx="auto">
+          <GridItem w="800px" mx="auto" py="10">
             <Grid
               templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']}
               gap="5"
