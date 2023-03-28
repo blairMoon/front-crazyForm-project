@@ -146,6 +146,7 @@ export default function Header(props) {
               <Button
                 as={'a'}
                 fontSize={'sm'}
+                fontWeight={450}
                 variant={'link'}
                 href={'/login'}
                 textDecor="none"
@@ -154,7 +155,9 @@ export default function Header(props) {
                 paddingLeft={3}
                 paddingRight={3}
                 _hover={{
-                  textDecor: 'none',
+                  textDecoration: 'none',
+                  color: 'rgb(0 60 147)',
+                  fontWeight: '600',
                 }}
               >
                 로그인

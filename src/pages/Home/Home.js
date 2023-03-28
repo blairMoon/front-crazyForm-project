@@ -13,6 +13,7 @@ import ReviewCard from '../../components/BestReviews/BestReviews';
 import StarRating from '../../components/LectureCard/StarRating';
 import {
   Flex,
+  Link,
   Button,
   Heading,
   Text,
@@ -43,7 +44,7 @@ function Home() {
       <>
         <Flex direction="column" align="center" h="100%">
           <VStack align="center" h="100%">
-            <Box w="100%" h="100%" pt={12} mt={2}>
+            <Box w="100%" h="100%" pt={14} mt={3}>
               <Carousel
                 showThumbs={false}
                 autoPlay={true}
@@ -146,80 +147,88 @@ function Home() {
             <Container as={Stack} maxW={'6xl'} py={10}>
               <SimpleGrid columns={{ base: 1, md: 4 }} spacing={8}>
                 <Stack align={'center'}>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                    borderRadius={20}
-                    align={'center'}
-                  >
-                    <Stack mt={5}>
-                      <FaHtml5 size="160" />
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          기초코딩
-                        </Heading>
-                      </CardBody>
-                    </Stack>
-                  </Card>
+                  <Link href="/lectures/basic/all/?page=1">
+                    <Card
+                      width={'250px'}
+                      height={'280px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                      borderRadius={20}
+                      align={'center'}
+                    >
+                      <Stack mt={5}>
+                        <FaHtml5 size="160" />
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            기초코딩
+                          </Heading>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                    borderRadius={20}
-                    align={'center'}
-                  >
-                    <Stack mt={7}>
-                      <FaReact size="150" />
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          프론트엔드
-                        </Heading>
-                      </CardBody>
-                    </Stack>
-                  </Card>
+                  <Link href="/lectures/frontend/all/?page=1">
+                    <Card
+                      width={'250px'}
+                      height={'280px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                      borderRadius={20}
+                      align={'center'}
+                    >
+                      <Stack mt={7}>
+                        <FaReact size="150" />
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            프론트엔드
+                          </Heading>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                    borderRadius={20}
-                    align={'center'}
-                  >
-                    <Stack mt={10}>
-                      <SiSpring size="140" />
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          백엔드
-                        </Heading>
-                      </CardBody>
-                    </Stack>
-                  </Card>
+                  <Link href="/lectures/backend/all/?page=1">
+                    <Card
+                      width={'250px'}
+                      height={'280px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                      borderRadius={20}
+                      align={'center'}
+                    >
+                      <Stack mt={10}>
+                        <SiSpring size="140" />
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            백엔드
+                          </Heading>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Card
-                    width={'250px'}
-                    height={'280px'}
-                    direction={{ base: 'column' }}
-                    variant="outline"
-                    borderRadius={20}
-                    align={'center'}
-                  >
-                    <Stack mt={9}>
-                      <FaMobile size="150" />
-                      <CardBody>
-                        <Heading size="md" fontSize="17px">
-                          모바일
-                        </Heading>
-                      </CardBody>
-                    </Stack>
-                  </Card>
+                  <Link href="/lectures/mobile/all/?page=1">
+                    <Card
+                      width={'250px'}
+                      height={'280px'}
+                      direction={{ base: 'column' }}
+                      variant="outline"
+                      borderRadius={20}
+                      align={'center'}
+                    >
+                      <Stack mt={9}>
+                        <FaMobile size="150" />
+                        <CardBody>
+                          <Heading size="md" fontSize="17px">
+                            모바일
+                          </Heading>
+                        </CardBody>
+                      </Stack>
+                    </Card>
+                  </Link>
                 </Stack>
               </SimpleGrid>
             </Container>
