@@ -1,9 +1,16 @@
 import React from 'react';
-
+import css from './PrepagePage.module.scss';
 const PreparePage = () => {
   return (
     <div>
-      <img src="/images/logo.png" alt="logo" width="200" />
+      <div className={css.imgDiv}>
+        <img
+          className={css.img}
+          src="/images/logo.png"
+          alt="logo"
+          width="200"
+        />
+      </div>
     </div>
   );
 };

@@ -13,6 +13,7 @@ import Layout from '../components/Layout/Layout';
 import MyLecture from '../components/Mylecturepage/Mylecture';
 import Video from './Lectureplaypage/Lectureplay';
 import PreparePage from './PreparePage/PreparePage';
+import Notfound from './Notfound/Notfound';
 function Router() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   // useEffect(() => {
@@ -110,6 +111,7 @@ function Router() {
             </Layout>
           }
         />
+        <Route path="*" element={<Notfound />} />
       </Routes>
     </BrowserRouter>
   );
