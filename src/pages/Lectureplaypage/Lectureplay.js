@@ -10,6 +10,7 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
   Box,
   Stack,
+  HStack,
   Flex,
   Drawer,
   DrawerOverlay,
@@ -102,7 +103,7 @@ const Video = () => {
     }
   }, [videoList]);
 
-  const aspectRatio = 9 / 16;
+  const aspectRatio = 9 / 21;
   const maxWidth = 1280;
   const maxHeight = maxWidth * aspectRatio;
 
@@ -164,14 +165,14 @@ const Video = () => {
     return (
       <>
         <LectureHeader />
-        <Flex justifyContent="space-between">
+        <Flex justifyContent="space-between" w="100%" h="100%" minh="100h">
           <Box
             width="100%"
             maxWidth={`${maxWidth}px`}
             position="relative"
             paddingTop={`calc(100% * ${aspectRatio})`}
             maxHeight={`${maxHeight}px`}
-            margin="auto"
+            // margin="auto"
             overflow="hidden"
           >
             <ReactPlayer
@@ -201,14 +202,15 @@ const Video = () => {
               }}
             />
           </Box>
-          <Button onClick={handleSaveAndClose}>저장 후 닫기</Button>
-          <Button
-            ref={btnRef}
-            colorScheme="ghost"
-            onClick={() => setIsDrawerOpen(true)}
-          >
-            {<BsListUl size={35} style={{ color: 'black' }} />}
-          </Button>
+          <Box bg="rgb(240,240,240,0.8)">
+            <Button
+              ref={btnRef}
+              colorScheme="ghost"
+              onClick={() => setIsDrawerOpen(true)}
+            >
+              {<BsListUl size={35} style={{ color: 'black' }} />}
+            </Button>
+          </Box>
         </Flex>
 
         <Drawer
@@ -276,7 +278,19 @@ const Video = () => {
                 </Stack>
               </DrawerBody>
 
-              <DrawerFooter></DrawerFooter>
+              <DrawerFooter>
+                <Button
+                  bg="#003C93"
+                  color="white"
+                  _hover={{ bg: '#012a66' }}
+                  _active={{ bg: '#012a66' }}
+                  borderRadius="lg"
+                  boxShadow="lg"
+                  onClick={handleSaveAndClose}
+                >
+                  저장 후 닫기
+                </Button>
+              </DrawerFooter>
             </DrawerContent>
           </DrawerOverlay>
         </Drawer>

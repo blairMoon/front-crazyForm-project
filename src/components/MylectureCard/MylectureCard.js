@@ -40,7 +40,7 @@ const MylectureCard = ({
     >
       <Box
         onClick={() => {
-          navigate(`lecture/${lectureNumber}`);
+          navigate(`/lectures/${lectureNumber}`);
         }}
       >
         <Image
@@ -56,7 +56,7 @@ const MylectureCard = ({
         <CardBody>
           <Box
             onClick={() => {
-              navigate(`lecture/${lectureNumber}`);
+              navigate(`/lectures/${lectureNumber}`);
             }}
           >
             <Heading size="md" fontSize="17px">

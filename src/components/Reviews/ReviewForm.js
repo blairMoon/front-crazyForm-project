@@ -133,7 +133,12 @@ const ReviewForm = ({ lectureNum, reviewsNum, ratingScore }) => {
             </Box>
             <Button
               type="submit"
-              colorScheme="whatsapp"
+              bg="#003C93"
+              color="white"
+              _hover={{ bg: '#012a66' }}
+              _active={{ bg: '#012a66' }}
+              borderRadius="lg"
+              boxShadow="lg"
               width="100px"
               height="100px"
               // isLoading={formState.isSubmitting}
@@ -153,7 +158,7 @@ const ReviewForm = ({ lectureNum, reviewsNum, ratingScore }) => {
         <AlertDialogOverlay>
           <AlertDialogContent borderRadius="lg">
             <AlertDialogHeader
-              bg="#22c35e"
+              bg="#003C93"
               color="white"
               fontSize="lg"
               fontWeight="bold"
@@ -168,7 +173,15 @@ const ReviewForm = ({ lectureNum, reviewsNum, ratingScore }) => {
             </AlertDialogBody>
 
             <AlertDialogFooter justifyContent="center">
-              <Button colorScheme="whatsapp" onClick={closeErrorModal}>
+              <Button
+                bg="#003C93"
+                color="white"
+                _hover={{ bg: '#012a66' }}
+                _active={{ bg: '#012a66' }}
+                borderRadius="lg"
+                boxShadow="lg"
+                onClick={closeErrorModal}
+              >
                 닫기
               </Button>
             </AlertDialogFooter>
