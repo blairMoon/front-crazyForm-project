@@ -145,16 +145,17 @@ function WholeLectures() {
         >
           <GridItem area={'search'} w="100%">
             <HStack justify="space-between" w="800px" mx="auto">
-              <Box w="20%" fontSize="20px" fontWeight="500" color="#958E96">
+              <Box w="20%" fontSize="18px" fontWeight="600" color="#958E96">
                 {smallCategory === 'all'
                   ? categoriesNames[bigCategory]
                   : categoriesNames[smallCategory]}
               </Box>
-              <InputGroup w="40%">
+              <InputGroup w="45%">
                 <Input
                   className="Input"
                   variant="outline"
                   value={searchResult}
+                  focusBorderColor="#003C93"
                   placeholder={
                     smallCategory === 'all'
                       ? `${categoriesNames[bigCategory]} 검색`
