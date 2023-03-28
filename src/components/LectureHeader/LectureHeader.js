@@ -41,7 +41,7 @@ export default function LectureHeader() {
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}
             >
-              Kwanyeol and the kids.
+              <img src="/images/logo2.png" alt="logo" width="160" />
             </Text>
           </Link>
         </Stack>
@@ -56,10 +56,18 @@ export default function LectureHeader() {
               cursor={'pointer'}
               href={'/userinfo'}
               pr={2}
+              mt={1}
+              _hover={{
+                textDecoration: 'none',
+              }}
             >
               내강의
             </Button>
-            <Text>관열이와 아이들 소개</Text>
+            <Box>
+              <Text pt={1} fontWeight={500}>
+                관열이와 아이들 소개
+              </Text>
+            </Box>
           </>
         </Stack>
       </Flex>
