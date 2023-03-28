@@ -95,6 +95,7 @@ const DetailLecture = () => {
   useEffect(() => {
     if (!isLoading && !error) {
       setLectureData(data);
+      console.log(data);
     }
   }, [data, isLoading, error]);
 

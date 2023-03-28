@@ -2,7 +2,7 @@ import axios from 'axios';
 import { is } from 'immutable';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-
+import { getAccessToken } from './Token';
 export const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/',
   // baseURL: 'http://115.85.182.132:8000/api/v1/',
@@ -131,10 +131,21 @@ export const getLectureRate = () => {
   return instanceNotLogin.get(`lectures/mainpage`).then(res => res.data);
 };
 
-export const getLectureDetail = page => {
-  return instanceNotLogin.get(`lectures/${page}`).then(res => res.data);
+export const getLectureDetail = async page => {
+  const access = getAccessToken();
+  try {
+    if (access) {
+      const res = await instance.get(`lectures/${page}`);
+      return res.data;
+    } else {
+      const res = await instanceNotLogin.get(`lectures/${page}`);
+      return res.data;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
-
 export const getLectureAndCategoryAndSearch = async ({ queryKey }) => {
   const [, bigCategory, smallCategory, page, searchName] = queryKey;
 

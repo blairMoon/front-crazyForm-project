@@ -12,7 +12,7 @@ import { isLoggedInVar } from '../apollo';
 import Layout from '../components/Layout/Layout';
 import MyLecture from '../components/Mylecturepage/Mylecture';
 import Video from './Lectureplaypage/Lectureplay';
-
+import PreparePage from './PreparePage/PreparePage';
 function Router() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   // useEffect(() => {
@@ -102,6 +102,14 @@ function Router() {
           }
         /> */}
         <Route path="/lectureplay/:lectureId/:num" element={<Video />} />
+        <Route
+          path="/prepare"
+          element={
+            <Layout>
+              <PreparePage />
+            </Layout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

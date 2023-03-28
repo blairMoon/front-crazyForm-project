@@ -61,7 +61,8 @@ const LoginPage = () => {
       <div className={css.Container}>
         <div className={css.Wrapper}>
           <div className={css.TopBox}>
-            <h1>Login</h1>
+            <img src="/images/logo.png" alt="logo" width="200" />
+
             <form onSubmit={handleSubmit(onSubmit)} className={css.Form}>
               <div>
                 <input
@@ -107,11 +108,11 @@ const LoginPage = () => {
                 로그인
               </button>
             </form>
-            <div className={css.Seperater}>
+            {/* <div className={css.Seperater}>
               <div></div>
               <span>간편로그인</span>
               <div></div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
