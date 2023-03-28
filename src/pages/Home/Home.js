@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './Home.module.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Carousel } from 'react-responsive-carousel';
@@ -47,6 +48,7 @@ function Home() {
             <Box w="100%" h="100%" pt={14} mt={3}>
               <Carousel
                 showThumbs={false}
+                showArrows={false}
                 autoPlay={true}
                 infiniteLoop={true}
                 interval={4000}
@@ -84,7 +86,7 @@ function Home() {
           </VStack>
 
           <Flex>
-            <Box w="100%" h="550px" textAlign="center">
+            <Box w="100%" h="480px" textAlign="center">
               <Heading size="lg" mb="4" mt="7">
                 POPULAR CLASS
               </Heading>
@@ -92,7 +94,7 @@ function Home() {
                 <Carousel
                   showThumbs={false}
                   showIndicators={false}
-                  showArrows={true}
+                  showArrows={false}
                   autoPlay={true}
                   infiniteLoop={true}
                   interval={4000}
@@ -139,7 +141,7 @@ function Home() {
             </Box>
           </Flex>
 
-          <Box bg="gray.100" w="100%" h="500px" textAlign="center">
+          <Box bg="white" w="100%" h="500px" textAlign="center">
             <Heading size="lg" mb="4" mt="10">
               수강항목
             </Heading>
@@ -147,7 +149,12 @@ function Home() {
             <Container as={Stack} maxW={'6xl'} py={10}>
               <SimpleGrid columns={{ base: 1, md: 4 }} spacing={8}>
                 <Stack align={'center'}>
-                  <Link href="/lectures/basic/all/?page=1">
+                  <Link
+                    href="/lectures/basic/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -155,9 +162,10 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
                     >
                       <Stack mt={5}>
-                        <FaHtml5 size="160" />
+                        <FaHtml5 size="155" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             기초코딩
@@ -168,7 +176,12 @@ function Home() {
                   </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Link href="/lectures/frontend/all/?page=1">
+                  <Link
+                    href="/lectures/frontend/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -176,9 +189,10 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
                     >
                       <Stack mt={7}>
-                        <FaReact size="150" />
+                        <FaReact size="150" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             프론트엔드
@@ -189,7 +203,12 @@ function Home() {
                   </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Link href="/lectures/backend/all/?page=1">
+                  <Link
+                    href="/lectures/backend/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -197,9 +216,10 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
                     >
                       <Stack mt={10}>
-                        <SiSpring size="140" />
+                        <SiSpring size="140" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             백엔드
@@ -210,7 +230,12 @@ function Home() {
                   </Link>
                 </Stack>
                 <Stack align={'center'}>
-                  <Link href="/lectures/mobile/all/?page=1">
+                  <Link
+                    href="/lectures/mobile/all/?page=1"
+                    _hover={{
+                      textDecoration: 'none',
+                    }}
+                  >
                     <Card
                       width={'250px'}
                       height={'280px'}
@@ -218,9 +243,10 @@ function Home() {
                       variant="outline"
                       borderRadius={20}
                       align={'center'}
+                      borderColor="#003c93"
                     >
                       <Stack mt={9}>
-                        <FaMobile size="150" />
+                        <FaMobile size="150" color="#003c93" />
                         <CardBody>
                           <Heading size="md" fontSize="17px">
                             모바일
