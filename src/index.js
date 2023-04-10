@@ -12,7 +12,6 @@ const queryClient = new QueryClient();
 root.render(
   <ChakraProvider>
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={true} />
       <Router />
     </QueryClientProvider>
   </ChakraProvider>

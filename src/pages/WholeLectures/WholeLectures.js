@@ -29,12 +29,12 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { getAccessToken } from '../../Token';
 function WholeLectures() {
   const { bigCategory, smallCategory } = useParams();
-  const [categoryName, setCategoryName] = useState('');
+
   const navigate = useNavigate();
-  const { headerSearch, setHeaderSearch } = useState('');
+
   //검색
   const [searchResult, setSearchResult] = useState('');
-  const queryClient = useQueryClient();
+
   const [pages, setPages] = useState([]);
   const pageSize = 30;
   const location = useLocation();
