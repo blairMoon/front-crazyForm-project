@@ -1,5 +1,5 @@
 ## CrazyFrom
-<img width="200px" src="https://cdn.discordapp.com/attachments/1081104144535920651/1098527752845537380/logo2.png"/>
+<img width="300px" src="https://cdn.discordapp.com/attachments/1081104144535920651/1098527752845537380/logo2.png"/>
 
 
 ### ⚙️ Dependency
