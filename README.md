@@ -202,3 +202,4 @@ react-icons
  Responsive
 📋 DB Model Diagram
 diagram
+<img src="https://media.discordapp.net/attachments/1078553548494741584/1098495585067225179/DB_.png?width=1693&height=865"/>
