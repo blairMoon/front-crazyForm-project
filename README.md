@@ -48,7 +48,7 @@ react-icons
 #### -전체강의 기능 
  ##### 검색 
  ##### 카테고리
- 
+ ##### 페이지네이션
 
 ### 📋 DB Model Diagram
 diagram
