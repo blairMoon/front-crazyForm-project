@@ -1,4 +1,5 @@
-## 🐤CrazyFrom🐤
+## CrazyFrom
+<img src="https://cdn.discordapp.com/attachments/1081104144535920651/1098527752845537380/logo2.png"/>
 
 
 ### ⚙️ Dependency
