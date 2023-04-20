@@ -1,4 +1,4 @@
-## 🏘️ CrazyFrom
+## 🐤CrazyFrom
 
 
 ### ⚙️ Dependency
