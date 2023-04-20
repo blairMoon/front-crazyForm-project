@@ -1,9 +1,9 @@
-🏘️ BANGSAM
+## 🏘️ CrazyFrom
 부동산 채팅 WEB/APP
 ✏️ 요약
 기존의 부동산 WEB 형식에 Custom 하게 채팅 기능을 추가
 
-⚙️ Dependency
+### ⚙️ Dependency
 
 axios
 
