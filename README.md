@@ -22,6 +22,12 @@ styled-components
 
 react-slick
 
+react-player
+
+react-hook-form
+
+axios
+
 @chakra-ui/react
 
 react-icons
