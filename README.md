@@ -3,6 +3,9 @@
 
 
 ### ⚙️ Dependency
+sass
+
+apollo/client
 
 axios
 
@@ -14,13 +17,11 @@ react-hook-form,
 
 @tanstack/react-query-devtools
 
-react-helmet
-
 react-js-pagination
 
 styled-components
 
-react-slick
+react-responsive-carousel
 
 react-player
 
@@ -30,15 +31,14 @@ axios
 
 @chakra-ui/react
 
+chakra-ui/icons
+
 react-icons
-
-@fortawesome/free-brands-svg-icons
-
-@fortawesome/free-regular-svg-icons
 
 @fortawesome/free-solid-svg-icons
 
-@fortawesome/react-fontawesome
+react-router-dom
+
 
 
 
