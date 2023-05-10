@@ -11,7 +11,6 @@ axios
 
 js-cookie
 
-react-hook-form,
 
 @tanstack/react-query
 
