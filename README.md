@@ -92,7 +92,7 @@ react-router-dom-->
  - ###### ID / PW 기입
  - ###### ID/PW 유효성 검사
  - ###### ID, PW 일치 불일치 검증(modal)
- - ###### 로그인 시 쿠키(Cookie) 및 jwt(token) 생성
+ - ###### 로그인 시 jwt(token)을 이용한 유저인증
  
  
  <br/><br/>
